@@ -64,9 +64,9 @@ class AdminImage(admin.ModelAdmin):
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
     list_display = (
-        'get_image', 'name', 'public', 'direction', 'public_on_home_page', 'order', 'slug', 'views', 'pub_date', 'update')
+        'get_image', 'name', 'public', 'public_on_home_page', 'order', 'slug', 'views', 'pub_date', 'update')
     list_editable = ('public_on_home_page', 'order', 'slug', 'public')
-    list_display_links = ('get_image', 'name', 'public_on_home_page')
+    list_display_links = ('get_image', 'name')
     list_filter = ('pub_date', 'update')
     search_fields = ('name',)
     save_on_top = True

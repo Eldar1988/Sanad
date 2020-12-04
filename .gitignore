@@ -566,3 +566,4 @@ yarn-error.log
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm,pycharm+all,django,vue,vuejs,webstorm,webstorm+iml,webstorm+all
+Backend/HelloDjango/clinic/migrations/0001_initial.py

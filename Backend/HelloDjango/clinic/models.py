@@ -102,7 +102,7 @@ class Doctor(models.Model):
     action = models.ForeignKey(Action, on_delete=models.SET_NULL, null=True, blank=True, related_name='actions',
                                verbose_name='Акции')
     video = models.ManyToManyField(Video, blank=True, related_name='video', verbose_name='Видео врача')
-    photos = models.ManyToManyField(Image, null=True, blank=True, verbose_name='photos', related_name='Изображения')
+    photos = models.ManyToManyField(Image, blank=True, verbose_name='photos', related_name='Изображения')
     say = RichTextUploadingField('Слово специалиста')
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
     order = models.PositiveSmallIntegerField('Порядковый номер')
