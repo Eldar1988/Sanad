@@ -52,6 +52,7 @@ class Post(models.Model):
                                verbose_name='Доктор', related_name='posts')
     direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True,
                                   verbose_name='Направление', related_name='posts')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
@@ -71,6 +72,7 @@ class PostReviews(models.Model):
     text = models.TextField('Комментарий')
     post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, blank=True,
                              related_name='reviews', verbose_name='Пост')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
 
@@ -98,6 +100,7 @@ class MedicalHistory(models.Model):
                                verbose_name='Доктор', related_name='posts')
     direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True,
                                   verbose_name='Направление', related_name='posts')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
@@ -117,6 +120,7 @@ class MedicalHistoryReviews(models.Model):
     text = models.TextField('Комментарий')
     history = models.ForeignKey(MedicalHistory, on_delete=models.SET_NULL, null=True, blank=True,
                                 related_name='reviews', verbose_name='История болезни')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
 

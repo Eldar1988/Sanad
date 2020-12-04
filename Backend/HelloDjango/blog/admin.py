@@ -3,8 +3,25 @@ from django.utils.safestring import mark_safe
 
 from .models import Video, Image, Post, MedicalHistory, PostReviews, MedicalHistoryReviews
 
-admin.site.register(PostReviews)
-admin.site.register(MedicalHistoryReviews)
+
+@admin.register(PostReviews)
+class PostReviewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'post', 'text', 'public', 'pub_date', 'update')
+    list_editable = ('public',)
+    search_fields = ('name', 'text')
+    list_filter = ('pub_date', 'update', 'post', 'public')
+    save_as = True
+    save_on_top = True
+
+
+@admin.register(MedicalHistoryReviews)
+class MedicalHistoryReviewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'post', 'text', 'public', 'pub_date', 'update')
+    list_editable = ('public',)
+    search_fields = ('name', 'text')
+    list_filter = ('pub_date', 'update', 'post', 'public')
+    save_as = True
+    save_on_top = True
 
 
 @admin.register(Video)
@@ -29,9 +46,9 @@ class AdminImage(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page',
+    list_display = ('get_image', 'title', 'doctor', 'direction', 'public', 'is_action', 'is_news', 'public_on_home_page',
                     'slug', 'order', 'views', 'pub_date', 'update')
-    list_editable = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'slug', 'order')
+    list_editable = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'slug', 'order', 'public')
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
     list_filter = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'pub_date', 'update')
