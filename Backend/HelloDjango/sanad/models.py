@@ -24,7 +24,7 @@ class Slider(models.Model):
 
 class Advantage(models.Model):
     """Преимущества клиник"""
-    title = models.CharField('Заголовок')
+    title = models.CharField('Заголовок', max_length=255)
     text = models.TextField('Текст')
     icon = models.CharField('Иконка', max_length=255, help_text='https://material.io/resources/icons/?style=baseline')
     order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
@@ -109,8 +109,8 @@ class About(models.Model):
     title = models.CharField('Заголовок страцниы о клинике', max_length=255)
     sub_title = models.CharField('Подзаголовок', max_length=255)
     text = RichTextUploadingField('Описание')
-    videos = models.ManyToManyField(VideoGallery, blank=True, verbose_name='Видео галерея', related_name='videos')
-    photos = models.ManyToManyField(PhotoGallery, blank=True, verbose_name='Фото галерея', related_name='photos')
+    videos = models.ManyToManyField(VideoGallery, blank=True, verbose_name='Видео галерея')
+    photos = models.ManyToManyField(PhotoGallery, blank=True, verbose_name='Фото галерея')
 
     def __str__(self):
         return self.title

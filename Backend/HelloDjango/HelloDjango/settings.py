@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'clinic',
     'blog',
+    'sanad',
 ]
 
 MIDDLEWARE = [
