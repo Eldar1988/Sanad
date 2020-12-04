@@ -31,7 +31,7 @@ class Direction(models.Model):
     slug = models.SlugField(unique=True)
     pub_date = models.DateTimeField('Дата создания направления в базе', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
-    views = models.PositiveSmallIntegerField('Колчиество просмотров', default=0)
+    views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
 
     def __str__(self):
         return self.title
@@ -92,6 +92,7 @@ class Image(models.Model):
 
 class Doctor(models.Model):
     """Доктор"""
+    direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направления', related_name='directions')
     name = models.CharField('Имя доктора', max_length=255)
     photo = models.URLField('Фото (фон на странице доктора')
     avatar = models.URLField('Аватар доктора', default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
