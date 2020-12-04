@@ -62,6 +62,7 @@ class Video(models.Model):
     """Видео ролики"""
     title = models.CharField('Название видео', max_length=255)
     url = models.URLField('URL видео')
+    poster = models.URLField('Постер видео')
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -106,6 +107,7 @@ class Doctor(models.Model):
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     slug = models.SlugField(unique=True)
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания врача в базе', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
     views = models.PositiveSmallIntegerField('Количество просмотров страницы врача')
@@ -130,6 +132,7 @@ class DirectionReviews(models.Model):
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
     order = models.PositiveSmallIntegerField('Порядковый номер')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания отзыва', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
 
@@ -152,6 +155,7 @@ class DoctorReviews(models.Model):
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
     order = models.PositiveSmallIntegerField('Порядковый номер')
+    public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания отзыва', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
 

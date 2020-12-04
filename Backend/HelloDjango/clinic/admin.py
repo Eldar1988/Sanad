@@ -38,12 +38,17 @@ class ActionAdmin(admin.ModelAdmin):
 
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'order', 'pub_date', 'update')
+    list_display = ('get_image', 'title', 'order', 'pub_date', 'update')
     list_editable = ('order',)
     search_fields = ('title',)
     list_filter = ('pub_date', 'update')
     save_as = True
     save_on_top = True
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.poster}" height=50')
+
+    get_image.short_description = 'Постер'
 
 
 @admin.register(Image)
@@ -59,8 +64,8 @@ class AdminImage(admin.ModelAdmin):
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
     list_display = (
-        'get_image', 'name', 'direction', 'public_on_home_page', 'order', 'slug', 'views', 'pub_date', 'update')
-    list_editable = ('public_on_home_page', 'order', 'slug')
+        'get_image', 'name', 'public', 'direction', 'public_on_home_page', 'order', 'slug', 'views', 'pub_date', 'update')
+    list_editable = ('public_on_home_page', 'order', 'slug', 'public')
     list_display_links = ('get_image', 'name', 'public_on_home_page')
     list_filter = ('pub_date', 'update')
     search_fields = ('name',)
@@ -75,9 +80,9 @@ class DoctorAdmin(admin.ModelAdmin):
 
 @admin.register(DirectionReviews)
 class DirectionReviewsAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'name', 'direction', 'rating', 'public_on_home_page', 'order', 'pub_date', 'update')
+    list_display = ('get_image', 'name', 'direction', 'public', 'rating', 'public_on_home_page', 'order', 'pub_date', 'update')
     list_filter = ('direction', 'rating', 'public_on_home_page', 'pub_date', 'update')
-    list_editable = ('rating', 'public_on_home_page', 'order')
+    list_editable = ('rating', 'public_on_home_page', 'order', 'public')
     list_display_links = ('get_image', 'name')
     search_fields = ('name',)
     save_on_top = True
@@ -91,9 +96,9 @@ class DirectionReviewsAdmin(admin.ModelAdmin):
 
 @admin.register(DoctorReviews)
 class DoctorReviewsAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'name', 'doctor', 'rating', 'public_on_home_page', 'order', 'pub_date', 'update')
+    list_display = ('get_image', 'name', 'doctor', 'public', 'rating', 'public_on_home_page', 'order', 'pub_date', 'update')
     list_filter = ('doctor', 'rating', 'public_on_home_page', 'pub_date', 'update')
-    list_editable = ('rating', 'public_on_home_page', 'order')
+    list_editable = ('rating', 'public_on_home_page', 'order', 'public')
     list_display_links = ('get_image', 'name')
     search_fields = ('name',)
     save_on_top = True
