@@ -9,6 +9,7 @@
 
 module.exports = function (/* ctx */) {
   return {
+    preFetch: true,
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
 
@@ -19,7 +20,6 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
       'axios',
     ],
 
@@ -100,7 +100,9 @@ cfg.module.rules.push({
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Meta'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

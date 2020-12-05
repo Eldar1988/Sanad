@@ -2,6 +2,19 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+class MainInfo(models.Model):
+    """Информация для шапки сайта"""
+    title = models.CharField('Title сайта', max_length=255)
+    description = models.TextField('Description сайта')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Header'
+        verbose_name_plural = 'Header'
+
+
 class Slider(models.Model):
     """Слайдеры на главной страницы"""
     title = models.CharField('Заголовок слайда', max_length=255)

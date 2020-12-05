@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Slider, Advantage, Contacts, Social, PhotoGallery, VideoGallery, About
+from .models import Slider, Advantage, Contacts, Social, PhotoGallery, VideoGallery, About, MainInfo
 
 
 admin.site.register(Contacts)
 admin.site.register(Social)
 admin.site.register(About)
+admin.site.register(MainInfo)
 
 
 @admin.register(Slider)
