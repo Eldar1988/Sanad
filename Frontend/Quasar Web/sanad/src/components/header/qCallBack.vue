@@ -24,7 +24,7 @@
     <q-dialog v-model="dialog">
       <q-card style="min-width: 350px">
         <q-card-section>
-          <div class="text-h6">{{dialogHeader}}</div>
+          <div class="text-h6 text-secondary">{{dialogHeader}}</div>
           <p class="q-mt-md">Оставьте ваши контактные данные<br>Мы свяжемся с Вами в ближайшее время</p>
         </q-card-section>
 
@@ -44,7 +44,7 @@
 
         <q-card-actions align="right" class="text-primary">
           <q-btn flat rounded label="Отмена" v-close-popup />
-          <q-btn rounded color="primary" label="Отправить" v-close-popup  class="q-pl-md" icon-right="send"/>
+          <q-btn rounded color="primary" label="Отправить" v-close-popup  class="q-pl-md" icon-right="send" unelevated/>
         </q-card-actions>
       </q-card>
     </q-dialog>
