@@ -101,7 +101,9 @@ cfg.module.rules.push({
 
       // Quasar plugins
       plugins: [
-        'Meta'
+        'Meta',
+        'Loading',
+        'LoadingBar'
       ]
     },
 

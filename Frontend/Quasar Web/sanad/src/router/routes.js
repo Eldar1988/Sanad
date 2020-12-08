@@ -35,6 +35,22 @@ const routes = [
       {path: '/actions', component: () => import('pages/Actions.vue')}
     ]
   },
+  {
+    path: '/directions/:slug',
+    component: () => import('layouts/MainLayout.vue'),
+    params: 'slug',
+    children: [
+      {path: '/directions/:slug', component: () => import('pages/Directory.vue')}
+    ]
+  },
+  {
+    path: '/story/:slug',
+    component: () => import('layouts/MainLayout.vue'),
+    params: 'slug',
+    children: [
+      {path: '/story/:slug', component: () => import('pages/Story.vue')}
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

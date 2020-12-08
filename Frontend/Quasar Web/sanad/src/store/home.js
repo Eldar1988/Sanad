@@ -1,10 +1,22 @@
-const serverURL = 'http://192.168.0.199:8000'
+import axiosInstance from 'axios'
 
-export const actions = {
-  async fetchHomePageData () {
-    try {
-      const homeProducts = await this.$axios.$get(`${serverURL}/get_home_page_data`)
-      return homeProducts
-    } catch {}
+export default {
+  namespaced: true,
+  // IMPORTANT: state must be a function so the module can be
+  // instantiated multiple times
+  state: () => ({
+    data: []
+  }),
+  actions: {
+    fetchItem ({ commit }) {
+      return axiosInstance.get('http://192.168.0.199:8000/api/').then(({ data }) => {
+        commit('setData', data)
+      })
+    }
+  },
+  mutations: {
+    setData(state, data) {
+      state.data = data
+    }
   }
 }

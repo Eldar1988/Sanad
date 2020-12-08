@@ -29,17 +29,17 @@ class VideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'order', 'pub_date', 'update')
     list_editable = ('order',)
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('story', 'post', 'pub_date', 'update')
     save_as = True
     save_on_top = True
 
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'order', 'pub_date', 'update')
-    list_editable = ('order',)
+    list_display = ('title', 'alt', 'order', 'pub_date', 'update')
+    list_editable = ('order', 'alt')
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('story', 'post', 'pub_date', 'update')
     save_as = True
     save_on_top = True
 
@@ -56,7 +56,7 @@ class PostAdmin(admin.ModelAdmin):
     save_on_top = True
 
     def get_image(self, obj):
-        return mark_safe(f'<img src="{obj.image}" height=50')
+        return mark_safe(f'<img src="{obj.photo}" height=50')
 
     get_image.short_description = 'Фото'
 
@@ -73,7 +73,7 @@ class MedicalHistoryAdmin(admin.ModelAdmin):
     save_on_top = True
 
     def get_image(self, obj):
-        return mark_safe(f'<img src="{obj.image}" height=50')
+        return mark_safe(f'<img src="{obj.photo}" height=50')
 
     get_image.short_description = 'Фото'
 

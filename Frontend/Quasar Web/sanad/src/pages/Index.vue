@@ -1,55 +1,47 @@
 <template>
   <q-page>
-    <qSlider />
-    {{ test }}
+    <qSlider :slides="slides"/>
+    <qDirections />
   </q-page>
 </template>
 
 <script>
-import qSlider from "components/home/qSlider";
-import Axios from "axios";
+import qSlider from 'components/home/qSlider'
+import qDirections from 'components/home/qDirections'
 
 export default {
   components: {
-    qSlider
+    qSlider,
+    qDirections
   },
   name: "PageIndex",
-  data() {
+  preFetch({ store }) {
+    return store.dispatch("fetchHomeData");
+  },
+  computed: {
+    slides() {
+      return this.$store.state.homeData[1];
+    },
+  },
+  meta() {
+    let metaData = this.$store.state.homeData[0]
     return {
-      test: []
+      title: metaData.title,
+      meta: {
+        description: {
+          name: "description",
+          content: metaData.description,
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: "website",
+        },
+      },
     };
   },
-
-  preFetch({ store }) {
-    getHomeData();
-    async function getHomeData() {
-      let homeData = await store.dispatch("getHomeData"); // Данные для главной страницы
-      homeData = homeData.data; // Получаем список
-      let meta = homeData[0]; // Мета тэги
-      console.log(meta, "1");
-      this.setHomeData(meta)
-    }
-
-    this.meta.title = "test()";
-    this.meta.meta.ogTitle.content = "REd";
-    this.meta.meta.description.content = "store.state.homeData.title";
-  },
-  methods: {
-    setHomeData(data) {
-      this.test = data
-    }
-  },
-  meta: {
-    title: "",
-    meta: {
-      description: {
-        name: "description"
-      },
-      ogTitle: {
-        property: "og:title",
-        content: "111"
-      }
-    }
-  }
 };
 </script>

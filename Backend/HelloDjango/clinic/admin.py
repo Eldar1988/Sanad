@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Healing, Direction, Action, Video, Image, Doctor, DirectionReviews, DoctorReviews
+from .models import Healing, Direction, Action, VideoGallery, ImageGallery, Doctor, DirectionReviews, DoctorReviews
 
 
 @admin.register(Healing)
@@ -9,6 +9,10 @@ class HealingAdmin(admin.ModelAdmin):
     list_display = ('title', 'order')
     list_editable = ('order',)
     search_fields = ('title',)
+    list_filter = ('direction',)
+
+    save_on_top = True
+    save_as = True
 
 
 @admin.register(Direction)
@@ -36,12 +40,12 @@ class ActionAdmin(admin.ModelAdmin):
     save_as = True
 
 
-@admin.register(Video)
+@admin.register(VideoGallery)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'title', 'order', 'pub_date', 'update')
     list_editable = ('order',)
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('directions', 'doctors', 'pub_date', 'update')
     save_as = True
     save_on_top = True
 
@@ -51,14 +55,19 @@ class VideoAdmin(admin.ModelAdmin):
     get_image.short_description = 'Постер'
 
 
-@admin.register(Image)
+@admin.register(ImageGallery)
 class AdminImage(admin.ModelAdmin):
-    list_display = ('title', 'order', 'pub_date', 'update')
+    list_display = ('get_image', 'title', 'order', 'pub_date', 'update')
     list_editable = ('order',)
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('directions', 'doctors', 'pub_date', 'update')
     save_as = True
     save_on_top = True
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.poster}" height=50')
+
+    get_image.short_description = 'Фото'
 
 
 @admin.register(Doctor)
@@ -67,7 +76,7 @@ class DoctorAdmin(admin.ModelAdmin):
         'get_image', 'name', 'public', 'public_on_home_page', 'order', 'slug', 'views', 'pub_date', 'update')
     list_editable = ('public_on_home_page', 'order', 'slug', 'public')
     list_display_links = ('get_image', 'name')
-    list_filter = ('pub_date', 'update')
+    list_filter = ('direction', 'pub_date', 'update')
     search_fields = ('name',)
     save_on_top = True
     save_as = True

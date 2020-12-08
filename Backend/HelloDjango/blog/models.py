@@ -3,49 +3,15 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from clinic.models import Doctor, Direction
 
 
-class Video(models.Model):
-    """Видео ролики"""
-    title = models.CharField('Название видео', max_length=255)
-    url = models.URLField('URL видео')
-    order = models.PositiveSmallIntegerField('Порядковый номер')
-    pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
-    update = models.DateTimeField('Дата изменения', auto_now=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Видео'
-        verbose_name_plural = 'Видео'
-
-
-class Image(models.Model):
-    """Картинки"""
-    title = models.CharField('Название изображения', max_length=255)
-    url = models.URLField('URL изображения')
-    order = models.PositiveSmallIntegerField('Порядковый номер')
-    pub_date = models.DateTimeField('Дата добавления', auto_now_add=True)
-    update = models.DateTimeField('Дата изменения', auto_now=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Изображение'
-        verbose_name_plural = 'Изображения'
-
-
 class Post(models.Model):
     """Пост"""
     title = models.CharField('Заголовок', max_length=255)
-    image = models.URLField('Изображение новости')
+    photo = models.URLField('Изображение новости')
     is_action = models.BooleanField('Акция', default=False)
     is_news = models.BooleanField('Новость клиники', default=False)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
     body = RichTextUploadingField('Пост')
-    images = models.ManyToManyField(Image, verbose_name='Изображения', blank=True)
-    videos = models.ManyToManyField(Video, verbose_name='Видео', blank=True)
     slug = models.SlugField(unique=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
@@ -88,12 +54,10 @@ class PostReviews(models.Model):
 class MedicalHistory(models.Model):
     """История болезни"""
     title = models.CharField('Заголовок', max_length=255)
-    image = models.URLField('Изображение', blank=True, null=True)
+    photo = models.URLField('Изображение', blank=True, null=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
     body = RichTextUploadingField('История болезни')
-    images = models.ManyToManyField(Image, verbose_name='Изображения', blank=True)
-    videos = models.ManyToManyField(Video, verbose_name='Видео', blank=True)
     slug = models.SlugField(unique=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
@@ -131,3 +95,40 @@ class MedicalHistoryReviews(models.Model):
         verbose_name = 'Комментарий к истории болезни'
         verbose_name_plural = 'Комментарии к историям болезни'
         ordering = ('-pub_date',)
+
+
+class Video(models.Model):
+    """Видео ролики"""
+    title = models.CharField('Название видео', max_length=255)
+    url = models.URLField('URL видео')
+    order = models.PositiveSmallIntegerField('Порядковый номер')
+    story = models.ManyToManyField(MedicalHistory, blank=True, verbose_name='История болезни')
+    post = models.ManyToManyField(Post, blank=True, verbose_name='Пост')
+    pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
+    update = models.DateTimeField('Дата изменения', auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
+
+
+class Image(models.Model):
+    """Картинки"""
+    title = models.CharField('Название изображения', max_length=255)
+    alt = models.CharField('Alt', blank=True, null=True, max_length=255)
+    url = models.URLField('URL изображения')
+    order = models.PositiveSmallIntegerField('Порядковый номер')
+    story = models.ManyToManyField(MedicalHistory, blank=True, verbose_name='История болезни')
+    post = models.ManyToManyField(Post, blank=True, verbose_name='Пост')
+    pub_date = models.DateTimeField('Дата добавления', auto_now_add=True)
+    update = models.DateTimeField('Дата изменения', auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'

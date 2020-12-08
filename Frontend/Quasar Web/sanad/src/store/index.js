@@ -23,22 +23,34 @@ export default function ({ ssrContext }) {
 
     state() {
       return {
-        homeData: []
+        siteURL: 'site.com',
+        serverUrl: 'http://192.168.0.199:8000/api',
+        homeData: [],
+        directionData: []
       }
     },
 
     mutations: {
-      homeData(state, data) {
+      setHomeData(state, data) {
         state.homeData = data
-        console.log(state.homeData)
+      },
+
+      setDirectionData(state, data) {
+        state.directionData = data
       }
     },
 
     actions: {
-      async getHomeData({commit}) {
-        let data = await axiosInstance.get('http://192.168.0.199:8000/api/')
-        commit('homeData', data)
-        return data
+      fetchHomeData ({ commit }) {
+        return axiosInstance.get(`${this.state.serverUrl}`).then(({ data }) => {
+          commit('setHomeData', data)
+        })
+      },
+
+      fetchDirectionData({commit}, slug) {
+        return axiosInstance.get(`${this.state.serverUrl}/direction/${slug}`).then(({ data }) => {
+          commit('setDirectionData', data)
+        })
       }
     },
 

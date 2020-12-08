@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap')
 @import "fonts"
 @import "slider"
+@import "_spaces"
 
 *
   margin: 0
@@ -10,12 +11,21 @@
 body
   font-family: 'Ubuntu', 'Roboto', '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif
 
+a
+  color: inherit
+  text-decoration: none
+
+p
+  font-size: 16px
+  margin: 0 !important
+
 ::-webkit-scrollbar
   width: 0
   height: 0
 
 .img-overlay
   position: relative
+
   &:after
     position: absolute
     content: ''
@@ -24,4 +34,34 @@ body
     left: 0
     right: 0
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, $primary 100%)
-    //background: rgba(0,0,0,.4)
+
+.rounded-images
+  border-radius: 5px !important
+
+.hide-on-desktop
+  display: none
+
+.q-card__actions, .q-card__actions .q-btn__wrapper
+  padding-left: 0 !important
+  padding-right: 0 !important
+
+.q-card__section--vert
+  padding: 10px
+
+.bg-primary-gradient
+  background-image: linear-gradient(to right bottom, #1976d2, #5192de, #7baeea, #a4caf4, #cde6ff)
+
+@media screen and (max-width: 800px)
+  .q-drawer--right.q-drawer--bordered
+    border-left: none !important
+
+  .hide-on-mobile
+    display: none
+    width: 0
+
+  .hide-on-desktop
+    display: block
+
+  .d-flex-important
+    display: flex !important
+

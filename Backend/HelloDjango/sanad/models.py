@@ -19,8 +19,9 @@ class Slider(models.Model):
     """Слайдеры на главной страницы"""
     title = models.CharField('Заголовок слайда', max_length=255)
     text = models.TextField('Текст на слайдере')
+    image = models.URLField('Картинка', null=True, blank=True)
     button_text = models.CharField('Текст на кнопке', max_length=30, default='Подробнее')
-    button_url = models.URLField('Ссылка на кнопке', null=True, blank=True)
+    button_url = models.SlugField('Ссылка на кнопке', null=True, blank=True)
     order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации слайда', auto_now_add=True)
