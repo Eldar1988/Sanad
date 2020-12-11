@@ -1,9 +1,7 @@
 <template>
   <q-page class="q-pa-md" itemtype="http://schema.org/Product" itemscope>
-
     <!--Микроразметка   -->
     <div>
-
       <meta itemprop="name" :content="directionData.title"/>
       <link itemprop="image" :href="directionData.image"/>
       <meta itemprop="description" :content="directionData.short_description"/>
@@ -13,10 +11,10 @@
         <meta itemprop="price" content="от 5000"/>
         <meta itemprop="priceValidUntil" content="2020-12-05"/>
       </div>
-<!--      <div itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating" itemscope>-->
-<!--        <meta itemprop="reviewCount" content="569"/>-->
-<!--        <meta itemprop="ratingValue" content="4.8"/>-->
-<!--      </div>-->
+      <!--      <div itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating" itemscope>-->
+      <!--        <meta itemprop="reviewCount" content="569"/>-->
+      <!--        <meta itemprop="ratingValue" content="4.8"/>-->
+      <!--      </div>-->
       <div itemprop="review" itemtype="http://schema.org/Review" itemscope>
         <div itemprop="author" itemtype="http://schema.org/Person" itemscope>
           <meta itemprop="name" content="Министерство здравохранения"/>
@@ -30,26 +28,24 @@
       <div itemprop="brand" itemtype="http://schema.org/Brand" itemscope>
         <meta itemprop="name" content="Sanad"/>
       </div>
-
     </div>
-    <!--    ==============   -->
-
+    <!--    =============   -->
     <!--    Заголовк с фоновой картинкой   -->
-    <header>
-      <q-img
-        :src="directionData.image"
-        class="rounded-borders home-slider-height shadow-15 img-overlay"
-        spinner-color="secondary"
-        :title="directionData.title"
-      >
-        <h1
-          class="text-h3 slider-text block text-center text-white"
-          style="width: 100%"
-        >{{ directionData.title }}</h1>
-      </q-img>
-    </header>
-    <!--    ==========================   -->
     <article>
+      <header>
+        <q-img
+          :src="directionData.image"
+          class="rounded-borders home-slider-height shadow-15 img-overlay"
+          spinner-color="secondary"
+          :title="directionData.title"
+        >
+          <h1
+            class="text-h3 slider-text block text-center text-white"
+            style="width: 100%"
+          >{{ directionData.title }}</h1>
+        </q-img>
+      </header>
+      <!--    ==========================   -->
       <!--Краткое описаие -->
       <div class="q-mt-xl text-dark">
         <h2 class="font-weight-500 short-description text-h6">
@@ -63,35 +59,73 @@
       <!--    ==========================   -->
     </article>
     <!--    Врачи направления   -->
-    <qSectionHeader :header="'Специалисты'"/>
-    <div class="row q-mt-lg justify-center">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 pa-5" v-for="doctor in directionDoctors" :key="doctor.id">
-        <article>
-          <qDoctorCard :doctor="doctor"/>
-        </article>
+    <section>
+      <qSectionHeader :header="'Специалисты'"/>
+      <div class="row q-mt-lg justify-center">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 pa-5" v-for="doctor in directionDoctors" :key="doctor.id">
+          <article>
+            <qDoctorCard :doctor="doctor"/>
+          </article>
+        </div>
       </div>
-    </div>
+    </section>
     <!--    =====================   -->
     <!--    Этапы лечения -->
-    <qSectionHeader header="Этапы лечения"/>
-    <div class="row justify-center q-mt-lg">
-      <div class="col-lg-3 col-md-6 pa-5 col-sm-6" v-for="healing in directionHealings" :key="healing.id">
-        <qTreatmentStage :healing="healing"/>
+    <section>
+      <qSectionHeader header="Этапы лечения"/>
+      <div class="row justify-center q-mt-lg">
+        <div class="col-lg-3 col-md-6 pa-5 col-sm-6" v-for="healing in directionHealings" :key="healing.id">
+          <qTreatmentStage :healing="healing"/>
+        </div>
       </div>
-    </div>
+    </section>
     <!--    ==================   -->
+    <!--    Статьи   -->
+    <section>
+      <qSectionHeader header="Статьи"/>
+      <div class="row q-mt-lg justify-center">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 pa-5" v-for="post in directionPosts" :key="post.id">
+          <div v-if="post.public">
+            <qPostCard :post="post"/>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--    =================   -->
     <!--   Отзывы   -->
-    <qTestimonialCardsSlider :reviews="directionReviews"/>
+    <section>
+      <qTestimonialCardsSlider :reviews="directionReviews"/>
+    </section>
     <!--    =================   -->
     <!--    Истории выздоравления   -->
-    <qSectionHeader header="Истории выздоравления"/>
-    <div class="row q-mt-lg justify-center">
-      <div class="col-lg-3 col-md-4 col-sm-6 pa-5" v-for="story in directionStories" :key="story.id">
-        <article>
+    <section>
+      <qSectionHeader header="Истории выздоравления"/>
+      <div class="row q-mt-lg justify-center">
+        <div class="col-lg-3 col-md-4 col-sm-6 pa-5" v-for="story in directionStories" :key="story.id">
           <qStoryCard :story="story"/>
-        </article>
+        </div>
       </div>
-    </div>
+    </section>
+    <!--    ==================   -->
+
+    <!--    Кнопка выезжающая сверху   -->
+    <transition name="btn">
+      <div class="call-to-action shadow-10" v-if="showToActionBtn">
+        <q-btn rounded class="q-px-lg" color="secondary" icon-right="event" @click="dialog = true">
+          Записаться на прием
+        </q-btn>
+      </div>
+    </transition>
+    <!--    =====================   -->
+    <!--    Всплавыющая форма записи   -->
+    <qAppointment v-if="dialog"
+                  @closeDialog="dialog = false"
+                  :direction="directionData"
+                  :header="`Запись на прием - ${directionData.title}`"
+                  :isAppointment="true"
+                  :btntext="'Записаться'"
+    />
+    <!--    ================   -->
   </q-page>
 
 
@@ -103,6 +137,8 @@ import qDoctorCard from "components/doctor/qDoctorCard";
 import qTreatmentStage from "components/direction/qTreatmentStage";
 import qTestimonialCardsSlider from "components/cards/qTestimonialCardsSlider";
 import qStoryCard from "components/cards/qStoryCard";
+import qPostCard from "components/cards/qPostCard";
+import qAppointment from "components/forms/qAppointment";
 
 export default {
   name: "Directory",
@@ -111,16 +147,28 @@ export default {
     qDoctorCard,
     qTreatmentStage,
     qTestimonialCardsSlider,
-    qStoryCard
+    qStoryCard,
+    qPostCard,
+    qAppointment
   },
 
   data() {
     return {
-      schema: ''
+      schema: '',
+      showToActionBtn: false,
+      dialog: false,
     }
   },
   mounted() {
-    console.log(this.$route.params.slug)
+    this.showToActionBtnOnScroll()
+  },
+  methods: {
+    showToActionBtnOnScroll() {
+      document.addEventListener('scroll', () => {
+          this.showToActionBtn = window.pageYOffset > 100;
+        }
+      )
+    }
   },
 
   computed: {
@@ -144,6 +192,10 @@ export default {
     directionStories() {
       return this.$store.state.directionData[4]
     },
+    // Посты
+    directionPosts() {
+      return this.$store.state.directionData[5]
+    }
   },
 
   preFetch({store, currentRoute}) {
@@ -180,12 +232,12 @@ export default {
           content: metaData.image,
         }
       },
-    };
+    }
   },
 
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

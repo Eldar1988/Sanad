@@ -46,9 +46,9 @@ class ImageAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'doctor', 'direction', 'public', 'is_action', 'is_news', 'public_on_home_page',
+    list_display = ('get_image', 'title', 'public', 'is_action', 'is_news', 'public_on_home_page',
                     'slug', 'order', 'views', 'pub_date', 'update')
-    list_editable = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'slug', 'order', 'public')
+    list_editable = ('is_action', 'is_news', 'public_on_home_page', 'slug', 'order', 'public')
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
     list_filter = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'pub_date', 'update')
@@ -63,9 +63,9 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(MedicalHistory)
 class MedicalHistoryAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'doctor', 'direction', 'public_on_home_page', 'public_on_home_page',
+    list_display = ('get_image', 'title', 'public', 'public_on_home_page',
                     'slug', 'order', 'views', 'pub_date', 'update')
-    list_editable = ('doctor', 'direction', 'public_on_home_page', 'slug', 'order')
+    list_editable = ('public_on_home_page', 'public', 'slug', 'order')
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
     list_filter = ('doctor', 'direction', 'public_on_home_page', 'pub_date', 'update')

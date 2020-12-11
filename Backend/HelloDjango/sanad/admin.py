@@ -28,32 +28,27 @@ class SliderAdmin(admin.ModelAdmin):
 
 @admin.register(PhotoGallery)
 class PhotoGalleryAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'order', 'pub_date', 'update')
-    list_editable = ('order',)
+    list_display = ('get_image', 'title', 'public_on_home', 'public_on_about', 'order', 'pub_date', 'update')
+    list_editable = ('order', 'public_on_home', 'public_on_about')
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('public_on_home', 'public_on_about', 'pub_date', 'update')
     save_as = True
     save_on_top = True
 
     def get_image(self, obj):
         return mark_safe(f'<img src="{obj.url}" height=50')
 
-    get_image.short_description = 'Постер'
+    get_image.short_description = 'Фото'
 
 
 @admin.register(VideoGallery)
 class VideoGalleryAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'order', 'pub_date', 'update')
-    list_editable = ('order',)
+    list_display = ('title', 'public_on_home', 'public_on_about', 'order', 'pub_date', 'update')
+    list_editable = ('order', 'public_on_home', 'public_on_about')
     search_fields = ('title',)
-    list_filter = ('pub_date', 'update')
+    list_filter = ('public_on_home', 'public_on_about', 'pub_date', 'update')
     save_as = True
     save_on_top = True
-
-    def get_image(self, obj):
-        return mark_safe(f'<img src="{obj.poster}" height=50')
-
-    get_image.short_description = 'Постер'
 
 
 @admin.register(Advantage)

@@ -14,11 +14,10 @@ class Post(models.Model):
     body = RichTextUploadingField('Пост')
     slug = models.SlugField(unique=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
-    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
-                               verbose_name='Доктор')
-    direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True,
-                                  verbose_name='Направление')
+    doctor = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктор', related_name='posts')
+    direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='posts')
     public = models.BooleanField('Опубликовать', default=False)
+    likes = models.PositiveSmallIntegerField('Кол-во лайков', default=0)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
@@ -37,7 +36,8 @@ class PostReviews(models.Model):
     name = models.CharField('Имя', max_length=255)
     text = models.TextField('Комментарий')
     post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, blank=True,
-                             verbose_name='Пост')
+                             verbose_name='Пост', related_name='reviews')
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='parents')
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
@@ -60,10 +60,8 @@ class MedicalHistory(models.Model):
     body = RichTextUploadingField('История болезни')
     slug = models.SlugField(unique=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
-    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
-                               verbose_name='Доктор')
-    direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True,
-                                  verbose_name='Направление')
+    doctor = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктор', related_name='stories')
+    direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление')
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
@@ -85,6 +83,7 @@ class MedicalHistoryReviews(models.Model):
     history = models.ForeignKey(MedicalHistory, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name='История болезни')
     public = models.BooleanField('Опубликовать', default=False)
+    likes = models.PositiveSmallIntegerField('Кол-во лайков', default=0)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
 

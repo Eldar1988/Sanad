@@ -15,9 +15,7 @@ export default {
     qDirections
   },
   name: "PageIndex",
-  preFetch({ store }) {
-    return store.dispatch("fetchHomeData");
-  },
+
   computed: {
     slides() {
       return this.$store.state.homeData[1];

@@ -51,6 +51,49 @@ p
 .bg-primary-gradient
   background-image: linear-gradient(to right bottom, #1976d2, #5192de, #7baeea, #a4caf4, #cde6ff)
 
+.bg-secondary-gradient
+  background-image: linear-gradient(to right bottom, #ff0080, #ff2f8e, #ff469a, #fe57a7, #fd67b2)
+
+.text-body
+  img
+    border-radius: 5px
+    min-width: 100%
+    max-width: 100%
+    height: auto !important
+
+.call-to-action
+  position: fixed !important
+  top: 50px !important
+  background: rgba(255, 255, 255, .8)
+  left: 0
+  right: 0
+  height: 50px
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 1999
+
+.btn-enter-active, .btn-leave-active
+  transition: .3s all
+
+.btn-enter, .btn-leave-to
+  top: 0
+
+.page-header-subtitle
+  font-size: 22px
+  line-height: 30px
+
+.page-header-text
+  width: 100%
+  bottom: 0
+  z-index: 999
+
+  p
+    font-size: 18px
+
+.q-img__content > div
+  background: rgba(0, 0, 0, .0) !important
+
 @media screen and (max-width: 800px)
   .q-drawer--right.q-drawer--bordered
     border-left: none !important
@@ -65,3 +108,7 @@ p
   .d-flex-important
     display: flex !important
 
+@media screen and (max-width: 650px)
+  .page-header-subtitle
+    font-size: 16px
+    line-height: 18px

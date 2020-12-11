@@ -18,7 +18,7 @@
         name="slide"
         class="column no-wrap bg-primary-gradient"
       >
-        <h3 class="text-center text-h4 font-weight-500 text-white q-mt-lg">Отзывы наших клиентов</h3>
+        <h3 class="text-center text-h4 font-weight-500 text-white q-mt-lg">{{ header }}</h3>
         <div class="testimonial">
           <div>
             <div class="row full-height justify-center" style="align-items: center; margin-top: 50px">
@@ -48,7 +48,7 @@
               <div v-if="firstSlide.video" class="col-12 col-md-8 col-lg-6 text-right testimonial-video">
                 <q-video
                   :ratio="16/9"
-                  src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0"
+                  :src="review.video"
                 />
                 <q-rating v-model="firstSlide.rating" :max="5" size="32px" class="text-right q-mt-md" readonly/>
               </div>
@@ -64,7 +64,7 @@
         :name="review.id"
         class="column no-wrap bg-primary-gradient"
       >
-        <h3 class="text-center text-h4 font-weight-500 text-white q-mt-lg">Отзывы наших клиентов</h3>
+        <h3 class="text-center text-h4 font-weight-500 text-white q-mt-lg">{{ header }}</h3>
         <div class="testimonial">
           <div>
             <div class="row full-height justify-center" style="align-items: center; margin-top: 50px">
@@ -115,6 +115,10 @@ export default {
     reviews: {
       type: Array,
       default: null
+    },
+    header: {
+      type: String,
+      default: 'Отзывы наших клиентов'
     }
   },
   data() {

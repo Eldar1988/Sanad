@@ -42,22 +42,6 @@ class Healing(models.Model):
         ordering = ('order',)
 
 
-class Action(models.Model):
-    """Акции"""
-    title = models.CharField('Заголовок акции', max_length=255)
-    short_description = models.TextField('Краткое описание')
-    description = RichTextUploadingField('Полное описание', null=True, blank=True)
-    pub_date = models.DateTimeField('Дата создания акции', auto_now_add=True)
-    update = models.DateTimeField('Дата изменения акции', auto_now=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Акция'
-        verbose_name_plural = ' Акции'
-
-
 class Doctor(models.Model):
     """Доктор"""
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направления', related_name='directions')
@@ -66,10 +50,9 @@ class Doctor(models.Model):
     avatar = models.URLField('Аватар доктора', default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
     short_description = models.TextField('СПЕЦИАЛИЗАЦИЯ и краткое описание', help_text='Будет использоваться в SEO')
     description = RichTextUploadingField('Полное описание')
-    action = models.ForeignKey(Action, on_delete=models.SET_NULL, null=True, blank=True, related_name='actions',
-                               verbose_name='Акции')
     say = RichTextUploadingField('Слово специалиста')
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
+    birthday = models.DateField('День рождения', blank=True, null=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     slug = models.SlugField(unique=True)
     public = models.BooleanField('Опубликовать', default=False)
@@ -85,6 +68,27 @@ class Doctor(models.Model):
         return self.name
 
 
+class Action(models.Model):
+    """Акции"""
+    title = models.CharField('Заголовок акции', max_length=255)
+    doctors = models.ManyToManyField(Doctor, blank=True, related_name='actions', verbose_name='Доктор')
+    directions = models.ManyToManyField(Direction, blank=True, related_name='actions', verbose_name='Направление')
+    short_description = models.TextField('Краткое описание')
+    image = models.URLField('Картинка', null=True, blank=True)
+    more_btn = models.BooleanField('Кнопка подробнее', default=False)
+    description = RichTextUploadingField('Полное описание', null=True, blank=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    pub_date = models.DateTimeField('Дата создания акции', auto_now_add=True)
+    update = models.DateTimeField('Дата изменения акции', auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = ' Акции'
+
+
 class DirectionReviews(models.Model):
     """Отзывы к направлениям"""
     direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True,
@@ -96,7 +100,6 @@ class DirectionReviews(models.Model):
     video = models.URLField('Ссылка на видео (необязательно)', blank=True, null=True)
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
-    order = models.PositiveSmallIntegerField('Порядковый номер')
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания отзыва', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -105,14 +108,14 @@ class DirectionReviews(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('order',)
+        ordering = ('-pub_date',)
         verbose_name = 'Отзыв к направлению'
         verbose_name_plural = 'Отзывы к направлениям'
 
 
 class DoctorReviews(models.Model):
     """Отзывы к докторам"""
-    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True, related_name='doctor',
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews',
                                verbose_name='Доктор')
     name = models.CharField('Имя', max_length=255)
     avatar = models.URLField('Фото', default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
@@ -120,7 +123,6 @@ class DoctorReviews(models.Model):
     video = models.URLField('Ссылка на видео (необязательно)', blank=True, null=True)
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('Опубликовать на главной странице сайта', default=False)
-    order = models.PositiveSmallIntegerField('Порядковый номер')
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания отзыва', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -129,17 +131,17 @@ class DoctorReviews(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Отзыв к направлению'
-        verbose_name_plural = 'Отзывы к направлениям'
+        verbose_name = 'Отзыв к доктору'
+        verbose_name_plural = 'Отзывы к докторам'
+        ordering = ('-pub_date',)
 
 
 class VideoGallery(models.Model):
     """Видео ролики"""
     directions = models.ManyToManyField(Direction, blank=True, verbose_name='Направления')
-    doctors = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктора')
+    doctors = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктора', related_name='videos')
     title = models.CharField('Название видео', max_length=255)
     url = models.URLField('URL видео')
-    poster = models.URLField('Постер видео')
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -155,7 +157,7 @@ class VideoGallery(models.Model):
 class ImageGallery(models.Model):
     """Картинки"""
     directions = models.ManyToManyField(Direction, blank=True, verbose_name='Направления')
-    doctors = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктора')
+    doctors = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктора', related_name='images')
     title = models.CharField('Название изображения', max_length=255)
     url = models.URLField('URL изображения')
     order = models.PositiveSmallIntegerField('Порядковый номер')
@@ -170,7 +172,18 @@ class ImageGallery(models.Model):
         verbose_name_plural = 'Изображения'
 
 
+class Certificate(models.Model):
+    """Сертификаты и грамоты"""
+    title = models.CharField('Название', max_length=255)
+    image = models.URLField('Фото')
+    doctor = models.ManyToManyField(Doctor, blank=True, related_name='certificates', verbose_name='Доктор')
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Сертификат или грамота'
+        verbose_name_plural = 'Сертификаты и грамоты'
 
 
 

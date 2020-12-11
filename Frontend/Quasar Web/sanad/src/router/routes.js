@@ -29,6 +29,14 @@ const routes = [
     ]
   },
   {
+    path: '/action/:slug',
+    component: () => import('layouts/MainLayout.vue'),
+    params: 'slug',
+    children: [
+      {path: '/action/:slug', component: () => import('pages/ActionDetail.vue')}
+    ]
+  },
+  {
     path: '/actions',
     component: () => import('layouts/MainLayout.vue'),
     children: [
@@ -49,6 +57,22 @@ const routes = [
     params: 'slug',
     children: [
       {path: '/story/:slug', component: () => import('pages/Story.vue')}
+    ]
+  },
+  {
+    path: '/doctor/:slug',
+    component: () => import('layouts/MainLayout.vue'),
+    params: 'slug',
+    children: [
+      {path: '/doctor/:slug', component: () => import('pages/Doctor.vue')}
+    ]
+  },
+  {
+    path: '/post/:slug',
+    component: () => import('layouts/MainLayout.vue'),
+    params: 'slug',
+    children: [
+      {path: '/post/:slug', component: () => import('pages/PostDetail.vue')}
     ]
   },
   // Always leave this as last one,

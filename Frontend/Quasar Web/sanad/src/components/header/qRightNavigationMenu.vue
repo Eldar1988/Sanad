@@ -1,58 +1,7 @@
 <template>
   <nav>
     <q-list class="text-dark" separator>
-      <!--    Направления -->
-      <q-toolbar class="bg-grey-3 text-dark text-uppercase">
-        <q-toolbar-title class="font-weight-500">
-          Направления
-        </q-toolbar-title>
-      </q-toolbar>
-      <!--    Детям -->
-      <q-expansion-item
-        expand-separator
-        icon="escalator_warning"
-        label="Детям"
-        class="menu-text"
-      >
-        <q-item
-          clickable
-          v-ripple
-          to=""
-          exact-active-class="text-primary"
-          exact
-          class="q-ml-md font-size-14"
-        >
-          <q-item-section avatar>
-            <q-icon name="medical_services"/>
-          </q-item-section>
-
-          <q-item-section>Направление 1</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <!--   ======================   -->
-      <!--    Взрослым -->
-      <q-expansion-item
-        expand-separator
-        icon="emoji_people"
-        label="Взрослым"
-        class="menu-text"
-      >
-        <q-item
-          clickable
-          v-ripple
-          to=""
-          exact-active-class="text-primary"
-          exact
-          class="q-ml-md font-size-14"
-        >
-          <q-item-section avatar>
-            <q-icon name="medical_services"/>
-          </q-item-section>
-
-          <q-item-section>Направление 1</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <!--    ======================= -->
+      <qMenuDirections />
       <!--   Инфо -->
       <q-toolbar class="bg-grey-3 text-dark text-uppercase">
         <q-toolbar-title class="font-weight-500">
@@ -144,8 +93,13 @@
 </template>
 
 <script>
+import qMenuDirections from "components/header/qMenuDirections";
+
 export default {
-  name: "qRightNavigationMenu"
+  name: "qRightNavigationMenu",
+  components: {
+    qMenuDirections
+  }
 }
 </script>
 

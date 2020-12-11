@@ -5,23 +5,27 @@
     v-model="slide"
     thumbnails
     infinite
-    class="rounded-images shadow-10"
+    class="rounded-images shadow-10 q-mt-xl"
   >
-    <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg">
-
+    <q-carousel-slide v-for="image in photos" :key="image.id"
+                      :name="image.id"
+                      :img-src="image.url">
     </q-carousel-slide>
-    <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-    <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-    <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
   </q-carousel>
 </template>
 
 <script>
 export default {
-  name: "vTestimonialCardsSlider",
+  name: "qPhotoGallerySlider",
+  props: {
+    photos: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
-      slide: 1
+      slide: this.photos[0].id
     }
   }
 }

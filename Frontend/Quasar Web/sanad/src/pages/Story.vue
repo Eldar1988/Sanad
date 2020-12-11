@@ -1,6 +1,6 @@
 <template>
 <q-page>
-
+<h1>Story</h1>
 </q-page>
 </template>
 

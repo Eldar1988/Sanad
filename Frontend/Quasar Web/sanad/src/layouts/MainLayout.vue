@@ -6,7 +6,7 @@
         <router-link to="/">
           <q-toolbar-title class="text-weight-bold">
             <q-avatar>
-              <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg"/>
+              <img src="../assets/quasar-logo-full.svg"/>
             </q-avatar>
             SANAD
           </q-toolbar-title>
@@ -55,33 +55,40 @@
       <router-view/>
     </q-page-container>
 
-    <!-- <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          Footer
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-footer> -->
+    <qMobileBottomBar :contacts="contacts"/>
   </q-layout>
 </template>
 
 <script>
 import qCallBack from "components/header/qCallBack";
 import qRightNavigationMenu from "components/header/qRightNavigationMenu";
+import qMobileBottomBar from "components/footer/qMobileBottomBar";
 
 export default {
   components: {
     qCallBack,
     qRightNavigationMenu,
+    qMobileBottomBar
   },
   data() {
     return {
       search: "",
       right: false,
-    };
+      contacts: {}
+    }
+  },
+  mounted() {
+    this.getContacts()
+  },
+  preFetch({ store }) {
+    return store.dispatch("fetchHomeData");
+  },
+  methods: {
+    async getContacts() {
+      this.contacts = await fetch(`${this.$store.state.serverUrl}/contacts`).then(
+        response => response.json()
+      )
+    }
   }
 };
 </script>

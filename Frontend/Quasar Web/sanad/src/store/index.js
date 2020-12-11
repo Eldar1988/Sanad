@@ -26,7 +26,12 @@ export default function ({ ssrContext }) {
         siteURL: 'site.com',
         serverUrl: 'http://192.168.0.199:8000/api',
         homeData: [],
-        directionData: []
+        directionData: [],
+        doctorData: [],
+        postDetail: [],
+        actions: [],
+        news: [],
+        about: []
       }
     },
 
@@ -37,19 +42,65 @@ export default function ({ ssrContext }) {
 
       setDirectionData(state, data) {
         state.directionData = data
+      },
+      setDoctorData(state, data) {
+        state.doctorData = data
+      },
+      setPostData(state, data) {
+        state.postDetail = data
+      },
+      setActionsData(state, data) {
+        state.actions = data
+      },
+      setNewsData(state, data) {
+        state.news = data
+      },
+      setAboutData(state, data) {
+        state.about = data
       }
     },
 
     actions: {
+      // Загрузка данных для главной страницы
       fetchHomeData ({ commit }) {
         return axiosInstance.get(`${this.state.serverUrl}`).then(({ data }) => {
           commit('setHomeData', data)
         })
       },
-
+      // Загрузка данных для страцниы направления
       fetchDirectionData({commit}, slug) {
         return axiosInstance.get(`${this.state.serverUrl}/direction/${slug}`).then(({ data }) => {
           commit('setDirectionData', data)
+        })
+      },
+      // ЗАгрузка данных для страницы доктора
+      fetchDoctorData({commit}, slug) {
+        return axiosInstance.get(`${this.state.serverUrl}/doctor/${slug}`).then(({ data }) => {
+          commit('setDoctorData', data)
+        })
+      },
+      // Страница поста
+      fetchPostData({commit}, slug) {
+        return axiosInstance.get(`${this.state.serverUrl}/post/${slug}`).then(({ data }) => {
+          commit('setPostData', data)
+        })
+      },
+      // Страница акций
+      fetchActionsData({commit}) {
+        return axiosInstance.get(`${this.state.serverUrl}/actions`).then(({ data }) => {
+          commit('setActionsData', data)
+        })
+      },
+      // Страница новостей
+      fetchNewsData({commit}) {
+        return axiosInstance.get(`${this.state.serverUrl}/news`).then(({ data }) => {
+          commit('setNewsData', data)
+        })
+      },
+      // Странциа о клинике
+      fetchAboutData({commit}) {
+        return axiosInstance.get(`${this.state.serverUrl}/about`).then(({ data }) => {
+          commit('setAboutData', data)
         })
       }
     },
