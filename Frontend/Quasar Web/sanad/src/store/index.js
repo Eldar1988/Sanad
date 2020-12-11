@@ -31,7 +31,8 @@ export default function ({ ssrContext }) {
         postDetail: [],
         actions: [],
         news: [],
-        about: []
+        about: [],
+        storyDetail: []
       }
     },
 
@@ -57,6 +58,9 @@ export default function ({ ssrContext }) {
       },
       setAboutData(state, data) {
         state.about = data
+      },
+      setStoryData(state, data) {
+        state.storyDetail = data
       }
     },
 
@@ -83,6 +87,12 @@ export default function ({ ssrContext }) {
       fetchPostData({commit}, slug) {
         return axiosInstance.get(`${this.state.serverUrl}/post/${slug}`).then(({ data }) => {
           commit('setPostData', data)
+        })
+      },
+      // Страница истории
+      fetchStoryData({commit}, slug) {
+        return axiosInstance.get(`${this.state.serverUrl}/history/${slug}`).then(({ data }) => {
+          commit('setStoryData', data)
         })
       },
       // Страница акций

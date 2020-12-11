@@ -53,7 +53,12 @@
 
     <q-page-container>
       <router-view/>
+      <footer class="bg-primary q-py-xl text-center" style="margin-top: 120px; position: relative" reveal >
+        <h6 class="text-white">Footer</h6>
+      </footer>
     </q-page-container>
+
+
 
     <qMobileBottomBar :contacts="contacts"/>
   </q-layout>

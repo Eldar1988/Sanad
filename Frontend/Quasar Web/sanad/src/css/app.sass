@@ -35,6 +35,18 @@ p
     right: 0
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, $primary 100%)
 
+.img-overlay-2
+  position: relative
+
+  &:after
+    position: absolute
+    content: ''
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, $secondary 100%)
+
 .rounded-images
   border-radius: 5px !important
 
@@ -62,8 +74,8 @@ p
     height: auto !important
 
 .call-to-action
-  position: fixed !important
-  top: 50px !important
+  position: fixed
+  top: 50px
   background: rgba(255, 255, 255, .8)
   left: 0
   right: 0

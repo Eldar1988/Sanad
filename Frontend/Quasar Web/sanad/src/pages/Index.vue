@@ -1,18 +1,32 @@
 <template>
   <q-page>
-    <qSlider :slides="slides"/>
-    <qDirections />
+    <!--    Слайдер   -->
+    <section>
+      <qSlider :slides="slides"/>
+    </section>
+    <!--    ================   -->
+    <!--    Направления   -->
+    <section>
+      <qDirections/>
+    </section>
+    <!--    =================   -->
+<!--    Карусели   -->
+    <section>
+      <qCarouselsSection />
+    </section>
   </q-page>
 </template>
 
 <script>
 import qSlider from 'components/home/qSlider'
 import qDirections from 'components/home/qDirections'
+import qCarouselsSection from "components/home/qCarouselsSection";
 
 export default {
   components: {
     qSlider,
-    qDirections
+    qDirections,
+    qCarouselsSection
   },
   name: "PageIndex",
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, PostReviews
+from .models import Post, PostReviews, MedicalHistory
 
 
 class PostReviewListSerializer(serializers.ModelSerializer):
@@ -31,3 +31,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ('pub_date', 'update', 'doctor', 'direction', 'order', 'body', 'public_on_home_page')
+
+
+class HistoryDetailSerializer(serializers.ModelSerializer):
+    """Страница истории"""
+
+    class Meta:
+        model = Post
+        exclude = ('doctor', 'direction', 'public_on_home_page', 'order', 'update', 'public')

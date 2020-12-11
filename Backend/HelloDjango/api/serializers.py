@@ -85,7 +85,7 @@ class MedicalHistorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MedicalHistory
-        exclude = ('pub_date', 'update', 'views', 'doctor', 'direction', 'order', 'body')
+        exclude = ('pub_date', 'update', 'doctor', 'direction', 'order', 'body')
 
 
 class DoctorCertificateSerializer(serializers.ModelSerializer):

@@ -54,7 +54,7 @@
       </div>
       <!--    ======================   -->
       <!--    Полное описание   -->
-      <div class="description q-mt-lg text-dark" v-html="directionData.description">
+      <div class="description q-mt-lg text-dark text-body" v-html="directionData.description">
       </div>
       <!--    ==========================   -->
     </article>
@@ -107,24 +107,8 @@
       </div>
     </section>
     <!--    ==================   -->
-
-    <!--    Кнопка выезжающая сверху   -->
-    <transition name="btn">
-      <div class="call-to-action shadow-10" v-if="showToActionBtn">
-        <q-btn rounded class="q-px-lg" color="secondary" icon-right="event" @click="dialog = true">
-          Записаться на прием
-        </q-btn>
-      </div>
-    </transition>
-    <!--    =====================   -->
     <!--    Всплавыющая форма записи   -->
-    <qAppointment v-if="dialog"
-                  @closeDialog="dialog = false"
-                  :direction="directionData"
-                  :header="`Запись на прием - ${directionData.title}`"
-                  :isAppointment="true"
-                  :btntext="'Записаться'"
-    />
+    <qAppointmentButton :header="`${directionData.title} - запись на прием`" :isAppointment="true"/>
     <!--    ================   -->
   </q-page>
 
@@ -138,7 +122,7 @@ import qTreatmentStage from "components/direction/qTreatmentStage";
 import qTestimonialCardsSlider from "components/cards/qTestimonialCardsSlider";
 import qStoryCard from "components/cards/qStoryCard";
 import qPostCard from "components/cards/qPostCard";
-import qAppointment from "components/forms/qAppointment";
+import qAppointmentButton from "components/forms/qAppointmentButton";
 
 export default {
   name: "Directory",
@@ -149,25 +133,12 @@ export default {
     qTestimonialCardsSlider,
     qStoryCard,
     qPostCard,
-    qAppointment
+    qAppointmentButton
   },
 
   data() {
     return {
       schema: '',
-      showToActionBtn: false,
-      dialog: false,
-    }
-  },
-  mounted() {
-    this.showToActionBtnOnScroll()
-  },
-  methods: {
-    showToActionBtnOnScroll() {
-      document.addEventListener('scroll', () => {
-          this.showToActionBtn = window.pageYOffset > 100;
-        }
-      )
     }
   },
 

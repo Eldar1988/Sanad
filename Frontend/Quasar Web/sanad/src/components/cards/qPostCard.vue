@@ -1,6 +1,6 @@
 <template>
   <article>
-    <router-link :to="`/post/${post.slug}`">
+    <router-link :to="isStory ? `/story/${post.slug}` : `/post/${post.slug}`">
     <q-img
       :src="post.photo"
       class="rounded-borders home-slider-height img-overlay"
@@ -16,7 +16,7 @@
             <q-icon name="visibility" color="white" />
             {{ post.views }}
           </p>
-          <p class="text-white q-pl-md" style="font-size: 14px">
+          <p class="text-white q-pl-md" style="font-size: 14px" v-if="post.reviews">
             <q-icon name="textsms" color="white" />
             {{ post.reviews.length }}
           </p>
@@ -35,6 +35,10 @@ export default {
     post: {
       type: Object,
       default: null
+    },
+    isStory: {
+      type: Boolean,
+      default: false
     }
   }
 }

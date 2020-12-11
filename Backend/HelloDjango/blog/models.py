@@ -81,7 +81,7 @@ class MedicalHistoryReviews(models.Model):
     name = models.CharField('Имя', max_length=255)
     text = models.TextField('Комментарий')
     history = models.ForeignKey(MedicalHistory, on_delete=models.SET_NULL, null=True, blank=True,
-                                verbose_name='История болезни')
+                                verbose_name='История болезни', related_name='reviews')
     public = models.BooleanField('Опубликовать', default=False)
     likes = models.PositiveSmallIntegerField('Кол-во лайков', default=0)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)

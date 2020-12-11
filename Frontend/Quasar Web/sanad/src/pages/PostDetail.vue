@@ -98,7 +98,6 @@ export default {
   },
   mounted() {
     this.loadComments()
-    console.log(this.post)
   },
   methods: {
     loadComments() {

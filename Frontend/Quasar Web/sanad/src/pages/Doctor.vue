@@ -3,15 +3,6 @@
     <!--    Schema org   -->
     <script type="application/ld+json" v-html="schema"></script>
     <!--    ===================   -->
-    <!--    Кнопка выезжающая сверху   -->
-    <transition name="btn">
-      <div class="call-to-action shadow-10" v-if="showToActionBtn">
-        <q-btn rounded class="q-px-lg" color="secondary" icon-right="event" @click="dialog = true">
-          Записаться на прием
-        </q-btn>
-      </div>
-    </transition>
-    <!--    =====================   -->
     <!--    О докторе   -->
     <article class="text-dark">
       <!--      Заголовок с картинкой   -->
@@ -24,7 +15,7 @@
       </div>
       <!--    =====================   -->
       <!--      Описание -->
-      <div class="q-mt-lg" v-html="doctorData.description"></div>
+      <div class="q-mt-lg text-body" v-html="doctorData.description"></div>
       <!--    =====================   -->
     </article>
     <!--    =================   -->
@@ -88,15 +79,7 @@
       </div>
     </section>
     <!--    =================   -->
-    <!--    Всплавыющая форма записи   -->
-    <qAppointment v-if="dialog"
-                  @closeDialog="dialog = false"
-                  :doctor="doctorData"
-                  :header="`Запись на прием - ${doctorData.name}`"
-                  :isAppointment="true"
-                  :btntext="'Записаться'"
-    />
-    <!--    ================   -->
+    <qAppointmentButton :header="`${doctorData.name} - запись на прием`" :isAppointment="true"/>
   </q-page>
 </template>
 
@@ -104,7 +87,6 @@
 import qPageHeader from "components/headers/qPageHeader";
 import qActionCard from "components/cards/qActionCard";
 import qTestimonialCardsSlider from "components/cards/qTestimonialCardsSlider";
-import qAppointment from "components/forms/qAppointment";
 import qShare from "components/cards/qShare";
 import qCertificateSlider from "components/doctor/qCertificateSlider";
 import qSectionHeader from "components/headers/qSectionHeader";
@@ -113,6 +95,7 @@ import qVideoSlider from "components/cards/qVideoSlider";
 import qPhotoGallerySlider from "components/cards/qPhotoGallerySlider";
 import qDoctorSpeakCard from "components/doctor/qDoctorSpeakCard";
 import qPostCard from "components/cards/qPostCard";
+import qAppointmentButton from "components/forms/qAppointmentButton";
 
 export default {
   name: "Doctor",
@@ -120,7 +103,6 @@ export default {
     qPageHeader,
     qActionCard,
     qTestimonialCardsSlider,
-    qAppointment,
     qShare,
     qCertificateSlider,
     qSectionHeader,
@@ -128,12 +110,11 @@ export default {
     qVideoSlider,
     qPhotoGallerySlider,
     qDoctorSpeakCard,
-    qPostCard
+    qPostCard,
+    qAppointmentButton
   },
   data() {
     return {
-      showToActionBtn: false,
-      dialog: false,
       schema: {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
@@ -150,17 +131,6 @@ export default {
           }
         }
       }
-    }
-  },
-  mounted() {
-    this.showToActionBtnOnScroll()
-  },
-  methods: {
-    showToActionBtnOnScroll() {
-      document.addEventListener('scroll', () => {
-          this.showToActionBtn = window.pageYOffset > 100;
-        }
-      )
     }
   },
 

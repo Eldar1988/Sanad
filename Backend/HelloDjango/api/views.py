@@ -6,7 +6,7 @@ from sanad.models import MainInfo, Slider, Contacts, About, VideoGallery, PhotoG
 from sanad.serializers import AboutPageSerializer, VideoSanadSerializer, PhotoSanadSerializer
 from clinic.models import Direction, Doctor, Healing, DirectionReviews
 from blog.models import MedicalHistory, Post, PostReviews
-from blog.serializers import PostDetailReviewsSerializer, PostDetailSerializer, PostSerializer
+from blog.serializers import PostDetailReviewsSerializer, PostDetailSerializer, PostSerializer, HistoryDetailSerializer
 
 from .serializers import MainInfoSerializer, SliderSerializer, DirectionListSerializer, DirectionDetailSerializer, \
     DoctorsListSerializer, HealingSerializer, DirectionReviewsSerializer, MedicalHistorySerializer, ContactsSerializer, \
@@ -38,6 +38,21 @@ class HomePageView(APIView):
         kids_directions = Direction.objects.filter(is_for_kids_direction=True)
         kids_directions_serializer = DirectionListSerializer(kids_directions, many=True)
         response_data.append(kids_directions_serializer.data)  # 3 index - Напрвления детские
+
+        # Посты
+        posts = Post.objects.filter(public=True, public_on_home_page=True, is_action=False)[:7]
+        posts_serializer = PostSerializer(posts, many=True)
+        response_data.append(posts_serializer.data)     # 4 index -Посты
+
+        # Акции
+        actions = Post.objects.filter(public=True, is_action=True, public_on_home_page=True)[:7]
+        actions_serializer = PostSerializer(actions, many=True)
+        response_data.append(actions_serializer.data)   # 5 index - Акции
+
+        # Истории болезни
+        stories = MedicalHistory.objects.filter(public=True, public_on_home_page=True)
+        stories_serializer = MedicalHistorySerializer(stories, many=True)
+        response_data.append(stories_serializer.data)  # 6 index - Истории болезни
 
         return Response(response_data)
 
@@ -172,3 +187,21 @@ class AboutPageView(APIView):
         response_data.append(videos_serializer.data)    #2 index - Видео
 
         return Response(response_data)
+
+
+class HistoryDetailView(APIView):
+    """Странцца истории"""
+
+    def get(self, request, slug):
+        post_data = []
+        post = MedicalHistory.objects.get(slug=slug)
+        post.views += 1
+        post.save()
+        post_serializer = HistoryDetailSerializer(post, many=False)
+        post_data.append(post_serializer.data)
+
+        posts = MedicalHistory.objects.filter(public=True).exclude(slug=slug)[:12]
+        posts_serializer = MedicalHistorySerializer(posts, many=True)
+        post_data.append(posts_serializer.data)
+
+        return Response(post_data)
