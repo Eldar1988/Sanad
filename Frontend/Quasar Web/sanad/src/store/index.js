@@ -23,8 +23,8 @@ export default function ({ ssrContext }) {
 
     state() {
       return {
-        siteURL: 'site.com',
-        serverUrl: 'http://192.168.0.199:8000/api',
+        siteURL: 'http://sanad.beget.tech',
+        serverUrl: 'http://api.sanad.beget.tech/api',
         homeData: [],
         directionData: [],
         doctorData: [],
