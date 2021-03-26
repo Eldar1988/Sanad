@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import Direction, Healing, Doctor, Action, DoctorReviews, ImageGallery, VideoGallery, \
     Certificate
 
-from clinic.serializers import PostListSerializer, MedicalStoriesSerializer
+from blog.serializers import PostListSerializer, MedicalStoriesSerializer
 
 
 class HealingListSerializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class ImageGallerySerializer(serializers.ModelSerializer):
 class ActionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Action
-        fields = ('title', 'image', 'slug')
+        fields = ('title', 'image', 'slug', 'show_on_home_page')
 
 
 class ActionDetailSerializer(serializers.ModelSerializer):
@@ -43,7 +43,7 @@ class ActionDetailSerializer(serializers.ModelSerializer):
 
 
 class DoctorListSerializer(serializers.ModelSerializer):
-    directions = serializers.SlugRelatedField(slug_field='title', read_only=True)
+    directions = serializers.SlugRelatedField(slug_field='title', read_only=True, many=True)
 
     class Meta:
         model = Doctor
@@ -53,7 +53,7 @@ class DoctorListSerializer(serializers.ModelSerializer):
 class DirectionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direction
-        fields = ('id', 'title', 'icon')
+        fields = ('id', 'title', 'icon', 'slug')
 
 
 class DoctorReviewsSerializer(serializers.ModelSerializer):
@@ -79,14 +79,14 @@ class DirectionDetailSerializer(serializers.ModelSerializer):
 
 
 class DoctorDetailSerializer(serializers.ModelSerializer):
-    directions = DirectionListSerializer(many=True)
-    actions = ActionListSerializer(many=True)
-    posts = PostListSerializer(many=True)
-    stories = MedicalStoriesSerializer(many=True)
-    doctor_reviews = DoctorReviewsSerializer(many=True)
-    images = ImageGallerySerializer(many=True)
-    videos = VideoGallerySerializer(many=True)
-    certificates = CertificatesSerializer(many=True)
+    directions = DirectionListSerializer(many=True, read_only=True)
+    actions = ActionListSerializer(many=True, read_only=True)
+    posts = PostListSerializer(many=True, read_only=True)
+    stories = MedicalStoriesSerializer(many=True, read_only=True)
+    doctor_reviews = DoctorReviewsSerializer(many=True, read_only=True)
+    images = ImageGallerySerializer(many=True, read_only=True)
+    videos = VideoGallerySerializer(many=True, read_only=True)
+    certificates = CertificatesSerializer(many=True, read_only=True)
 
     class Meta:
         model = Doctor

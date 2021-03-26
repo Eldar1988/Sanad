@@ -10,7 +10,8 @@ from .yasg import urlpatterns as doc_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ck_editor', include('ckeditor_uploader.urls')),
-    path('main/', include('sanad.urls'))
+    path('main/', include('sanad.urls')),
+    path('clinic/', include('clinic.urls'))
 ]
 
 urlpatterns += doc_urls
