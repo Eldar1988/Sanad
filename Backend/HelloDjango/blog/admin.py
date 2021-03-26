@@ -24,34 +24,34 @@ class MedicalHistoryReviewsAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'order', 'pub_date', 'update')
-    list_editable = ('order',)
-    search_fields = ('title',)
-    list_filter = ('story', 'post', 'pub_date', 'update')
-    save_as = True
-    save_on_top = True
+class VideosInline(admin.TabularInline):
+    model = Video
+    fields = ('title', 'url', 'order')
+    extra = 0
 
 
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'alt', 'order', 'pub_date', 'update')
-    list_editable = ('order', 'alt')
-    search_fields = ('title',)
-    list_filter = ('story', 'post', 'pub_date', 'update')
-    save_as = True
-    save_on_top = True
+class ImagesInline(admin.TabularInline):
+    model = Image
+    fields = ('title', 'alt',  'url', 'order', 'get_image')
+    extra = 0
+    readonly_fields = ('get_image',)
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.url}" height=50')
+
+    get_image.short_description = 'Миниатюра'
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'public', 'is_action', 'is_news', 'public_on_home_page',
-                    'slug', 'order', 'views', 'pub_date', 'update')
-    list_editable = ('is_action', 'is_news', 'public_on_home_page', 'slug', 'order', 'public')
+    list_display = ('get_image', 'title', 'public', 'public_on_home_page', 'actual', 'clinic_life',
+                    'slug', 'order', 'views', 'pub_date')
+    list_editable = ('public_on_home_page', 'slug', 'order', 'public', 'actual', 'clinic_life',)
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
-    list_filter = ('doctor', 'direction', 'is_action', 'is_news', 'public_on_home_page', 'pub_date', 'update')
+    list_filter = ('doctor', 'direction', 'public_on_home_page', 'pub_date', 'update')
+    filter_horizontal = ('doctor', 'direction')
+    inlines = [VideosInline, ImagesInline]
     save_as = True
     save_on_top = True
 
@@ -69,6 +69,8 @@ class MedicalHistoryAdmin(admin.ModelAdmin):
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
     list_filter = ('doctor', 'direction', 'public_on_home_page', 'pub_date', 'update')
+    filter_horizontal = ('doctor', 'direction')
+    inlines = [VideosInline, ImagesInline]
     save_as = True
     save_on_top = True
 
@@ -76,6 +78,9 @@ class MedicalHistoryAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src="{obj.photo}" height=50')
 
     get_image.short_description = 'Фото'
+
+
+
 
 
 

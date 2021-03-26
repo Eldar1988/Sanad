@@ -1,41 +1,48 @@
 from rest_framework import serializers
-from .models import Post, PostReviews, MedicalHistory
+from .models import Post, PostReviews, MedicalHistory, MedicalHistoryReviews, Video, Image
 
 
-class PostReviewListSerializer(serializers.ModelSerializer):
-    """Комментарии к посту"""
+class PostListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PostReviews
-        fields = ('id',)
+        models = Post
+        fields = ('id', 'title', 'miniature', 'slug')
 
 
-class PostDetailReviewsSerializer(serializers.ModelSerializer):
-    """Комментари к посту (детали)"""
+class MedicalStoriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PostReviews
-        fields = '__all__'
+        model = MedicalHistory
+        fields = ('id', 'title', 'miniature', 'slug')
+
+
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Video
+        fields = ('id', 'title', 'url')
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('id', 'title', 'alt', 'url')
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    """Страница поста"""
+    videos = VideoSerializer(many=True)
+    images = ImageSerializer(many=True)
 
     class Meta:
         model = Post
-        exclude = ('doctor', 'direction', 'public_on_home_page', 'order', 'update', 'public')
+        fields = '__all__'
 
 
-class PostSerializer(serializers.ModelSerializer):
-    """Истории болезни"""
-    reviews = PostReviewListSerializer(many=True)
-
-    class Meta:
-        model = Post
-        exclude = ('pub_date', 'update', 'doctor', 'direction', 'order', 'body', 'public_on_home_page')
-
-
-class HistoryDetailSerializer(serializers.ModelSerializer):
-    """Страница истории"""
+class MedicalHistoryDetailView(serializers.ModelSerializer):
+    videos = VideoSerializer(many=True)
+    images = ImageSerializer(many=True)
 
     class Meta:
-        model = Post
-        exclude = ('doctor', 'direction', 'public_on_home_page', 'order', 'update', 'public')
+        model = MedicalHistory
+        fields = '__all__'
+
+
+
+

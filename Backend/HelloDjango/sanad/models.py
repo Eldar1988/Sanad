@@ -13,23 +13,22 @@ class MainInfo(models.Model):
     action_image = models.URLField('Картинка для страницы акций', null=True, blank=True)
     action_description = models.TextField('Краткое описание страницы акций', max_length=255, null=True, blank=True)
     contacts_title = models.CharField('Заголовок для страницы контактов', max_length=255, null=True, blank=True)
-    contacts_description = models.TextField('Краткое описание страницы контактов', max_length=255, null=True, blank=True)
+    contacts_description = models.TextField('Краткое описание страницы контактов', max_length=255, null=True,
+                                            blank=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
         verbose_name = 'Заголовки страниц'
-        verbose_name_plural = 'Заголовки страниц'
+        verbose_name_plural = '2. Заголовки страниц'
 
 
 class Slider(models.Model):
     """Слайдеры на главной страницы"""
     title = models.CharField('Заголовок слайда', max_length=255)
-    text = models.TextField('Текст на слайдере')
+    title_2 = models.CharField('Заголовок слайда 2', max_length=255, null=True, blank=True)
     image = models.URLField('Картинка', null=True, blank=True)
-    button_text = models.CharField('Текст на кнопке', max_length=30, default='Подробнее')
-    button_url = models.SlugField('Ссылка на кнопке', null=True, blank=True)
     order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата публикации слайда', auto_now_add=True)
@@ -40,7 +39,7 @@ class Slider(models.Model):
 
     class Meta:
         verbose_name = 'Слайд'
-        verbose_name_plural = 'Слайды'
+        verbose_name_plural = '3. Слайды'
         ordering = ('order',)
 
 
@@ -56,18 +55,19 @@ class Advantage(models.Model):
 
     class Meta:
         verbose_name = 'Преимущество'
-        verbose_name_plural = 'Преимущества'
+        verbose_name_plural = '4. Преимущества'
         ordering = ('order',)
 
 
 class Contacts(models.Model):
     """Конактная информация"""
     title = models.CharField('Заголвок для страницы контактов', max_length=255)
-    text = models.TextField('Подзаголовок (необязательно)', null=True, blank=True)
-    phone = models.CharField('Телефон 1', max_length=20)
-    phone_2 = models.CharField('Whatsapp(в формате 7 702 xxx xx xxx)', max_length=20, blank=True, null=True,
-                               help_text='просто 7 вместо 8 или +7')
+    text = models.TextField('Подзаголовок', null=True, blank=True)
+    phones = models.CharField('Телефоны', max_length=150, help_text='Перечислить через запятую', null=True, blank=True)
+    whatsapp = models.CharField('Whatsapp(в формате 7702xxxxxxxx)', max_length=20, blank=True, null=True,
+                                help_text='просто 7 вместо 8 или +7')
     address = models.TextField('Адрес клиники')
+    frame = models.TextField('Frame карты', null=True, blank=True)
     work_time = RichTextUploadingField('Время работы')
 
     def __str__(self):
@@ -75,7 +75,7 @@ class Contacts(models.Model):
 
     class Meta:
         verbose_name = 'Контакты'
-        verbose_name_plural = 'Контакты'
+        verbose_name_plural = '5. Контакты'
 
 
 class Social(models.Model):
@@ -89,8 +89,8 @@ class Social(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Социальные сети'
-        verbose_name_plural = 'Социальная сеть'
+        verbose_name = 'Социальная сети'
+        verbose_name_plural = '6. Социальные сеть'
         ordering = ('order',)
 
 
@@ -106,15 +106,14 @@ class About(models.Model):
 
     class Meta:
         verbose_name = 'О клинике'
-        verbose_name_plural = 'О клинике'
+        verbose_name_plural = '1. О клинике'
 
 
 class VideoGallery(models.Model):
     """Видео галерея"""
     public_on_home = models.BooleanField('Показать на главной', default=False)
-    public_on_about = models.BooleanField('Показать на странице о клинике', default=False)
     title = models.CharField('Название видео', max_length=255)
-    url = models.URLField('URL видео')
+    url = models.CharField('Код видео', null=True, blank=True, max_length=100)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -124,7 +123,7 @@ class VideoGallery(models.Model):
 
     class Meta:
         verbose_name = 'Видео'
-        verbose_name_plural = 'Видео галерея'
+        verbose_name_plural = '7. Видео галерея'
 
 
 class PhotoGallery(models.Model):
@@ -142,8 +141,4 @@ class PhotoGallery(models.Model):
 
     class Meta:
         verbose_name = 'Фото'
-        verbose_name_plural = 'Фото галерея'
-
-
-
-
+        verbose_name_plural = '8. Фото галерея'

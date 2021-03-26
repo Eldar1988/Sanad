@@ -12,9 +12,9 @@ admin.site.register(MainInfo)
 
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'button_text', 'order', 'public', 'pub_date', 'update')
+    list_display = ('get_image', 'title', 'order', 'public', 'pub_date', 'update')
     list_display_links = ('get_image', 'title')
-    list_editable = ('button_text', 'order', 'public')
+    list_editable = ('order', 'public')
     list_filter = ('public', 'pub_date', 'update')
 
     def get_image(self, obj):
@@ -43,10 +43,10 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
 
 @admin.register(VideoGallery)
 class VideoGalleryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'public_on_home', 'public_on_about', 'order', 'pub_date', 'update')
-    list_editable = ('order', 'public_on_home', 'public_on_about')
+    list_display = ('title', 'public_on_home', 'order', 'pub_date', 'update')
+    list_editable = ('order', 'public_on_home')
     search_fields = ('title',)
-    list_filter = ('public_on_home', 'public_on_about', 'pub_date', 'update')
+    list_filter = ('public_on_home', 'pub_date', 'update')
     save_as = True
     save_on_top = True
 
