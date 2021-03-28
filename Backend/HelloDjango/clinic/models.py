@@ -47,10 +47,11 @@ class Doctor(models.Model):
     """Доктор"""
     directions = models.ManyToManyField(Direction, blank=True, verbose_name='Направления', related_name='doctors')
     name = models.CharField('Имя доктора', max_length=255)
+    specialization = models.CharField('Специализация врача', max_length=255, null=True, blank=True)
     photo = models.URLField('Фото (фон на странице доктора')
     avatar = models.URLField('Аватар доктора',
                              default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
-    short_description = models.TextField('СПЕЦИАЛИЗАЦИЯ и краткое описание', max_length=200)
+    short_description = models.TextField('Краткое описание', max_length=200)
     description = RichTextUploadingField('Полное описание')
     say = RichTextUploadingField('Слово специалиста')
     public_on_home_page = models.BooleanField('На главной', default=False)
@@ -111,7 +112,7 @@ class DoctorReviews(models.Model):
 
     class Meta:
         verbose_name = 'Отзыв к доктору'
-        verbose_name_plural = 'Отзывы к докторам'
+        verbose_name_plural = '4. Отзывы к докторам'
         ordering = ('-pub_date',)
 
 

@@ -53,15 +53,29 @@ class DoctorListSerializer(serializers.ModelSerializer):
 class DirectionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direction
-        fields = ('id', 'title', 'icon', 'slug')
+        fields = ('id', 'title', 'icon', 'slug', 'is_for_kids_direction')
+
+
+class ForReviewsDoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = ('name', 'specialization')
 
 
 class DoctorReviewsSerializer(serializers.ModelSerializer):
-    doctor = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    doctor = DoctorListSerializer(many=False)
 
     class Meta:
         model = DoctorReviews
         fields = ('id', 'name', 'avatar', 'text', 'video', 'rating', 'doctor')
+
+
+class DoctorReviewsListSerializer(serializers.ModelSerializer):
+    doctor = ForReviewsDoctorSerializer(many=False)
+
+    class Meta:
+        model = DoctorReviews
+        fields = ('id', 'avatar', 'doctor')
 
 
 class DirectionDetailSerializer(serializers.ModelSerializer):

@@ -11,7 +11,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ck_editor', include('ckeditor_uploader.urls')),
     path('main/', include('sanad.urls')),
-    path('clinic/', include('clinic.urls'))
+    path('clinic/', include('clinic.urls')),
+    path('blog/', include('blog.urls'))
 ]
 
 urlpatterns += doc_urls

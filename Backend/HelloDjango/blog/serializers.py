@@ -4,7 +4,7 @@ from .models import Post, PostReviews, MedicalHistory, MedicalHistoryReviews, Vi
 
 class PostListSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Post
+        model = Post
         fields = ('id', 'title', 'miniature', 'slug')
 
 
@@ -35,7 +35,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MedicalHistoryDetailView(serializers.ModelSerializer):
+class MedicalHistoryDetailSerializer(serializers.ModelSerializer):
     videos = VideoSerializer(many=True)
     images = ImageSerializer(many=True)
 

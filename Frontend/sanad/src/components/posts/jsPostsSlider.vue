@@ -1,32 +1,34 @@
 <template>
-  <div>
-    <swiper class="swiper" :options="swiperOptions">
-      <swiper-slide
-        v-for="action in actions"
-        :key="action.id"
-      >
-        <js-action-card :action="action"/>
-      </swiper-slide>
-    </swiper>
-  </div>
+<div class="q-mt-md ml-15-m">
+  <swiper class="swiper" :options="swiperOptions">
+    <swiper-slide
+      v-for="post in posts"
+      :key="post.id"
+    >
+      <js-post-card-v1 :post="post"/>
+    </swiper-slide>
+  </swiper>
+</div>
 </template>
 
 <script>
 import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
-import JsActionCard from "components/actions/jsActionCard";
+import JsPostCardV1 from "components/posts/jsPostCard-v1";
+
 
 export default {
-  name: "jsActionsSlider",
-  computed: {
-    actions() {
-      return this.$store.getters.getClinicActionsFroHomePage
-    }
-  },
+  name: "jsPostsSlider",
   components: {
-    JsActionCard,
+    JsPostCardV1,
     Swiper,
     SwiperSlide
+  },
+  props: {
+    posts: {
+      type: Array,
+      default: null
+    }
   },
   directives: {
     swiper: directive
@@ -58,12 +60,9 @@ export default {
       }
     }
   },
-
 }
 </script>
 
-<style lang="sass">
-
-
+<style scoped>
 
 </style>

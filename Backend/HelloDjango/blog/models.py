@@ -10,10 +10,9 @@ class Post(models.Model):
     photo = models.URLField('Изображение новости')
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
     body = RichTextUploadingField('Пост')
-    slug = models.SlugField(unique=True)
-    order = models.PositiveSmallIntegerField('Порядковый номер')
     doctor = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктор', related_name='posts')
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='posts')
+    slug = models.SlugField(unique=True)
     public = models.BooleanField('Опубликовать', default=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
     actual = models.BooleanField('Актуальное', default=False)
@@ -29,7 +28,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = '1. Посты'
-        ordering = ('order',)
+        ordering = ('-pub_date',)
 
 
 class PostReviews(models.Model):
@@ -55,16 +54,15 @@ class PostReviews(models.Model):
 class MedicalHistory(models.Model):
     """История болезни"""
     title = models.CharField('Заголовок', max_length=255)
-    miniature = models.URLField('Миниатюра новости', null=True, blank=True)
+    miniature = models.URLField('Миниатюра', null=True, blank=True)
     photo = models.URLField('Изображение', blank=True, null=True)
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
     body = RichTextUploadingField('История болезни')
-    slug = models.SlugField(unique=True)
-    order = models.PositiveSmallIntegerField('Порядковый номер')
     doctor = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктор', related_name='stories')
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='stories')
     public = models.BooleanField('Опубликовать', default=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
+    slug = models.SlugField(unique=True)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
@@ -75,7 +73,7 @@ class MedicalHistory(models.Model):
     class Meta:
         verbose_name = 'История болезни'
         verbose_name_plural = '2. Истории болезни'
-        ordering = ('order',)
+        ordering = ('-pub_date',)
 
 
 class MedicalHistoryReviews(models.Model):

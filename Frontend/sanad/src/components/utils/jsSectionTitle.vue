@@ -1,6 +1,6 @@
 <template>
-<div>
-  <h2 class="section-title text-uppercase text-bold">
+<div :class="colorClass">
+  <h2 :class="'section-title text-uppercase text-bold ' + colorClass">
     {{ title }}
   </h2>
 </div>
@@ -13,6 +13,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    colorClass: {
+      type: String,
+      default: 'text-dark'
     }
   }
 }

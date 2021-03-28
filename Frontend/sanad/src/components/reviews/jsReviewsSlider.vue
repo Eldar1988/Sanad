@@ -1,32 +1,34 @@
 <template>
-  <div>
+  <div class="q-mt-md ml-15-m">
     <swiper class="swiper" :options="swiperOptions">
       <swiper-slide
-        v-for="action in actions"
-        :key="action.id"
+        v-for="review in reviews"
+        :key="review.id"
       >
-        <js-action-card :action="action"/>
+        <js-review-card :review="review"/>
       </swiper-slide>
     </swiper>
+    <router-link to="/reviews" class="q-mt-lg block sub_title text-bold text-primary" title="Читать все отзывы">Смотреть все отзывы >></router-link>
   </div>
 </template>
 
 <script>
 import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
-import JsActionCard from "components/actions/jsActionCard";
+import JsReviewCard from "components/reviews/jsReviewCard";
 
 export default {
-  name: "jsActionsSlider",
-  computed: {
-    actions() {
-      return this.$store.getters.getClinicActionsFroHomePage
-    }
-  },
+  name: "jsReviewsSlider",
   components: {
-    JsActionCard,
+    JsReviewCard,
     Swiper,
     SwiperSlide
+  },
+  props: {
+    reviews: {
+      type: Array,
+      default: null
+    }
   },
   directives: {
     swiper: directive
@@ -58,12 +60,9 @@ export default {
       }
     }
   },
-
 }
 </script>
 
-<style lang="sass">
-
-
+<style scoped>
 
 </style>

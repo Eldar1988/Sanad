@@ -32,7 +32,7 @@
   </div>
   <div class="hide-on-desktop">
     <div class="flex">
-      <call-back/>
+      <call-back :outlined="false" :flat="true"/>
       <q-btn-dropdown
         color="dark"
         class="q-ml-md"

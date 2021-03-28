@@ -50,11 +50,24 @@ class CertificateInline(admin.TabularInline):
 
 class DoctorReviewsInline(admin.StackedInline):
     model = DoctorReviews
-    fields = ('name', 'avatar', 'text', 'video', 'rating', 'public_on_home_page')
+    fields = ('name', 'avatar', 'text', 'video', 'rating', 'public_on_home_page', 'public')
     extra = 0
     classes = ('collapse',)
     readonly_fields = ('get_image',)
     verbose_name_plural = 'Отзывы о докторе'
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.avatar}" height=50')
+
+    get_image.short_description = 'Аватар'
+
+
+@admin.register(DoctorReviews)
+class DoctorReviewsAdmin(admin.ModelAdmin):
+    list_display = ('get_image', 'name', 'rating', 'public_on_home_page', 'public', 'pub_date')
+    list_editable = ('public_on_home_page', 'public')
+    search_fields = ('name', 'text', 'doctor__name')
+    list_filter = ('pub_date', 'update')
 
     def get_image(self, obj):
         return mark_safe(f'<img src="{obj.avatar}" height=50')

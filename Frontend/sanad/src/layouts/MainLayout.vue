@@ -15,7 +15,7 @@
 
 
     <q-drawer v-model="left" side="left" bordered>
-      {{ slides }}
+
     </q-drawer>
 
     <q-page-container>
@@ -23,14 +23,16 @@
       <router-view/>
     </q-page-container>
 
+    <js-footer />
   </q-layout>
 </template>
 
 <script>
 import JsHeaderActions from "components/header/jsHeaderActions";
 import JsHeaderNavigation from "components/header/jsHeaderNavigation";
+import JsFooter from "components/footer/jsFooter";
 export default {
-  components: {JsHeaderNavigation, JsHeaderActions},
+  components: {JsFooter, JsHeaderNavigation, JsHeaderActions},
   computed: {
     slides() {
       return this.$store.getters.getMainInfo.slides
@@ -38,6 +40,12 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('fetchClinicActions')
+    await this.$store.dispatch('fetchDirections')
+    await this.$store.dispatch('fetchHomePosts')
+    await this.$store.dispatch('fetchHomeStories')
+    await this.$store.dispatch('fetchHomeReviews')
+    await this.$store.dispatch('fetchActualPosts')
+    await this.$store.dispatch('fetchClinicLifePosts')
   },
   data() {
     return {

@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .models import Doctor, Direction, Action
+from .models import Doctor, Direction, Action, DoctorReviews
 from .serializers import DoctorListSerializer, DoctorDetailSerializer, DirectionListSerializer, \
-    DirectionDetailSerializer, ActionListSerializer, ActionDetailSerializer
+    DirectionDetailSerializer, ActionListSerializer, ActionDetailSerializer, DoctorReviewsListSerializer, \
+    DoctorReviewsSerializer
 
 
 class DoctorsListView(generics.ListAPIView):
@@ -42,3 +43,23 @@ class ActionDetailView(APIView):
         serializer = ActionListSerializer(action, many=False)
         return Response(serializer.data)
 
+
+class HomePageReviewsListView(generics.ListAPIView):
+    """Отзывы о врачах для главной страницы"""
+    queryset = DoctorReviews.objects.filter(public_on_home_page=True, public=True)
+    serializer_class = DoctorReviewsListSerializer
+
+
+class ReviewsListView(generics.ListAPIView):
+    """Все отзывы о врачах"""
+    queryset = DoctorReviews.objects.filter(public=True)
+    serializer_class = DoctorReviewsListSerializer
+
+
+class ReviewDetailView(APIView):
+    """Отзыв детали"""
+
+    def get(self, request, pk):
+        review = DoctorReviews.objects.get(id=pk)
+        serializer = DoctorReviewsSerializer()
+        return Response(serializer.data)

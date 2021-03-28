@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 import main from './modules/main'
 import clinicActions from './modules/clinicActions'
 import clinicDirections from "./modules/clinicDirections"
+import posts from './modules/posts'
+import stories from './modules/stories'
+import doctors from './modules/doctors'
 
 // import example from './module-example'
 
@@ -22,7 +25,10 @@ export default function (/* { ssrContext } */) {
     modules: {
       main,
       clinicActions,
-      clinicDirections
+      clinicDirections,
+      posts,
+      stories,
+      doctors
     },
     state: {
       serverURL: 'http://192.168.0.199:8000'
