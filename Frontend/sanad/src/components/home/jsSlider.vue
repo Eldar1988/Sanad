@@ -54,7 +54,7 @@ export default {
 
 .slider-text
   position: absolute
-  bottom: 0
+  bottom: 30px
   left: 0
   right: 0
   text-align: center
@@ -77,6 +77,7 @@ export default {
         display: inline-block
         color: $dark
         padding: 5px 10px
+        margin-top: -1px
 
   .home-slider-image
     height: 300px

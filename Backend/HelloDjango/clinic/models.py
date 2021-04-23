@@ -5,6 +5,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Direction(models.Model):
     """Медицинские направления"""
     is_for_kids_direction = models.BooleanField('Детское направление', default=False)
+    is_adults_direction = models.BooleanField('Взрослое направление', default=False)
     title = models.CharField('Название направления', max_length=255)
     icon = models.URLField('Иконка', null=True, blank=True)
     image = models.URLField('Изображение')

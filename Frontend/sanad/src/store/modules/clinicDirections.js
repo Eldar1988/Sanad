@@ -20,8 +20,7 @@ export default {
   },
   mutations: {
     setDirections(state, data) {
-      console
-      state.adultsDirections = data.filter(item => !item.is_for_kids_direction)
+      state.adultsDirections = data.filter(item => item.is_adults_direction)
       state.childDirections = data.filter(item => item.is_for_kids_direction)
     }
   },

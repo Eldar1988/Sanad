@@ -53,7 +53,7 @@ class DoctorListSerializer(serializers.ModelSerializer):
 class DirectionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direction
-        fields = ('id', 'title', 'icon', 'slug', 'is_for_kids_direction')
+        fields = ('id', 'title', 'icon', 'slug', 'is_for_kids_direction', 'is_adults_direction')
 
 
 class ForReviewsDoctorSerializer(serializers.ModelSerializer):

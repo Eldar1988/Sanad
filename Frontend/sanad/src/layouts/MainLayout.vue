@@ -19,7 +19,7 @@
     </q-drawer>
 
     <q-page-container>
-      <js-header-navigation class="q-pa-sm"/>
+      <js-header-navigation class="q-pl-md"/>
       <router-view/>
     </q-page-container>
 

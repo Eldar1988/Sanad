@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       swiperOptions: {
-        spaceBetween: 10,
+        spaceBetween: 20,
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false,

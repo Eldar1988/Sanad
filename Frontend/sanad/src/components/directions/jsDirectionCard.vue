@@ -14,7 +14,9 @@
             </template>
           </q-img>
         </div>
-        <p class="text-center sub_title q-pa-sm text-dark">{{ direction.title }}</p>
+        <div class="q-mb-sm">
+        <p class="text-center sub_title q-pa-sm text-dark ellipsis">{{ direction.title }}</p>
+        </div>
       </q-card>
     </router-link>
   </div>
@@ -37,7 +39,7 @@ export default {
   border: .5px solid rgba(0, 0, 0, 0.12)
 
 .direction-card-image
-  height: 200px
+  height: 100px
 
 .direction-card-title
   font-size: 22px
@@ -51,7 +53,7 @@ export default {
 
 @media screen and (max-width: 650px)
   .direction-card-image
-    height: 100px
+    height: 80px
 
   .direction-card-title
     font-size: 15px

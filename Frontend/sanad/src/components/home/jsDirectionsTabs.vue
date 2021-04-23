@@ -9,7 +9,7 @@
         align="justify"
       >
 
-        <q-tab name="adults" label="Взрослым" class="q-card--bordered" style="width: 50%"/>
+        <q-tab name="adults" label="Взрослым" class="q-card--bordered text-bold" style="width: 50%"/>
         <q-tab name="child" label="Детям" class="q-card--bordered" style="width: 50%"/>
       </q-tabs>
         <q-tab-panels
@@ -79,5 +79,5 @@ export default {
 
 @media screen and (max-width: 650px)
   .directions-grid
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(2, 1fr)
 </style>

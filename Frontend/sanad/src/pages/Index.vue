@@ -21,18 +21,18 @@
         <js-reviews-slider :reviews="reviews"/>
       </section>
 
-      <section class="section">
+      <section class="">
         <div class="container">
-          <div class="posts-grid">
+          <div class="row">
 
-            <div class="">
+            <div class="col-12 col-md-6 q-mt-xl">
               <js-section-title title="Медицинские статьи" class="ml-15-m"/>
-              <js-posts-list :posts="homePosts"/>
+              <js-posts-list :posts="homePosts" class="q-px-sm"/>
             </div>
 
-            <div class="">
+            <div class="col-12 col-md-6 q-mt-xl">
               <js-section-title title="Истории выздоровления" class="ml-15-m"/>
-              <js-posts-list :posts="homeStories" :story="true"/>
+              <js-posts-list :posts="homeStories" :story="true" class="q-px-sm"/>
             </div>
           </div>
         </div>

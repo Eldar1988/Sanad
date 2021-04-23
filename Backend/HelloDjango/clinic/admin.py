@@ -77,9 +77,9 @@ class DoctorReviewsAdmin(admin.ModelAdmin):
 
 @admin.register(Direction)
 class DirectionAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'is_for_kids_direction', 'order', 'slug', 'views', 'pub_date', 'update')
+    list_display = ('get_image', 'title', 'is_for_kids_direction', 'is_adults_direction', 'order', 'slug', 'views', 'pub_date', 'update')
     list_display_links = ('get_image', 'title')
-    list_editable = ('is_for_kids_direction', 'order', 'slug')
+    list_editable = ('is_for_kids_direction', 'is_adults_direction', 'order', 'slug')
     search_fields = ('title',)
     list_filter = ('is_for_kids_direction', 'pub_date', 'update')
     inlines = [HealingInline, ImagesInline, VideosInline]

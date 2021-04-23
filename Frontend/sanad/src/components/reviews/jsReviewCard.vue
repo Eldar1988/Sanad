@@ -13,7 +13,7 @@
         <q-skeleton class="full-width" height="200px" square/>
       </template>
     </q-img>
-      <p class="sub_title text-dark q-pt-sm">Отзыв о враче:<br>{{ review.doctor.specialization }} {{ review.doctor.name }}</p>
+      <p class="sub_title text-dark q-pt-md">Отзыв о враче:<br>{{ review.doctor.specialization }} {{ review.doctor.name }}</p>
     </router-link>
   </q-card>
 </div>

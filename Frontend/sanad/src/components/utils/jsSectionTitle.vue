@@ -26,6 +26,7 @@ export default {
 .section-title
   font-size: 24px
   color: $dark
+  padding-bottom: 10px
 
 @media screen and (max-width: 650px)
   .section-title

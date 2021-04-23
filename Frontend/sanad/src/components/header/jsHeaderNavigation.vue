@@ -7,28 +7,28 @@
             Главная
           </q-item-section>
         </q-item>
-        <q-item class="x-nav-item text-grey-6 q-ml-md" to="/directions" exact-active-class="text-dark" manual-focus>
+        <q-item class="x-nav-item text-grey-6 q-ml-lg" to="/directions" exact-active-class="text-dark" manual-focus>
           <q-item-section class="text-dark">
             Направления
           </q-item-section>
         </q-item>
-        <q-item class="x-nav-item text-grey-6 q-ml-md" to="/doctors" exact-active-class="text-dark" manual-focus active-class="text-dark">
+        <q-item class="x-nav-item text-grey-6 q-ml-lg" to="/doctors" exact-active-class="text-dark" manual-focus active-class="text-dark">
           <q-item-section class="text-dark" >
             Специалисты
           </q-item-section>
         </q-item>
-        <q-item class="x-nav-item text-grey-6 q-ml-md" to="/" exact-active-class="text-dark" manual-focus>
+        <q-item class="x-nav-item text-grey-6 q-ml-lg" to="/" exact-active-class="text-dark" manual-focus>
           <q-item-section class="text-dark">
             Акции
           </q-item-section>
         </q-item>
 
-        <q-item class="x-nav-item text-grey-6 q-ml-md" to="/" exact-active-class="text-dark" manual-focus>
+        <q-item class="x-nav-item text-grey-6 q-ml-lg" to="/" exact-active-class="text-dark" manual-focus>
           <q-item-section class="text-dark">
             Акции
           </q-item-section>
         </q-item>
-        <q-item class="x-nav-item text-grey-6 q-ml-md" to="/" exact-active-class="text-dark" manual-focus>
+        <q-item class="x-nav-item text-grey-6 q-ml-lg" to="/" exact-active-class="text-dark" manual-focus>
           <q-item-section class="text-dark">
             Акции
           </q-item-section>

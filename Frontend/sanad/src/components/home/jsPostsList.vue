@@ -1,6 +1,6 @@
 <template>
   <div class="q-mt-md">
-    <q-list separator>
+    <q-list separator style="border-top: 1px solid #E0E0E0;">
       <q-item
         v-for="post in posts"
         :key="post.id"
@@ -10,7 +10,7 @@
         :title="`Читать далее...`"
         manual-focus
       >
-        <p class="sub_title ml-15-m">{{ post.title }}</p>
+        <p class="sub_title ml-15-m ellipsis q-pr-sm" style="text-decoration: underline">{{ post.title }}</p>
       </q-item>
       <q-item
         :to="story ? `/stories` : `/posts`"
