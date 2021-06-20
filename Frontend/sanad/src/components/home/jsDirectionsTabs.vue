@@ -5,18 +5,19 @@
         v-model="tab"
         class="text-grey "
         active-color="primary"
-        indicator-color="white"
+        indicator-color="transparent"
         align="justify"
       >
 
-        <q-tab name="adults" label="Взрослым" class="q-card--bordered text-bold" style="width: 50%"/>
-        <q-tab name="child" label="Детям" class="q-card--bordered" style="width: 50%"/>
+        <q-tab name="adults" label="Взрослым" class="text-bold" style="width: 50%"/>
+        <q-tab name="child" label="Детям" class="" style="width: 50%"/>
       </q-tabs>
         <q-tab-panels
           v-model="tab"
           animated
           transition-prev="scale"
           transition-next="scale"
+          class="q-mt-md"
         >
           <q-tab-panel name="adults">
             <div class="directions-grid">

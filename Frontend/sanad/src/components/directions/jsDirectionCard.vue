@@ -8,14 +8,14 @@
         style="height: 100%"
       >
         <div class="q-pt-md q-px-md">
-          <q-img :src="direction.icon" class="direction-card-image" contain :title="direction.title" :alt="direction.title + ' фото'">
+          <q-img v-once :src="direction.icon" class="direction-card-image" contain :title="direction.title" :alt="direction.title + ' фото'">
             <template v-slot:loading>
               <q-skeleton class="full-width direction-card-image" square/>
             </template>
           </q-img>
         </div>
         <div class="q-mb-sm">
-        <p class="text-center sub_title q-pa-sm text-dark ellipsis">{{ direction.title }}</p>
+        <p class="text-center sub_title q-pa-sm text-dark">{{ direction.title }}</p>
         </div>
       </q-card>
     </router-link>

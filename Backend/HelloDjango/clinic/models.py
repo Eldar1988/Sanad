@@ -4,16 +4,16 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Direction(models.Model):
     """Медицинские направления"""
-    is_for_kids_direction = models.BooleanField('Детское направление', default=False)
-    is_adults_direction = models.BooleanField('Взрослое направление', default=False)
+    is_for_kids_direction = models.BooleanField('Детское', default=False)
+    is_adults_direction = models.BooleanField('Взрослое', default=False)
     title = models.CharField('Название направления', max_length=255)
+    slug = models.SlugField(unique=True)
     icon = models.URLField('Иконка', null=True, blank=True)
     image = models.URLField('Изображение')
     short_description = models.TextField('Краткое описание',
                                          help_text='Будет использоваться также в SEO (description)')
     description = RichTextUploadingField('Полное описание')
     order = models.PositiveSmallIntegerField('Порядковый номер')
-    slug = models.SlugField(unique=True)
     pub_date = models.DateTimeField('Дата создания направления в базе', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
@@ -48,6 +48,7 @@ class Doctor(models.Model):
     """Доктор"""
     directions = models.ManyToManyField(Direction, blank=True, verbose_name='Направления', related_name='doctors')
     name = models.CharField('Имя доктора', max_length=255)
+    slug = models.SlugField(unique=True)
     specialization = models.CharField('Специализация врача', max_length=255, null=True, blank=True)
     photo = models.URLField('Фото (фон на странице доктора')
     avatar = models.URLField('Аватар доктора',
@@ -58,7 +59,6 @@ class Doctor(models.Model):
     public_on_home_page = models.BooleanField('На главной', default=False)
     birthday = models.DateField('День рождения', blank=True, null=True)
     order = models.PositiveSmallIntegerField('Порядковый номер')
-    slug = models.SlugField(unique=True)
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания врача в базе', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -75,13 +75,15 @@ class Doctor(models.Model):
 class Action(models.Model):
     """Акции"""
     title = models.CharField('Заголовок акции', max_length=255)
+    title_2 = models.CharField('Заголовок акции 2', max_length=255, null=True, blank=True)
+    title_3 = models.CharField('Заголовок акции 3', max_length=255, null=True, blank=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
     show_on_home_page = models.BooleanField('На главной', default=False)
     doctors = models.ManyToManyField(Doctor, blank=True, related_name='actions', verbose_name='Доктор')
     directions = models.ManyToManyField(Direction, blank=True, related_name='actions', verbose_name='Направление')
     short_description = models.TextField('Краткое описание')
     image = models.URLField('Картинка', null=True, blank=True)
     description = RichTextUploadingField('Полное описание', null=True, blank=True)
-    slug = models.SlugField(unique=True, null=True, blank=True)
     pub_date = models.DateTimeField('Дата создания акции', auto_now_add=True)
     update = models.DateTimeField('Дата изменения акции', auto_now=True)
 
@@ -101,7 +103,7 @@ class DoctorReviews(models.Model):
     avatar = models.URLField('Фото',
                              default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
     text = RichTextUploadingField('Отзыв', null=True, blank=True)
-    video = models.URLField('Ссылка на видео (необязательно)', blank=True, null=True)
+    video = models.CharField('Ссылка на видео (необязательно)', blank=True, null=True, max_length=100)
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('На главной', default=False)
     public = models.BooleanField('Опубликовать', default=False)

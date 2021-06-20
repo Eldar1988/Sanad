@@ -18,7 +18,7 @@
           class="home-slider-image"
         >
           <div class="slider-text">
-            <h1 class="text-weight-bold text-uppercase">
+            <h1 class="text-weight-bold text-uppercase letter-1">
               <span>{{ slide.title }}</span><br>
               <span>{{ slide.title_2 }}</span>
             </h1>

@@ -33,7 +33,7 @@ class ImageGallerySerializer(serializers.ModelSerializer):
 class ActionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Action
-        fields = ('title', 'image', 'slug', 'show_on_home_page')
+        fields = ('title', 'title_2', 'title_3', 'image', 'slug', 'show_on_home_page')
 
 
 class ActionDetailSerializer(serializers.ModelSerializer):

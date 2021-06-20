@@ -73,9 +73,6 @@ export default {
     phones() {
       return this.$store.getters.getMainInfo.contacts.phones.split(',')
     }
-  },
-  mounted() {
-    console.log(this.phones)
   }
 }
 </script>

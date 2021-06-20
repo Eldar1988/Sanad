@@ -68,6 +68,8 @@ class DoctorReviewsAdmin(admin.ModelAdmin):
     list_editable = ('public_on_home_page', 'public')
     search_fields = ('name', 'text', 'doctor__name')
     list_filter = ('pub_date', 'update')
+    save_as = True
+    save_on_top = True
 
     def get_image(self, obj):
         return mark_safe(f'<img src="{obj.avatar}" height=50')
@@ -79,6 +81,7 @@ class DoctorReviewsAdmin(admin.ModelAdmin):
 class DirectionAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'title', 'is_for_kids_direction', 'is_adults_direction', 'order', 'slug', 'views', 'pub_date', 'update')
     list_display_links = ('get_image', 'title')
+    prepopulated_fields = {'slug': ('title',)}
     list_editable = ('is_for_kids_direction', 'is_adults_direction', 'order', 'slug')
     search_fields = ('title',)
     list_filter = ('is_for_kids_direction', 'pub_date', 'update')
@@ -97,6 +100,7 @@ class DoctorAdmin(admin.ModelAdmin):
     list_display = (
         'get_image', 'name', 'public', 'public_on_home_page', 'order', 'views', 'pub_date')
     list_editable = ('public_on_home_page', 'order', 'public')
+    prepopulated_fields = {'slug': ('name',)}
     list_display_links = ('get_image', 'name')
     list_filter = ('directions', 'pub_date', 'update')
     search_fields = ('name', 'directions__title')
@@ -115,6 +119,7 @@ class DoctorAdmin(admin.ModelAdmin):
 class ActionAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'title', 'show_on_home_page', 'pub_date', 'update')
     list_editable = ('show_on_home_page',)
+    prepopulated_fields = {'slug': ('title',)}
     list_filter = ('doctors', 'directions', 'show_on_home_page', 'pub_date', 'update')
     search_fields = ('title', 'doctor__name', 'directions__title')
     filter_horizontal = ('doctors', 'directions')

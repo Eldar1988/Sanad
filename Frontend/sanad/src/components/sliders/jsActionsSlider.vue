@@ -38,9 +38,8 @@ export default {
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         },
-        freeMode: true,
         breakpoints: {
           1279: {
             slidesPerView: 3.7,
@@ -49,9 +48,11 @@ export default {
             slidesPerView: 3.3,
           },
           750: {
+            freeMode: true,
             slidesPerView: 3.2,
           },
           330: {
+            freeMode: true,
             slidesPerView: 1.5,
           }
         }

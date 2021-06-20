@@ -6,13 +6,13 @@ from clinic.models import Doctor, Direction
 class Post(models.Model):
     """Пост"""
     title = models.CharField('Заголовок', max_length=255)
+    slug = models.SlugField(unique=True)
     miniature = models.URLField('Миниатюра новости', null=True, blank=True)
     photo = models.URLField('Изображение новости')
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
     body = RichTextUploadingField('Пост')
     doctor = models.ManyToManyField(Doctor, blank=True, verbose_name='Доктор', related_name='posts')
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='posts')
-    slug = models.SlugField(unique=True)
     public = models.BooleanField('Опубликовать', default=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
     actual = models.BooleanField('Актуальное', default=False)
@@ -54,6 +54,7 @@ class PostReviews(models.Model):
 class MedicalHistory(models.Model):
     """История болезни"""
     title = models.CharField('Заголовок', max_length=255)
+    slug = models.SlugField(unique=True)
     miniature = models.URLField('Миниатюра', null=True, blank=True)
     photo = models.URLField('Изображение', blank=True, null=True)
     short_description = models.TextField('Краткое описание', help_text='БУдет использоваться в SEO(description)')
@@ -62,7 +63,6 @@ class MedicalHistory(models.Model):
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='stories')
     public = models.BooleanField('Опубликовать', default=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
-    slug = models.SlugField(unique=True)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     update = models.DateTimeField('Изменен', auto_now=True)
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)

@@ -6,7 +6,9 @@
     <router-link :to="`/action/${action.slug}`" title="Подробнее об акции">
       <q-img :src="action.image" class="action-card-image" :title="action.title" :alt="action.title + ' фото'">
         <p class="action-text q-pa-sm">
-          <span class="action-title text-bold text-uppercase text-dark card-title">{{ action.title }}</span>
+          <span class="action-title text-bold text-uppercase text-dark card-title bg-white">{{ action.title }}</span><br>
+          <span v-if="action.title_2" class="action-title text-bold text-uppercase text-dark card-title bg-white">{{ action.title_2 }}</span><br>
+          <span v-if="action.title_3" class="action-title text-bold text-uppercase text-dark card-title bg-white">{{ action.title_3 }}</span>
         </p>
         <template v-slot:loading>
           <q-skeleton class="full-width action-card-image" square/>
@@ -31,10 +33,12 @@ export default {
 <style lang="sass">
 .action-text
   position: absolute
-  bottom: 0
-  left: 0
-  right: 0
-  background: rgba(255,255,255,.9) !important
+  bottom: 10px
+  left: 10px
+
+.action-title
+  padding: 10px
+  line-height: 2.2 !important
 
 .action-card-image
   height: 220px

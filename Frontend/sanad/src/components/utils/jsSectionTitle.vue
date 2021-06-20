@@ -1,6 +1,6 @@
 <template>
 <div :class="colorClass">
-  <h2 :class="'section-title text-uppercase text-bold ' + colorClass">
+  <h2 :class="'section-title text-uppercase text-bold letter-1 ' + colorClass">
     {{ title }}
   </h2>
 </div>

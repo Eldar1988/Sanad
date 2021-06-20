@@ -6,9 +6,9 @@
   >
     <router-link :to="`/post/${post.slug}`" title="Подробнее...">
       <q-img :src="post.miniature" class="action-card-image" :title="post.title" :alt="post.title + ' фото'">
-        <p class="action-text q-pa-sm">
-          <span class="action-title text-bold text-uppercase text-dark card-title">{{ post.title }}</span>
-        </p>
+        <span class="action-text q-pa-sm">
+          {{ post.title }}
+        </span>
         <template v-slot:loading>
           <q-skeleton class="full-width action-card-image" square/>
         </template>
@@ -23,21 +23,14 @@ export default {
   name: "jsPostCard-v1",
   props: {
     post: {
-      type: Array,
-      default: null
+      type: Object,
+      default: () => {}
     }
   }
 }
 </script>
 
 <style lang="sass">
-.action-text
-  position: absolute
-  bottom: 0
-  left: 0
-  right: 0
-  background: rgba(255,255,255,.9) !important
-
 .action-card-image
   height: 220px
 </style>

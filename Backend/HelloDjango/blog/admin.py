@@ -46,6 +46,7 @@ class ImagesInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'title', 'public', 'public_on_home_page', 'actual', 'clinic_life',
                     'views', 'pub_date')
+    prepopulated_fields = {'slug': ('title',)}
     list_editable = ('public_on_home_page', 'title', 'public', 'actual', 'clinic_life',)
     search_fields = ('title',)
     list_filter = ('doctor', 'direction', 'public_on_home_page', 'pub_date', 'update')
@@ -64,6 +65,7 @@ class PostAdmin(admin.ModelAdmin):
 class MedicalHistoryAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'title', 'public', 'public_on_home_page',
                     'slug', 'views', 'pub_date', 'update')
+    prepopulated_fields = {'slug': ('title',)}
     list_editable = ('public_on_home_page', 'public', 'slug')
     list_display_links = ('get_image', 'title')
     search_fields = ('title',)
