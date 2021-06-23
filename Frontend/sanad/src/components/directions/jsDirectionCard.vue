@@ -1,10 +1,9 @@
 <template>
-  <div class="direction-card" style="height: 100%">
+  <div class="q-card--bordered mt--1 no-top-border" style="height: 100%" :class="directionCardSpacer">
     <router-link :to="`/direction/${direction.slug}`" :title="'Узнать подробнее о направлении ' + direction.title">
       <q-card
         square
-        bordered
-        class="shadow-0"
+        class="shadow-0 grey-gradient"
         style="height: 100%"
       >
         <div class="q-pt-md q-px-md">
@@ -29,15 +28,24 @@ export default {
     direction: {
       type: Object,
       default: null
+    },
+    index: {
+      type: Number
+    }
+  },
+  computed: {
+    directionCardSpacer () {
+      const mobile = this.$q.platform.is.mobile
+      let classes = []
+      if (!mobile && this.index > 0 && this.index !== 5) classes.push('ml--1')
+      if (mobile && this.index > 0) classes.push('ml--1')
+      return classes.join(' ')
     }
   }
 }
 </script>
 
 <style lang="sass">
-.direction-card .q-card--bordered
-  border: .5px solid rgba(0, 0, 0, 0.12)
-
 .direction-card-image
   height: 100px
 

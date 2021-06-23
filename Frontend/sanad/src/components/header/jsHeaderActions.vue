@@ -1,46 +1,17 @@
 <template>
-<div>
-  <div class="hide-on-mobile">
-    <div class="flex">
-      <call-back label="Запись на прием"/>
-      <q-btn-dropdown
+<div class="h-60">
+  <div class="fit">
+    <div class="flex fit">
+      <call-back :outlined="false" :flat="false" text-color="dark" classes="q-card--bordered grey-gradient mb--1"/>
+      <q-btn
         color="dark"
-        class="q-ml-md"
-        label="Телефоны"
-        icon="eva-phone-outline"
-        no-caps unelevated flat stretch dense
-        content-class="br-0 q-mt-sm"
-      >
-        <q-list separator>
-          <q-item
-            clickable
-            v-for="(phone, index) in phones"
-            :key="index"
-          >
-              <q-btn
-                class="full-width"
-                color="dark"
-                type="a"
-                :label="phone"
-                flat
-                :href="`tel:${phone}`"
-              />
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
-    </div>
-  </div>
-  <div class="hide-on-desktop">
-    <div class="flex">
-      <call-back :outlined="false" :flat="true"/>
-      <q-btn-dropdown
-        color="dark"
-        class="q-ml-md"
+        text-color="dark"
         label=""
         icon="eva-phone-outline"
-        no-caps unelevated stretch flat dense
-        content-class="br-0 q-mt-sm"
+        class="grey-gradient q-card--bordered ml--1 mb--1"
+        no-caps unelevated stretch
       >
+        <q-menu square>
         <q-list separator>
           <q-item
             clickable
@@ -57,7 +28,8 @@
             />
           </q-item>
         </q-list>
-      </q-btn-dropdown>
+        </q-menu>
+      </q-btn>
     </div>
   </div>
 </div>

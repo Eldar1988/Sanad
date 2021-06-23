@@ -1,21 +1,21 @@
 <template>
-<div>
-  <q-card
-    square
-    class="shadow-0"
-  >
-    <router-link :to="`/post/${post.slug}`" title="Подробнее...">
-      <q-img :src="post.miniature" class="action-card-image" :title="post.title" :alt="post.title + ' фото'">
-        <span class="action-text q-pa-sm">
+  <div>
+    <q-card
+      square
+      class="shadow-0"
+    >
+      <router-link :to="`/post/${post.slug}`" title="Подробнее...">
+        <q-img :src="post.miniature" class="action-card-image" :title="post.title" :alt="post.title + ' фото'">
+          <template v-slot:loading>
+            <q-skeleton class="full-width action-card-image" square/>
+          </template>
+        </q-img>
+        <span class="q-mt-sm sub_title text-dark block">
           {{ post.title }}
         </span>
-        <template v-slot:loading>
-          <q-skeleton class="full-width action-card-image" square/>
-        </template>
-      </q-img>
-    </router-link>
-  </q-card>
-</div>
+      </router-link>
+    </q-card>
+  </div>
 </template>
 
 <script>
@@ -24,7 +24,8 @@ export default {
   props: {
     post: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   }
 }

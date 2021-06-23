@@ -14,7 +14,7 @@ class HealingInline(admin.TabularInline):
 
 class ImagesInline(admin.TabularInline):
     model = ImageGallery
-    fields = ('title', 'url', 'order', 'get_image')
+    fields = ('title', 'source', 'order', 'get_image')
     extra = 0
     classes = ('collapse',)
     verbose_name_plural = 'Дополнительные фото'
@@ -29,7 +29,7 @@ class ImagesInline(admin.TabularInline):
 
 class VideosInline(admin.TabularInline):
     model = VideoGallery
-    fields = ('title', 'url', 'order')
+    fields = ('title', 'video', 'order')
     extra = 0
     classes = ('collapse',)
 

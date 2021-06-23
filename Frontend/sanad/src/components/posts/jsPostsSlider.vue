@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       swiperOptions: {
-        spaceBetween: 10,
+        spaceBetween: 20,
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false,
@@ -45,7 +45,7 @@ export default {
         freeMode: true,
         breakpoints: {
           1279: {
-            slidesPerView: 3.7,
+            slidesPerView: 4.2,
           },
           1000: {
             slidesPerView: 3.3,

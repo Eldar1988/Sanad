@@ -23,8 +23,7 @@
 
       <section class="">
         <div class="container">
-          <div class="row">
-
+          <div class="row q-col-gutter-xl">
             <div class="col-12 col-md-6 q-mt-xl">
               <js-section-title title="Медицинские статьи" class="ml-15-m"/>
               <js-posts-list :posts="homePosts" class="q-px-sm"/>

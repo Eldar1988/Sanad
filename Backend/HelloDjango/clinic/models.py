@@ -50,6 +50,7 @@ class Doctor(models.Model):
     name = models.CharField('Имя доктора', max_length=255)
     slug = models.SlugField(unique=True)
     specialization = models.CharField('Специализация врача', max_length=255, null=True, blank=True)
+    experience = models.CharField('Стаж работы', max_length=100, null=True, blank=True)
     photo = models.URLField('Фото (фон на странице доктора')
     avatar = models.URLField('Аватар доктора',
                              default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
@@ -103,7 +104,7 @@ class DoctorReviews(models.Model):
     avatar = models.URLField('Фото',
                              default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
     text = RichTextUploadingField('Отзыв', null=True, blank=True)
-    video = models.CharField('Ссылка на видео (необязательно)', blank=True, null=True, max_length=100)
+    video = models.CharField('Ссылка на видео (код после знака =)', blank=True, null=True, max_length=100)
     rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('На главной', default=False)
     public = models.BooleanField('Опубликовать', default=False)
@@ -126,7 +127,7 @@ class VideoGallery(models.Model):
     doctors = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name='Доктора', related_name='videos')
     title = models.CharField('Название видео', max_length=255)
-    url = models.CharField('Код видео', null=True, blank=True, max_length=100)
+    video = models.CharField('Код видео', null=True, blank=True, max_length=100)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
@@ -146,7 +147,7 @@ class ImageGallery(models.Model):
     doctors = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name='Доктора', related_name='images')
     title = models.CharField('Название изображения', max_length=255)
-    url = models.URLField('URL изображения')
+    source = models.URLField('URL изображения')
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)

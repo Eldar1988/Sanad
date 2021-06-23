@@ -2,7 +2,7 @@
   <q-layout view="hHh LpR fFf">
 
     <q-header class="bg-white" bordered>
-      <q-toolbar>
+      <q-toolbar class="q-pr-none">
         <q-btn dense flat round icon="eva-menu-outline" @click="left = !left" color="dark" size="lg" padding="0"/>
 
         <q-toolbar-title>
@@ -19,7 +19,7 @@
     </q-drawer>
 
     <q-page-container>
-      <js-header-navigation class="q-pl-md"/>
+      <js-header-navigation class="ml-15-m"/>
       <router-view/>
     </q-page-container>
 

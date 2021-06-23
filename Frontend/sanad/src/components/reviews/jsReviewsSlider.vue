@@ -5,10 +5,10 @@
         v-for="review in reviews"
         :key="review.id"
       >
-        <js-review-card :review="review"/>
+        <js-review-card :review="review" :is-doctor-review="isDoctorReview"/>
       </swiper-slide>
     </swiper>
-    <router-link to="/reviews" class="q-mt-lg block sub_title text-bold text-primary" title="Читать все отзывы">Смотреть все отзывы >></router-link>
+    <router-link v-if="isDoctorReview" to="/" class="q-mt-lg block sub_title text-bold text-primary" title="Читать все отзывы">Смотреть все отзывы >></router-link>
   </div>
 </template>
 
@@ -28,6 +28,10 @@ export default {
     reviews: {
       type: Array,
       default: null
+    },
+    isDoctorReview: {
+      type: Boolean,
+      default: true
     }
   },
   directives: {

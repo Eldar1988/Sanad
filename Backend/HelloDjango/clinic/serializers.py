@@ -21,13 +21,13 @@ class CertificatesSerializer(serializers.ModelSerializer):
 class VideoGallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoGallery
-        fields = ('id', 'title', 'url')
+        fields = ('id', 'title', 'video')
 
 
 class ImageGallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = ImageGallery
-        fields = ('id', 'title', 'url')
+        fields = ('id', 'title', 'source')
 
 
 class ActionListSerializer(serializers.ModelSerializer):
@@ -47,7 +47,7 @@ class DoctorListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Doctor
-        fields = ('id', 'name', 'avatar', 'directions', 'slug')
+        fields = ('id', 'name', 'avatar', 'directions', 'slug', 'experience', 'specialization')
 
 
 class DirectionListSerializer(serializers.ModelSerializer):
@@ -75,7 +75,7 @@ class DoctorReviewsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DoctorReviews
-        fields = ('id', 'avatar', 'doctor')
+        fields = ('id', 'avatar', 'doctor', 'video')
 
 
 class DirectionDetailSerializer(serializers.ModelSerializer):

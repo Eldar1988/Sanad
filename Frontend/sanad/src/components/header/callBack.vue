@@ -1,16 +1,16 @@
 <template>
-<div>
   <q-btn
     icon="eva-calendar-outline"
     :color="color"
     stretch
+    :text-color="textColor"
     :flat="flat"
     :outline="outlined"
     :no-caps="!caps"
     :label="label"
     :class="classes"
+    unelevated
   />
-</div>
 </template>
 
 <script>
@@ -20,6 +20,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    textColor: {
+      type: String,
+      default: 'white'
     },
     color: {
       type: String,

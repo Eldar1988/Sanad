@@ -8,25 +8,23 @@
         indicator-color="transparent"
         align="justify"
       >
-
-        <q-tab name="adults" label="Взрослым" class="text-bold" style="width: 50%"/>
-        <q-tab name="child" label="Детям" class="" style="width: 50%"/>
+        <q-tab name="adults" label="Взрослым" class="text-bold q-card--bordered grey-gradient" style="width: 50%; padding: 15px 0"/>
+        <q-tab name="child" label="Детям" class="q-card--bordered ml--1 grey-gradient" style="width: 50%; padding: 15px 0"/>
       </q-tabs>
         <q-tab-panels
           v-model="tab"
           animated
           transition-prev="scale"
           transition-next="scale"
-          class="q-mt-md"
         >
           <q-tab-panel name="adults">
             <div class="directions-grid">
               <div
-                v-for="direction in adultsDirections"
+                v-for="(direction, index) in adultsDirections"
                 :key="direction.id"
                 style="min-height: 100%"
               >
-                <js-direction-card :direction="direction"/>
+                <js-direction-card :direction="direction" :index="index"/>
               </div>
             </div>
           </q-tab-panel>
@@ -34,11 +32,11 @@
           <q-tab-panel name="child">
             <div class="directions-grid">
               <div
-                v-for="direction in childDirections"
+                v-for="(direction, index) in childDirections"
                 :key="direction.id"
                 style="min-height: 100%"
               >
-                <js-direction-card :direction="direction"/>
+                <js-direction-card :direction="direction" :index="index"/>
               </div>
             </div>
           </q-tab-panel>

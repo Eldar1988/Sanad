@@ -42,7 +42,7 @@ export default {
         },
         breakpoints: {
           1279: {
-            slidesPerView: 3.7,
+            slidesPerView: 4.2,
           },
           1000: {
             slidesPerView: 3.3,
