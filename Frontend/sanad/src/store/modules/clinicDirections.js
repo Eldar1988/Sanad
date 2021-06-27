@@ -5,7 +5,7 @@ export default {
   state: {
     adultsDirections: null,
     childDirections: null,
-    direction: {}
+    direction: {},
   },
   actions: {
     async fetchDirections({commit}) {

@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Slider, Advantage, Contacts, Social, PhotoGallery, VideoGallery, About, MainInfo
+from .models import Slider, Advantage, Contacts, PhotoGallery, VideoGallery, About, MainInfo, Banner
 
 
 admin.site.register(Contacts)
-admin.site.register(Social)
 admin.site.register(About)
 admin.site.register(MainInfo)
 
@@ -58,3 +57,17 @@ class AdvantageAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     save_as = True
     save_on_top = True
+
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ('get_image', 'url', 'order', 'date', 'update')
+    list_editable = ('order',)
+    list_filter = ('date', 'update')
+    save_as = True
+    save_on_top = True
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.image}" height=50')
+
+    get_image.short_description = 'Баннер'

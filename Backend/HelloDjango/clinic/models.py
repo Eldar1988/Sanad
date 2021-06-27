@@ -9,7 +9,6 @@ class Direction(models.Model):
     title = models.CharField('Название направления', max_length=255)
     slug = models.SlugField(unique=True)
     icon = models.URLField('Иконка', null=True, blank=True)
-    image = models.URLField('Изображение')
     short_description = models.TextField('Краткое описание',
                                          help_text='Будет использоваться также в SEO (description)')
     description = RichTextUploadingField('Полное описание')
@@ -100,19 +99,16 @@ class DoctorReviews(models.Model):
     """Отзывы к докторам"""
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True, related_name='doctor_reviews',
                                verbose_name='Доктор')
-    name = models.CharField('Имя', max_length=255)
     avatar = models.URLField('Фото',
                              default='https://res.cloudinary.com/space-developers/image/upload/v1607059811/Sanad/undraw_profile_pic_ic5t_qvsdyi.svg')
-    text = RichTextUploadingField('Отзыв', null=True, blank=True)
     video = models.CharField('Ссылка на видео (код после знака =)', blank=True, null=True, max_length=100)
-    rating = models.PositiveSmallIntegerField('Оценка (от 1 до 5)', default=5)
     public_on_home_page = models.BooleanField('На главной', default=False)
     public = models.BooleanField('Опубликовать', default=False)
     pub_date = models.DateTimeField('Дата создания отзыва', auto_now_add=True)
     update = models.DateTimeField('Дата изменения', auto_now=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.pk}'
 
     class Meta:
         verbose_name = 'Отзыв к доктору'
@@ -127,6 +123,7 @@ class VideoGallery(models.Model):
     doctors = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name='Доктора', related_name='videos')
     title = models.CharField('Название видео', max_length=255)
+    avatar = models.URLField('Превью для видео', blank=True, null=True)
     video = models.CharField('Код видео', null=True, blank=True, max_length=100)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)

@@ -4,18 +4,14 @@
     <q-header class="bg-white" bordered>
       <q-toolbar class="q-pr-none">
         <q-btn dense flat round icon="eva-menu-outline" @click="left = !left" color="dark" size="lg" padding="0"/>
-
         <q-toolbar-title>
           <img src="../assets/logo.png" title="Sanad" alt="logo" class="logo">
         </q-toolbar-title>
         <js-header-actions />
       </q-toolbar>
-
     </q-header>
 
-
     <q-drawer v-model="left" side="left" bordered>
-
     </q-drawer>
 
     <q-page-container>
@@ -44,7 +40,6 @@ export default {
     await this.$store.dispatch('fetchHomePosts')
     await this.$store.dispatch('fetchHomeStories')
     await this.$store.dispatch('fetchHomeReviews')
-    await this.$store.dispatch('fetchActualPosts')
     await this.$store.dispatch('fetchClinicLifePosts')
   },
   data() {

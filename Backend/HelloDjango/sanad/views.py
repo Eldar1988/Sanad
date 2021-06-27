@@ -2,9 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
 
-from .models import MainInfo, Slider, Advantage, Contacts, Social, About, VideoGallery, PhotoGallery
-from .serializers import MainInfoSerializer, SliderSerializer, ContactsSerializer, SocialsSerializer, \
-    AboutPageSerializer, VideoSanadSerializer, PhotoSanadSerializer
+from .models import MainInfo, Slider, Advantage, Contacts, About, VideoGallery, PhotoGallery, Banner
+from .serializers import MainInfoSerializer, SliderSerializer, ContactsSerializer, \
+    AboutPageSerializer, VideoSanadSerializer, PhotoSanadSerializer, BannerSerializer
 
 
 class MainInfoView(APIView):
@@ -24,10 +24,6 @@ class MainInfoView(APIView):
         contacts = Contacts.objects.last()
         contacts_serializer = ContactsSerializer(contacts, many=False)
         response_data['contacts'] = contacts_serializer.data
-
-        socials = Social.objects.all()
-        socials_serializer = SocialsSerializer(socials, many=True)
-        response_data['socials'] = socials_serializer.data
 
         return Response(response_data)
 
@@ -52,3 +48,6 @@ class PhotoGalleryView(generics.ListAPIView):
     serializer_class = PhotoSanadSerializer
 
 
+class BannerListView(generics.ListAPIView):
+    queryset = Banner.objects.filter(public=True)
+    serializer_class = BannerSerializer

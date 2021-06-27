@@ -21,7 +21,7 @@ class CertificatesSerializer(serializers.ModelSerializer):
 class VideoGallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoGallery
-        fields = ('id', 'title', 'video')
+        fields = ('id', 'title', 'video', 'avatar')
 
 
 class ImageGallerySerializer(serializers.ModelSerializer):
@@ -42,12 +42,20 @@ class ActionDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class DoctorReviewsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DoctorReviews
+        fields = ('id', 'avatar', 'video')
+
+
 class DoctorListSerializer(serializers.ModelSerializer):
     directions = serializers.SlugRelatedField(slug_field='title', read_only=True, many=True)
+    doctor_reviews = DoctorReviewsSerializer(many=True, read_only=True)
 
     class Meta:
         model = Doctor
-        fields = ('id', 'name', 'avatar', 'directions', 'slug', 'experience', 'specialization')
+        fields = ('id', 'name', 'avatar', 'directions', 'slug', 'experience', 'specialization', 'doctor_reviews')
 
 
 class DirectionListSerializer(serializers.ModelSerializer):
@@ -60,14 +68,6 @@ class ForReviewsDoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Doctor
         fields = ('name', 'specialization')
-
-
-class DoctorReviewsSerializer(serializers.ModelSerializer):
-    doctor = DoctorListSerializer(many=False)
-
-    class Meta:
-        model = DoctorReviews
-        fields = ('id', 'name', 'avatar', 'text', 'video', 'rating', 'doctor')
 
 
 class DoctorReviewsListSerializer(serializers.ModelSerializer):

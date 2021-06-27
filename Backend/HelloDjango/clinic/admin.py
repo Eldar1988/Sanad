@@ -29,7 +29,7 @@ class ImagesInline(admin.TabularInline):
 
 class VideosInline(admin.TabularInline):
     model = VideoGallery
-    fields = ('title', 'video', 'order')
+    fields = ('title', 'avatar', 'video', 'order')
     extra = 0
     classes = ('collapse',)
 
@@ -50,7 +50,7 @@ class CertificateInline(admin.TabularInline):
 
 class DoctorReviewsInline(admin.StackedInline):
     model = DoctorReviews
-    fields = ('name', 'avatar', 'text', 'video', 'rating', 'public_on_home_page', 'public')
+    fields = ('avatar', 'video', 'public_on_home_page', 'public')
     extra = 0
     classes = ('collapse',)
     readonly_fields = ('get_image',)
@@ -64,15 +64,15 @@ class DoctorReviewsInline(admin.StackedInline):
 
 @admin.register(DoctorReviews)
 class DoctorReviewsAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'name', 'rating', 'public_on_home_page', 'public', 'pub_date')
+    list_display = ('get_image', 'public_on_home_page', 'public', 'pub_date')
     list_editable = ('public_on_home_page', 'public')
-    search_fields = ('name', 'text', 'doctor__name')
+    search_fields = ('title', 'doctor__name')
     list_filter = ('pub_date', 'update')
     save_as = True
     save_on_top = True
 
     def get_image(self, obj):
-        return mark_safe(f'<img src="{obj.avatar}" height=50')
+        return mark_safe(f'<img src="{obj.avatar}" height=50 width=80 style="object-fit: cover"')
 
     get_image.short_description = 'Аватар'
 
@@ -90,7 +90,7 @@ class DirectionAdmin(admin.ModelAdmin):
     save_as = True
 
     def get_image(self, obj):
-        return mark_safe(f'<img src="{obj.image}" height=50')
+        return mark_safe(f'<img src="{obj.icon}" height=50')
 
     get_image.short_description = 'Изображение'
 

@@ -5,10 +5,10 @@
         v-for="review in reviews"
         :key="review.id"
       >
-        <js-review-card :review="review" :is-doctor-review="isDoctorReview"/>
+        <js-review-card :video="review" :is-doctor-review="isDoctorReview"/>
       </swiper-slide>
     </swiper>
-    <router-link v-if="isDoctorReview" to="/" class="q-mt-lg block sub_title text-bold text-primary" title="Читать все отзывы">Смотреть все отзывы >></router-link>
+    <router-link v-if="isDoctorReview" to="/" class="q-mt-md block sub_title text-bold text-primary" title="Читать все отзывы">Смотреть все отзывы >></router-link>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
         freeMode: true,
         breakpoints: {
           1279: {
-            slidesPerView: 3.7,
+            slidesPerView: 3.2,
           },
           1000: {
             slidesPerView: 3.3,
@@ -58,7 +58,7 @@ export default {
             slidesPerView: 3.2,
           },
           330: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.1,
           }
         }
       }

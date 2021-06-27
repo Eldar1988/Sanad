@@ -2,7 +2,18 @@
 <div class="h-60">
   <div class="fit">
     <div class="flex fit">
-      <call-back :outlined="false" :flat="false" text-color="dark" classes="q-card--bordered grey-gradient mb--1"/>
+      <q-btn
+        color="dark"
+        text-color="dark"
+        label=""
+        icon="lab la-instagram"
+        class="grey-gradient q-card--bordered mb--1"
+        no-caps unelevated stretch
+        size="16px"
+        type="a"
+        href="https://www.instagram.com/klinika_sanad/"
+      />
+      <call-back :outlined="false" :flat="false" text-color="dark" classes="q-card--bordered grey-gradient mb--1 ml--1"/>
       <q-btn
         color="dark"
         text-color="dark"

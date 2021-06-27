@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import VideoGallery, PhotoGallery, About, MainInfo, Slider, Advantage, Contacts, Social
+from .models import VideoGallery, PhotoGallery, About, MainInfo, Slider, Advantage, Contacts, Banner
 
 
 class MainInfoSerializer(serializers.ModelSerializer):
@@ -27,12 +27,6 @@ class ContactsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SocialsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Social
-        fields = '__all__'
-
-
 class AboutPageSerializer(serializers.ModelSerializer):
     """Страница о клинике"""
     class Meta:
@@ -52,3 +46,10 @@ class PhotoSanadSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhotoGallery
         fields = ('id', 'title', 'url')
+
+
+class BannerSerializer(serializers.ModelSerializer):
+    """Баннеры"""
+    class Meta:
+        model = Banner
+        fields = ('id', 'image', 'url')

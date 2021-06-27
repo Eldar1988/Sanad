@@ -15,7 +15,6 @@ class Post(models.Model):
     direction = models.ManyToManyField(Direction, blank=True, verbose_name='Направление', related_name='posts')
     public = models.BooleanField('Опубликовать', default=True)
     public_on_home_page = models.BooleanField('Опубликовать на главной', default=False)
-    actual = models.BooleanField('Актуальное', default=False)
     clinic_life = models.BooleanField('Жизнь клиники', default=False)
     likes = models.PositiveSmallIntegerField('Кол-во лайков', default=0)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)

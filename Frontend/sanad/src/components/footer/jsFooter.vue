@@ -1,8 +1,17 @@
 <template>
   <div>
-    <footer class="section q-pt-xl">
-      <js-section-title title="Карта проезда" class="text-center"/>
-      <p class="sub_title text-center q-mt-md">{{ contacts.address }}</p>
+    <footer class="q-pt-xl">
+      <section class="container section">
+        <js-section-title title="Актуальное" class="ml-15-m"/>
+        <js-banners-slider :banners="banners" class="ml-15-m"/>
+      </section>
+
+      <section class="container-m section">
+        <js-section-title title="Жизнь клиники Sanad" class="ml-15-m"/>
+        <js-posts-grid-v2 :posts="clinicLifePosts"/>
+      </section>
+      <js-section-title title="Карта проезда" class="text-center section"/>
+      <p class="sub_title text-center q-mt-xs">{{ contacts.address }}</p>
       <div v-html="contacts.frame" class="q-mt-lg">
       </div>
       <div class="bg-primary q-pt-xl" style="margin-top: -10px">
@@ -11,7 +20,7 @@
             <div class="row">
               <div class="col-md-6 col-12 q-px-sm">
 
-                <js-section-title title="Контактая информация" class="text-white" color-class="text-white"/>
+                <js-section-title title="Контактая информация" class="text-white container-m" color-class="text-white"/>
 
                 <q-list class="text-white q-mt-lg" dense separator dark>
                   <q-item
@@ -73,18 +82,29 @@
 <script>
 import JsSectionTitle from "components/utils/jsSectionTitle";
 import CallBack from "components/header/callBack";
+import JsPostsGridV2 from "components/posts/jsPostsGrid-v2";
+import JsBannersSlider from "components/sliders/jsBannersSlider";
 
 export default {
   name: "jsFooter",
-  components: {CallBack, JsSectionTitle},
+  components: {JsBannersSlider, JsPostsGridV2, CallBack, JsSectionTitle},
   computed: {
+    banners () {
+      return this.$store.getters.getBanners
+    },
     contacts() {
       return this.$store.getters.getMainInfo.contacts
     },
     getYear() {
       let date = new Date()
       return date.getFullYear()
+    },
+    clinicLifePosts() {
+      return this.$store.getters.getClinicLifeActions
     }
+  },
+  created() {
+    this.$store.dispatch('fetchBanners')
   }
 }
 </script>

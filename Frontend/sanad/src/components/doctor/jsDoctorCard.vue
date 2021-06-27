@@ -6,9 +6,9 @@
     <q-img :src="doctor.avatar" :ratio="1/1"/>
     <div class="doctor-card-meta flex" style="align-items: center">
       <div>
-        <h3 class="sub_title text-bold">{{ doctor.name }}</h3>
-        <p class="sub_title q-mt-md">{{ doctor.specialization }}</p>
-        <p class="sub_title q-mt-md text-bold">Стаж работы: {{ doctor.experience }}</p>
+        <h3 class="sub_title text-uppercase">{{ doctor.name }}</h3>
+        <p class="sub_title q-mt-sm text-bold">{{ doctor.specialization }}</p>
+        <p class="sub_title q-mt-sm">Стаж работы: {{ doctor.experience }}</p>
         <div>
           <q-btn
             label="Записаться"

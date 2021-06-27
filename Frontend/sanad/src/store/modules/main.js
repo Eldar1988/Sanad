@@ -4,7 +4,8 @@ import notifier from "src/utils/notifier"
 
 export default {
   state: {
-    mainInfo: {}
+    mainInfo: {},
+    banners: []
   },
   actions: {
     async fetchMainInfo({commit}) {
@@ -21,14 +22,26 @@ export default {
           location.reload()
         }, 3000)
       }
+    },
+    async fetchBanners({commit}) {
+      try {
+        await axios.get(`${this.getters.getServerURL}/main/banners/`)
+          .then(({data}) => commit('setBanners', data))
+      } catch (e) {
+        notifier(`Не удалось загрузить баннеры. Ошибка сервера: ${e.message}`)
+      }
     }
   },
   mutations: {
     setMainInfo(state, data) {
       state.mainInfo = data
-    }
+    },
+    setBanners(state, data) {
+      state.banners = data
+    },
   },
   getters: {
-    getMainInfo: state => state.mainInfo
+    getMainInfo: state => state.mainInfo,
+    getBanners: state => state.banners
   }
 }

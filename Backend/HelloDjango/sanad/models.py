@@ -43,11 +43,29 @@ class Slider(models.Model):
         ordering = ('order',)
 
 
+class Banner(models.Model):
+    """Баннеры"""
+    image = models.URLField('Баннер')
+    url = models.CharField('url', max_length=255)
+    public = models.BooleanField('Опубликовать', default=True)
+    order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
+    date = models.DateTimeField('Создан', auto_now_add=True)
+    update = models.DateTimeField('Обновлен', auto_now=True)
+
+    def __str__(self):
+        return f'{self.pk}'
+
+    class Meta:
+        verbose_name = 'Баннер'
+        verbose_name_plural = '3.1 Баннеры'
+        ordering = ('order',)
+
+
 class Advantage(models.Model):
     """Преимущества клиники"""
     title = models.CharField('Заголовок', max_length=255)
     text = models.TextField('Текст')
-    icon = models.CharField('Иконка', max_length=255, help_text='https://material.io/resources/icons/?style=baseline')
+    icon = models.URLField('Иконка', null=True, blank=True)
     order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
 
     def __str__(self):
@@ -76,22 +94,6 @@ class Contacts(models.Model):
     class Meta:
         verbose_name = 'Контакты'
         verbose_name_plural = '5. Контакты'
-
-
-class Social(models.Model):
-    """Социальные сети"""
-    title = models.CharField('Название соцсети', max_length=255)
-    icon = models.CharField('Иконка', max_length=255, help_text='https://material.io/resources/icons/?style=baseline')
-    url = models.URLField('Ссылка на страницу в сети')
-    order = models.PositiveSmallIntegerField('Порядковый номер')
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Социальная сети'
-        verbose_name_plural = '6. Социальные сеть'
-        ordering = ('order',)
 
 
 class About(models.Model):

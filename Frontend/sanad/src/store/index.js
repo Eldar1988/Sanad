@@ -31,8 +31,8 @@ export default function (/* { ssrContext } */) {
       doctors
     },
     state: {
-      serverURL: 'http://192.168.0.199:8000'
-      // serverURL: 'https://api.sanad.kz.na4u.ru'
+      // serverURL: 'http://192.168.0.199:8000'
+      serverURL: 'https://sanad.kz.na4u.ru'
     },
     getters: {
       getServerURL: state => state.serverURL
