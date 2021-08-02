@@ -18,7 +18,12 @@ class Direction(models.Model):
     views = models.PositiveSmallIntegerField('Кол-во просмотров', default=0)
 
     def __str__(self):
-        return self.title
+        if self.is_adults_direction and self.is_for_kids_direction:
+            return f'{self.title} взр. + дет.'
+        if self.is_adults_direction:
+            return f'{self.title} взр.'
+        else:
+            return f'{self.title} дет.'
 
     class Meta:
         verbose_name = 'Медицинское направление'
@@ -74,7 +79,7 @@ class Doctor(models.Model):
 
 class Action(models.Model):
     """Акции"""
-    title = models.CharField('Заголовок акции', max_length=255)
+    title = models.CharField('Заголовок акции', null=True, blank=True, max_length=255)
     title_2 = models.CharField('Заголовок акции 2', max_length=255, null=True, blank=True)
     title_3 = models.CharField('Заголовок акции 3', max_length=255, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -88,7 +93,10 @@ class Action(models.Model):
     update = models.DateTimeField('Дата изменения акции', auto_now=True)
 
     def __str__(self):
-        return self.title
+        if self.title:
+            return self.title
+
+        return f'{self.pk}'
 
     class Meta:
         verbose_name = 'Акция'
@@ -170,3 +178,22 @@ class Certificate(models.Model):
     class Meta:
         verbose_name = 'Сертификат или грамота'
         verbose_name_plural = 'Сертификаты и грамоты'
+
+
+class Appointment(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True, related_name='appoints',
+                               verbose_name='Доктор')
+    name = models.CharField('Имя клиента', max_length=255)
+    phone = models.CharField('Номер телефона', max_length=20)
+    in_work = models.BooleanField('В работе', default=False)
+    comment = models.TextField('Примечание', null=True, blank=True)
+    date = models.DateTimeField('Дата заявки', auto_now_add=True)
+    update = models.DateTimeField('Обновлено', auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Заявка на прием'
+        verbose_name_plural = '5. Заявки на прием'
+        ordering = ('-date',)

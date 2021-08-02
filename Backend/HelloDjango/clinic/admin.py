@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import Healing, Direction, Action, VideoGallery, ImageGallery, Doctor, DoctorReviews, \
-    Certificate
+    Certificate, Appointment
 
 
 class HealingInline(admin.TabularInline):
@@ -60,6 +60,16 @@ class DoctorReviewsInline(admin.StackedInline):
         return mark_safe(f'<img src="{obj.avatar}" height=50')
 
     get_image.short_description = 'Аватар'
+
+
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'in_work', 'date', 'update')
+    list_editable = ('in_work',)
+    search_fields = ('name', 'phone')
+    list_filter = ('in_work', 'date', 'update', 'doctor')
+    save_as = True
+    save_on_top = True
 
 
 @admin.register(DoctorReviews)

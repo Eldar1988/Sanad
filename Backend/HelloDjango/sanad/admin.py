@@ -42,10 +42,10 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
 
 @admin.register(VideoGallery)
 class VideoGalleryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'public_on_home', 'order', 'pub_date', 'update')
-    list_editable = ('order', 'public_on_home')
+    list_display = ('title', 'order', 'pub_date', 'update')
+    list_editable = ('order',)
     search_fields = ('title',)
-    list_filter = ('public_on_home', 'pub_date', 'update')
+    list_filter = ('pub_date', 'update')
     save_as = True
     save_on_top = True
 

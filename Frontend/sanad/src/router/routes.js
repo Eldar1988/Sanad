@@ -11,7 +11,7 @@ const routes = [
     path: '/doctors',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Doctors') }
+      { path: '', component: () => import('pages/Doctors/Doctors') }
     ]
   },
   {
@@ -19,14 +19,14 @@ const routes = [
     params: 'slug',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/DoctorDetail') }
+      { path: '', component: () => import('pages/Doctors/DoctorDetail') }
     ]
   },
   {
     path: '/directions',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Directions') }
+      { path: '', component: () => import('pages/Directions/Directions') }
     ]
   },
   {
@@ -34,14 +34,14 @@ const routes = [
     params: 'slug',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/DirectionDetail') }
+      { path: '', component: () => import('pages/Directions/DirectionDetail') }
     ]
   },
   {
     path: '/actions',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Actions') }
+      { path: '', component: () => import('pages/Actions/Actions') }
     ]
   },
   {
@@ -49,14 +49,14 @@ const routes = [
     params: 'slug',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/ActionDetail') }
+      { path: '', component: () => import('pages/Actions/ActionDetail') }
     ]
   },
   {
     path: '/posts',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Posts') }
+      { path: '', component: () => import('pages/Posts/Posts') }
     ]
   },
   {
@@ -64,7 +64,7 @@ const routes = [
     params: 'slug',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/PostDetail') }
+      { path: '', component: () => import('pages/Posts/PostDetail') }
     ]
   },
   {
@@ -86,15 +86,32 @@ const routes = [
     path: '/reviews',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Reviews/Reviews') }
+      {
+        path: '',
+        component: () => import('pages/Reviews/Reviews')
+      },
+      {
+        path: ':id',
+        component: () => import('layouts/MainLayout.vue'),
+        children: [
+          { path: '', component: () => import('pages/Reviews/ReviewDetail') }
+        ]
+      },
+    ]
+  },
+
+  {
+    path: '/videos',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/About/Videos') }
     ]
   },
   {
-    path: '/review/:id',
-    params: 'id',
+    path: '/about',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Reviews/ReviewDetail') }
+      { path: '', component: () => import('pages/About/About') }
     ]
   },
 

@@ -8,7 +8,7 @@ from .serializers import PostListSerializer, PostDetailSerializer, MedicalStorie
 
 
 class HomePagePostsListView(generics.ListAPIView):
-    queryset = Post.objects.filter(public_on_home_page=True, public=True, clinic_life=False)[:5]
+    queryset = Post.objects.filter(public_on_home_page=True, public=True, clinic_life=False)[:6]
     serializer_class = PostListSerializer
 
 
@@ -32,7 +32,7 @@ class PostDetailView(APIView):
 
 
 class HomePageMedicalStoriesView(generics.ListAPIView):
-    queryset = MedicalHistory.objects.filter(public=True, public_on_home_page=True)[:5]
+    queryset = MedicalHistory.objects.filter(public=True, public_on_home_page=True)[:10]
     serializer_class = MedicalStoriesSerializer
 
 

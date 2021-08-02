@@ -8,9 +8,13 @@
       <router-link :to="banner.url">
         <q-img
           :src="banner.image"
-          :ratio="1/1"
+          :ratio="1"
+          no-default-spinner
+          v-once
         >
-
+          <template v-slot:loading>
+            <q-skeleton square class="fit" height="200"/>
+          </template>
         </q-img>
       </router-link>
     </swiper-slide>

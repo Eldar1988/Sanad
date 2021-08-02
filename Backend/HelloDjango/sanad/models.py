@@ -113,8 +113,8 @@ class About(models.Model):
 
 class VideoGallery(models.Model):
     """Видео галерея"""
-    public_on_home = models.BooleanField('Показать на главной', default=False)
     title = models.CharField('Название видео', max_length=255)
+    image = models.URLField('Изображение', null=True, blank=True)
     url = models.CharField('Код видео', null=True, blank=True, max_length=100)
     order = models.PositiveSmallIntegerField('Порядковый номер')
     pub_date = models.DateTimeField('Дата добавления видео', auto_now_add=True)

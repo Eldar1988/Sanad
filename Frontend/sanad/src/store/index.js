@@ -6,6 +6,7 @@ import clinicDirections from "./modules/clinicDirections"
 import posts from './modules/posts'
 import stories from './modules/stories'
 import doctors from './modules/doctors'
+import reviews from './modules/reviews'
 
 // import example from './module-example'
 
@@ -28,11 +29,23 @@ export default function (/* { ssrContext } */) {
       clinicDirections,
       posts,
       stories,
-      doctors
+      doctors,
+      reviews
     },
     state: {
       // serverURL: 'http://192.168.0.199:8000'
       serverURL: 'https://sanad.kz.na4u.ru'
+    },
+    actions: {
+      async init({dispatch}) {
+        await dispatch('fetchClinicActions')
+        await dispatch('fetchDirections')
+        await dispatch('fetchHomePosts')
+        await dispatch('fetchHomeStories')
+        await dispatch('fetchHomeReviews')
+        await dispatch('fetchClinicLifePosts')
+        await dispatch('loadDoctors')
+      }
     },
     getters: {
       getServerURL: state => state.serverURL

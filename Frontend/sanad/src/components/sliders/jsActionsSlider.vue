@@ -14,7 +14,7 @@
 <script>
 import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
-import JsActionCard from "components/actions/jsActionCard";
+import JsActionCard from "components/actions/action-card";
 
 export default {
   name: "jsActionsSlider",

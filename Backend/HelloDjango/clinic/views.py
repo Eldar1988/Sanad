@@ -40,7 +40,7 @@ class ActionsListView(generics.ListAPIView):
 class ActionDetailView(APIView):
     def get(self, request, slug):
         action = Action.objects.get(slug=slug)
-        serializer = ActionListSerializer(action, many=False)
+        serializer = ActionDetailSerializer(action, many=False)
         return Response(serializer.data)
 
 

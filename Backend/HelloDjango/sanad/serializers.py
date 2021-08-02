@@ -38,7 +38,7 @@ class VideoSanadSerializer(serializers.ModelSerializer):
     """Видео"""
     class Meta:
         model = VideoGallery
-        fields = ('id', 'title', 'url')
+        fields = ('id', 'title', 'url', 'image')
 
 
 class PhotoSanadSerializer(serializers.ModelSerializer):

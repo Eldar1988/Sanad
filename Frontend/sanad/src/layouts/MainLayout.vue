@@ -3,44 +3,47 @@
 
     <q-header class="bg-white" bordered>
       <q-toolbar class="q-pr-none">
-        <q-btn dense flat round icon="eva-menu-outline" @click="left = !left" color="dark" size="lg" padding="0"/>
-        <q-toolbar-title>
-          <img src="../assets/logo.png" title="Sanad" alt="logo" class="logo">
+        <q-btn dense flat round :icon="!left ? 'eva-menu-outline' : 'close'" @click="left = !left" color="dark"
+               size="lg" padding="0"/>
+        <q-toolbar-title :class="$q.platform.is.desktop ? '' : 'flex justify-center'">
+          <router-link to="/">
+            <img src="../assets/logo.png" title="Sanad" alt="logo" class="logo">
+          </router-link>
         </q-toolbar-title>
-        <js-header-actions />
+        <js-header-actions/>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="left" side="left" bordered>
+      <left-drawer-navigation/>
     </q-drawer>
 
     <q-page-container>
       <js-header-navigation class="ml-15-m"/>
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </q-page-container>
 
-    <js-footer />
+    <js-appoint />
   </q-layout>
 </template>
 
 <script>
-import JsHeaderActions from "components/header/jsHeaderActions";
-import JsHeaderNavigation from "components/header/jsHeaderNavigation";
-import JsFooter from "components/footer/jsFooter";
+import JsHeaderActions from "components/header/header-buttons";
+import JsHeaderNavigation from "components/header/header-navigation";
+import LeftDrawerNavigation from "components/header/left-drawer-navigation";
+import JsAppoint from "components/utils/jsAppoint";
+
 export default {
-  components: {JsFooter, JsHeaderNavigation, JsHeaderActions},
+  components: {JsAppoint, LeftDrawerNavigation, JsHeaderNavigation, JsHeaderActions},
   computed: {
     slides() {
       return this.$store.getters.getMainInfo.slides
     }
   },
-  async mounted() {
-    await this.$store.dispatch('fetchClinicActions')
-    await this.$store.dispatch('fetchDirections')
-    await this.$store.dispatch('fetchHomePosts')
-    await this.$store.dispatch('fetchHomeStories')
-    await this.$store.dispatch('fetchHomeReviews')
-    await this.$store.dispatch('fetchClinicLifePosts')
+  created() {
+    this.$store.dispatch('init')
   },
   data() {
     return {
@@ -56,7 +59,6 @@ export default {
 <style lang="sass">
 .logo
   height: 50px
-  padding-top: 5px
 
 @media screen and (max-width: 650px)
   .logo

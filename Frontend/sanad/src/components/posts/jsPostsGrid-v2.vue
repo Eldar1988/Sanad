@@ -29,7 +29,7 @@ export default {
 .posts-grid-v2
   display: grid
   grid-gap: 30px
-  grid-template-columns: 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr
 
 @media screen and (max-width: 800px)
   .posts-grid-v2
