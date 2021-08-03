@@ -15,13 +15,14 @@
             outline stretch unelevated
             color="primary"
             class="full-width q-mt-lg"
+            @click="appointToDoctor"
           />
           <q-btn
             label="Подробнее"
             outline stretch unelevated
             color="primary"
             class="full-width q-mt-md"
-            :to="`/doctor/${doctor.slug}`"
+            @click="goToDoctor"
           />
         </div>
       </div>
@@ -38,7 +39,27 @@ export default {
       default: () => {
       }
     }
-  }
+  },
+  methods: {
+    async appointToDoctor () {
+      if (this.doctor.id.toString() !== this.$route.query.doctorId) {
+        await this.$router.replace({
+          query: {
+            doctorId: this.doctor.id
+          }
+        })
+      }
+      await this.$store.dispatch('changeAppointDialog')
+    },
+    goToDoctor () {
+      this.$router.push({
+        path: `/doctor/${this.doctor.slug}`,
+        query: {
+          doctorId: this.doctor.id
+        }
+      })
+    }
+  },
 }
 </script>
 

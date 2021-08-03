@@ -66,7 +66,7 @@ class DoctorReviewsInline(admin.StackedInline):
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'in_work', 'date', 'update')
     list_editable = ('in_work',)
-    search_fields = ('name', 'phone')
+    search_fields = ('name', 'phone', 'doctor__name')
     list_filter = ('in_work', 'date', 'update', 'doctor')
     save_as = True
     save_on_top = True

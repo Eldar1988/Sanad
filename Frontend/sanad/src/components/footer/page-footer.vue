@@ -35,7 +35,7 @@
                     </a>
                   </q-item>
                 </q-list>
-                <call-back label="Записаться на прием" color="white" :caps="true" classes="full-width q-py-sm q-mt-lg"/>
+                <call-back label="Записаться на прием" color="white" :caps="true" classes="full-width q-py-sm q-mt-lg" @click="$store.dispatch('changeAppointDialog')"/>
               </div>
 
               <div class="col-md-6 col-12 q-px-sm">

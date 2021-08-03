@@ -19,6 +19,7 @@
                 color="negative"
                 class="full-width letter-1 q-py-sm"
                 style="margin-top: 34px;"
+                @click="$store.dispatch('changeAppointDialog')"
               />
             </div>
           </div>

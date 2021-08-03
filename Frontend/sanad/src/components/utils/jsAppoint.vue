@@ -22,9 +22,17 @@
         />
         <q-input
           v-model="formData.phone"
+          type="tel"
+          prefix="+7 "
+          mask="### ### ####"
           label="Номер телефона*"
           :error="nameError"
           error-message="Это обязательное поле"
+        />
+        <q-input
+          v-model="formData.comment"
+          label="Дополнительные пожелания (необязательно)"
+          type="textarea"
         />
       </div>
 
@@ -33,6 +41,8 @@
         class="full-width q-py-sm q-mt-md"
         stretch outline
         color="primary"
+        :loading="loading"
+        @click="createAppoint"
       />
     </q-card-section>
   </q-card>
@@ -40,6 +50,8 @@
 </template>
 
 <script>
+import notifier from "src/utils/notifier";
+
 export default {
   name: "jsAppoint",
   created() {
@@ -52,15 +64,51 @@ export default {
   },
   data() {
     return {
+      loading: false,
       nameError: false,
       phoneError: false,
       formData: {
         name: '',
         phone: '',
-        doctor: this.$route.query.doctorId || null
+        comment: '',
+        doctor: ''
       }
     }
   },
+  methods: {
+    closeDialog () {
+      this.$store.dispatch('changeAppointDialog')
+    },
+    async createAppoint () {
+      this.loading = true
+      const data = this.formData
+      if (!data.name) {
+        this.nameError = true
+        this.loading = false
+        return null
+      }
+
+      if (!data.phone) {
+        this.phoneError = true
+        this.loading = false
+        return null
+      }
+
+      await this.$axios.post(`${this.$store.getters.getServerURL}/clinic/create_appointment/`,{
+        name: data.name,
+        phone: data.phone,
+        comment: data.comment,
+        doctor: parseInt(this.$route.query.doctorId) || null
+      }).then(response => {
+        notifier('Спасибо! Ваша заявка принята.', 'positive')
+      }).finally(
+        setTimeout(() => {
+          this.loading = false
+          this.closeDialog()
+        }, 2000)
+      )
+    }
+  }
 }
 </script>
 

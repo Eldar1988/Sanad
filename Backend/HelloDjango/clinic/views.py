@@ -2,10 +2,15 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .models import Doctor, Direction, Action, DoctorReviews
+from .models import Doctor, Direction, Action, DoctorReviews, Appointment
 from .serializers import DoctorListSerializer, DoctorDetailSerializer, DirectionListSerializer, \
     DirectionDetailSerializer, ActionListSerializer, ActionDetailSerializer, DoctorReviewsListSerializer, \
-    DoctorReviewsSerializer
+    DoctorReviewsSerializer, AppointmentSerializer
+
+
+class CreateAppointmentView(generics.CreateAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
 
 
 class DoctorsListView(generics.ListAPIView):

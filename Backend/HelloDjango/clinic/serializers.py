@@ -1,9 +1,15 @@
 from rest_framework import serializers
 
 from .models import Direction, Healing, Doctor, Action, DoctorReviews, ImageGallery, VideoGallery, \
-    Certificate
+    Certificate, Appointment
 
 from blog.serializers import PostListSerializer, MedicalStoriesSerializer
+
+
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
 
 
 class HealingListSerializer(serializers.ModelSerializer):

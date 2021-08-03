@@ -11,6 +11,7 @@
     :class="classes"
     unelevated
     padding="12px"
+    @click="$store.dispatch('changeAppointDialog')"
   />
 </template>
 

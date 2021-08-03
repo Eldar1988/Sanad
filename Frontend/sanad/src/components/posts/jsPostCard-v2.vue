@@ -15,7 +15,7 @@
       <p class="sub_title ellipsis-3-lines">
         {{ post.title }} wdawdwad wdw da wdwad awd awdawd awdwa
       </p>
-        <q-icon  name="las la-angle-right" color="warning" class="text-right"/>
+<!--        <q-icon  name="las la-angle-right" color="warning" class="text-right"/>-->
       </router-link>
     </div>
   </q-card>

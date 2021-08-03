@@ -11,4 +11,5 @@ urlpatterns = [
     path('home_reviews/', views.HomePageReviewsListView.as_view()),
     path('reviews/', views.ReviewsListView.as_view()),
     path('review/<int:pk>/', views.ReviewDetailView.as_view()),
+    path('create_appointment/', views.CreateAppointmentView.as_view())
 ]
