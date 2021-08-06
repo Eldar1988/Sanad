@@ -34,14 +34,14 @@
       <!--      Posts   -->
       <div class="" id="posts">
         <div class="row q-col-gutter-xl">
-          <div v-if="doctor.posts && doctor.posts.length > 0" class="col-12 col-md-6 q-mt-xl">
+          <div v-if="doctor.posts && doctor.posts.length > 0" class="col-12 col-md-6">
             <js-section-title title="Медицинские статьи"/>
-            <js-posts-list :posts="doctor.posts" class="q-px-sm"/>
+            <js-posts-list :posts="doctor.posts" class=""/>
           </div>
 
           <div v-if="doctor.stories && doctor.stories.length > 0" class="col-12 col-md-6 q-mt-xl" id="stories">
             <js-section-title title="Истории выздоровления"/>
-            <js-posts-list :posts="doctor.stories" :story="true" class="q-px-sm"/>
+            <js-posts-list :posts="doctor.stories" :story="true" class=""/>
           </div>
         </div>
       </div>

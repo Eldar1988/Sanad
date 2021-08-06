@@ -12,7 +12,7 @@
     </q-toolbar>
 
     <q-card-section>
-      <p class="text-subtitle1 q-pt-md">Для записи на прием необходимо форму.</p>
+      <p class="text-subtitle1 q-pt-md">Для записи на прием необходимо заполнить форму.</p>
       <div class="q-mt-md">
         <q-input
           v-model="formData.name"

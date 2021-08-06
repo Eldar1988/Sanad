@@ -5,7 +5,9 @@
       <div class="row q-mt-lg bg-info">
         <!--        Photo-->
         <div class="col-12 col-md-3">
-          <q-img :src="post.photo">
+          <q-img :src="post.photo"
+                 :style="photoStyle"
+          >
             <template v-slot:loading>
               <q-skeleton square class="fit" height="200"/>
             </template>
@@ -16,7 +18,7 @@
           <div class="q-pa-lg ">
             <h2 class="page-title">{{ post.title }}</h2>
             <!--            post author-->
-            <div class="post-author row bg-white q-mt-lg">
+            <div v-if="doctor" class="post-author row bg-white q-mt-lg">
               <div class="col-auto">
                 <q-img :src="doctor.avatar" width="80px" height="100%" spinner-color="info"/>
               </div>
@@ -30,7 +32,7 @@
               </div>
             </div>
             <!--                Author buttons-->
-            <div class="row q-col-gutter-md q-mt-sm">
+            <div v-if="doctor" class="row q-col-gutter-md q-mt-sm">
               <div class="col-auto">
                 <q-btn
                   label="Записаться"
@@ -57,6 +59,9 @@
       <div class="q-mt-lg">
         <div v-html="post.body"></div>
       </div>
+      <div class="section" v-if="post.images.length">
+        <post-photo-slider :images="post.images"/>
+      </div>
     </div>
     <page-footer/>
   </q-page>
@@ -65,11 +70,19 @@
 <script>
 import PageHeader from "components/utils/page-header";
 import PageFooter from "components/footer/page-footer";
+import PostPhotoSlider from "components/sliders/post-photo-slider";
 
 export default {
   name: "PostDetail",
-  components: {PageFooter, PageHeader},
+  components: {PostPhotoSlider, PageFooter, PageHeader},
   computed: {
+    photoStyle () {
+      if (!this.doctor && this.$q.platform.is.desktop) {
+        return 'width: 150px; height: 150px'
+      } else {
+        return 'width: 100%'
+      }
+    },
     post() {
       return this.$store.getters.getPost
     },

@@ -23,7 +23,7 @@
         <div class="row" :class="$q.platform.is.desktop ? 'q-col-gutter-xl' : ''">
           <div v-if="direction.posts && direction.posts.length > 0" class="col-12 col-md-6 q-mt-xl section" id="posts">
             <js-section-title title="Медицинские статьи"/>
-            <js-posts-list :posts="direction.posts" class="q-px-sm"/>
+            <js-posts-list :posts="direction.posts" class=""/>
           </div>
 
           <div v-if="direction.stories && direction.stories.length > 0" class="col-12 col-md-6 q-mt-xl section" id="stories">
@@ -34,7 +34,7 @@
       </div>
 
 <!--      Description   -->
-      <div class="q-pt-xl section" v-if="direction.description" id="info">
+      <div class="section" v-if="direction.description" id="info">
         <js-section-title title="Описание" class=""/>
         <div v-html="direction.description"></div>
         <js-images-slider v-if="direction.images && direction.images.length > 0" :slides="direction.images"/>

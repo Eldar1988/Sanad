@@ -13,7 +13,7 @@
     <div>
       <router-link :to="`/post/${post.slug}`" title="Читать далее..." class="text-dark">
       <p class="sub_title ellipsis-3-lines">
-        {{ post.title }} wdawdwad wdw da wdwad awd awdawd awdwa
+        {{ post.title }}
       </p>
 <!--        <q-icon  name="las la-angle-right" color="warning" class="text-right"/>-->
       </router-link>
