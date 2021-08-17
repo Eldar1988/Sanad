@@ -62,6 +62,9 @@
       <div class="section" v-if="post.images.length">
         <post-photo-slider :images="post.images"/>
       </div>
+      <div class="section" v-if="post.videos.length">
+        <videos-slider :slides="post.videos"/>
+      </div>
     </div>
     <page-footer/>
   </q-page>
@@ -71,10 +74,11 @@
 import PageHeader from "components/utils/page-header";
 import PageFooter from "components/footer/page-footer";
 import PostPhotoSlider from "components/sliders/post-photo-slider";
+import VideosSlider from "components/sliders/videos-slider";
 
 export default {
   name: "PostDetail",
-  components: {PostPhotoSlider, PageFooter, PageHeader},
+  components: {VideosSlider, PostPhotoSlider, PageFooter, PageHeader},
   computed: {
     photoStyle () {
       if (!this.doctor && this.$q.platform.is.desktop) {

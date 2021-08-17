@@ -7,10 +7,16 @@ from .serializers import DoctorListSerializer, DoctorDetailSerializer, Direction
     DirectionDetailSerializer, ActionListSerializer, ActionDetailSerializer, DoctorReviewsListSerializer, \
     DoctorReviewsSerializer, AppointmentSerializer
 
+from .service import send_tg_message
+
 
 class CreateAppointmentView(generics.CreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        send_tg_message(instance)
 
 
 class DoctorsListView(generics.ListAPIView):

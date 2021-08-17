@@ -11,17 +11,19 @@
       <q-btn icon="close" dense flat @click="closeDialog"/>
     </q-toolbar>
 
-    <q-card-section>
+    <q-card-section class="q-pa-xl">
       <p class="text-subtitle1 q-pt-md">Для записи на прием необходимо заполнить форму.</p>
       <div class="q-mt-md">
         <q-input
           v-model="formData.name"
+          outlined
           label="Ваше имя*"
           :error="nameError"
           error-message="Это обязательное поле"
         />
         <q-input
           v-model="formData.phone"
+          outlined
           type="tel"
           prefix="+7 "
           mask="### ### ####"
@@ -30,6 +32,7 @@
           error-message="Это обязательное поле"
         />
         <q-input
+          outlined
           v-model="formData.comment"
           label="Дополнительные пожелания (необязательно)"
           type="textarea"
@@ -39,8 +42,8 @@
       <q-btn
         label="Отправить"
         class="full-width q-py-sm q-mt-md"
-        stretch outline
-        color="primary"
+        unelevated
+        color="negative"
         :loading="loading"
         @click="createAppoint"
       />

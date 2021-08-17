@@ -11,8 +11,12 @@
       v-for="(slide, index) in images"
       :key="index"
       :name="index"
-      :img-src="slide.url"
     >
+      <q-img
+        :src="slide.url"
+        class="post-slider-image"
+      >
+      </q-img>
     </q-carousel-slide>
   </q-carousel>
 </template>
@@ -31,6 +35,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+.post-slider-image
+  min-height: 550px
 </style>

@@ -8,7 +8,7 @@
           <q-img :src="action.image" no-default-spinner/>
         </div>
         <div class="col-12 col-md-8">
-          <h1 class="page-title" :class="$q.platform.is.desktop ? '' : 'q-mt-lg' ">{{ action.title }}</h1>
+          <h1 class="page-title" :class="$q.platform.is.desktop ? '' : 'q-mt-lg' ">{{ action.title }} {{ action.title_2 }} {{ action.title_3 }}</h1>
           <div class="q-mt-md" v-html="action.description"></div>
         </div>
       </div>
