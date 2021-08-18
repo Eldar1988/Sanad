@@ -37,7 +37,7 @@
       <div class="section" v-if="direction.description" id="info" style="padding-top: 40px">
         <js-section-title title="Описание" class=""/>
         <div v-html="direction.description"></div>
-        <js-images-slider v-if="direction.images && direction.images.length > 0" :slides="direction.images"/>
+        <js-images-slider v-if="direction.images && direction.images.length > 0" :slides="direction.images" class="section"/>
       </div>
 
     </div>

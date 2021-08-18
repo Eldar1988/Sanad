@@ -5,14 +5,15 @@
   <q-card
     style="width: 500px; max-width: 100%"
     square
+    class="flex column"
   >
     <q-toolbar class="bg-primary text-white">
       <q-toolbar-title>Запись на прием</q-toolbar-title>
       <q-btn icon="close" dense flat @click="closeDialog"/>
     </q-toolbar>
 
-    <q-card-section class="q-pa-xl">
-      <p class="text-subtitle1 q-pt-md">Для записи на прием необходимо заполнить форму.</p>
+    <q-card-section style="width: 430px; max-width: 95%; margin: auto" class="">
+      <p class="text-subtitle1 q-py-lg">Для записи на прием необходимо заполнить форму.</p>
       <div class="q-mt-md">
         <q-input
           v-model="formData.name"
@@ -34,7 +35,7 @@
         <q-input
           outlined
           v-model="formData.comment"
-          label="Дополнительные пожелания (необязательно)"
+          label="Дополнительные пожелания (необязательно)" stack-label
           type="textarea"
         />
       </div>

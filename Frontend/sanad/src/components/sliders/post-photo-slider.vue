@@ -5,7 +5,7 @@
     infinite
     swipeable
     :autoplay="true"
-    height="auto"
+    class="post-slider-image"
   >
     <q-carousel-slide
       v-for="(slide, index) in images"
@@ -37,5 +37,13 @@ export default {
 
 <style lang="sass">
 .post-slider-image
-  min-height: 550px
+  height: 770px
+
+@media screen and (max-width: 992px)
+  .post-slider-image
+    height: 500px
+
+@media screen and (max-width: 700px)
+  .post-slider-image
+    height: 250px
 </style>

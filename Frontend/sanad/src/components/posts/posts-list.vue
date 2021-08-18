@@ -19,7 +19,7 @@
         style="align-items: center"
         manual-focus
       >
-        <p class="sub_title ml-15-m text-primary text-bold q-pt-lg">{{ story ? `Читать все истории` : `Читать все статьи`}} >></p>
+        <p class="sub_title text-primary text-bold q-pt-lg">{{ story ? `Читать все истории` : `Читать все статьи`}} >></p>
       </q-item>
     </q-list>
   </div>

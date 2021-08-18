@@ -28,11 +28,13 @@ export default {
     }
   },
   methods: {
-    scrollTo(id) {
-      document.querySelector(id).scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
+    async scrollTo(id) {
+      let element = document.querySelector(id)
+      await element.scrollIntoView({
+        behavior: 'auto',
+        block: 'start'
       })
+      window.scrollBy(0, -80)
     }
   }
 }

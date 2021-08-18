@@ -25,7 +25,7 @@
               <div class="col-auto col-9 q-py-sm q-px-md" style="max-width: 400px">
                 <div class="flex" style="align-items: center; min-height: 100%">
                   <div style="max-width: 100%">
-                    <p class="text-subtitle1 text-bold ellipsis">Автор: {{ doctor.name }}</p>
+                    <p class="text-subtitle1 text-bold">Автор: {{ doctor.name }}</p>
                     <p>{{ doctor.specialization }} / Стаж работы {{ doctor.experience }} </p>
                   </div>
                 </div>

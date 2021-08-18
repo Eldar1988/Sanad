@@ -1,5 +1,5 @@
 <template>
-<div class="q-mt-lg ml-15-m">
+<div class="q-mt-lg">
   <div class="posts-grid-v2">
     <div
       v-for="post in posts"

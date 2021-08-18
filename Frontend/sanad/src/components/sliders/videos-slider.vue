@@ -8,6 +8,7 @@
     navigation
     control-color="white"
     arrows
+    class="post-videos-slider"
   >
     <q-carousel-slide
       v-for="(video, index) in slides"
@@ -35,6 +36,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="sass">
+.post-videos-slider
+  height: 600px
 
+@media screen and (max-width: 992px)
+  .post-videos-slider
+    height: 400px
+
+@media screen and (max-width: 700px)
+  .post-videos-slider
+    height: 210px
 </style>
