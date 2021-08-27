@@ -32,7 +32,7 @@
             class="q-px-xl"
           >
             <q-btn
-              class="full-width no-wrap q-card--bordered mt--1"
+              class="full-width no-wrap q-card--bordered mt--1 phone-call-button"
               type="a" stretch
               :label="phone"
               flat no-wrap

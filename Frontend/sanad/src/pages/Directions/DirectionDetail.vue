@@ -19,9 +19,9 @@
         <js-reviews-slider :reviews="reviews" :is-doctor-review="false"/>
       </section>
       <!--      Posts   -->
-      <div class="">
+      <div v-if="direction.posts && direction.posts.length > 0"  class="">
         <div class="row" :class="$q.platform.is.desktop ? 'q-col-gutter-xl' : ''">
-          <div v-if="direction.posts && direction.posts.length > 0" class="col-12 col-md-6 q-mt-xl section" id="posts">
+          <div class="col-12 col-md-6 q-mt-xl section" id="posts">
             <js-section-title title="Медицинские статьи"/>
             <js-posts-list :posts="direction.posts" class=""/>
           </div>
@@ -34,7 +34,7 @@
       </div>
 
 <!--      Description   -->
-      <div class="section" v-if="direction.description" id="info" style="padding-top: 40px">
+      <div class="section" v-if="direction.description" id="info">
         <js-section-title title="Описание" class=""/>
         <div v-html="direction.description"></div>
         <js-images-slider v-if="direction.images && direction.images.length > 0" :slides="direction.images" class="section"/>
@@ -63,6 +63,9 @@ export default {
     JsScrollXPageNav,
     JsImagesSlider, JsReviewsSlider, JsPostsList, JsDoctorCardsGrid, JsSectionTitle},
   computed: {
+    isMobile () {
+      return !this.$q.platform.is.desktop
+    },
     links() {
       const links = []
       if (this.direction.videos && this.direction.videos.length > 0) links.push({title: 'Видео', id: 'video'})

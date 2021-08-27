@@ -1,5 +1,5 @@
 <template>
-  <div class="q-mt-md ml-15-m">
+  <div class="q-mt-md">
     <swiper class="swiper" :options="swiperOptions">
       <swiper-slide
         v-for="review in reviews"

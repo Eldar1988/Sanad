@@ -42,7 +42,7 @@
 
       <q-btn
         label="Отправить"
-        class="full-width q-py-sm q-mt-md"
+        class="full-width q-py-sm q-mt-md send-appoint-button"
         unelevated
         color="negative"
         :loading="loading"

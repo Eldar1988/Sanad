@@ -2,9 +2,9 @@
   <q-page>
     <page-header title="Статьи" back-route-button/>
     <div class="container-m">
-      <div class="row q-mt-lg bg-info">
+      <div class="flex q-mt-lg bg-info">
         <!--        Photo-->
-        <div class="col-12 col-md-3">
+        <div :style="photoStyle">
           <q-img :src="post.photo"
                  :style="photoStyle"
           >
@@ -14,7 +14,7 @@
           </q-img>
         </div>
         <!--        Title & author-->
-        <div class="items-center flex col-12 col-md-9">
+        <div class="items-center flex">
           <div class="q-pa-lg ">
             <h2 class="page-title">{{ post.title }}</h2>
             <!--            post author-->
@@ -83,6 +83,8 @@ export default {
     photoStyle () {
       if (!this.doctor && this.$q.platform.is.desktop) {
         return 'width: 150px; height: 150px'
+      } else if (this.$q.platform.is.desktop) {
+        return 'width: 250px; height: 250px'
       } else {
         return 'width: 100%'
       }

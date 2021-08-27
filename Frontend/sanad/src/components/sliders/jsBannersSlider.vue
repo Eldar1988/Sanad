@@ -63,7 +63,7 @@ export default {
             slidesPerView: 3.2,
           },
           330: {
-            slidesPerView: 1.1,
+            slidesPerView: 1.5,
           }
         }
       }

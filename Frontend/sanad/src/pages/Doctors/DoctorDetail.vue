@@ -32,7 +32,7 @@
     </section>
     <section class="container-m">
       <!--      Posts   -->
-      <div class="" id="posts">
+      <div v-if="doctor.posts && doctor.posts.length > 0" class="" id="posts">
         <div class="row q-col-gutter-xl">
           <div v-if="doctor.posts && doctor.posts.length > 0" class="col-12 col-md-6">
             <js-section-title title="Медицинские статьи"/>
@@ -48,13 +48,13 @@
     </section>
     <!--    Video   -->
     <div class="section">
-      <section v-if="doctor.doctor_reviews && doctor.doctor_reviews.length > 0" class="container" id="videoReviews">
-        <js-section-title title="Отзывы пациентов" class="ml-15-m"/>
+      <section v-if="doctor.doctor_reviews && doctor.doctor_reviews.length > 0" class="container-m" id="videoReviews">
+        <js-section-title title="Отзывы пациентов" class=""/>
         <js-reviews-slider :reviews="doctor.doctor_reviews"/>
       </section>
     </div>
-    <section v-if="doctor.videos && doctor.videos.length > 0" class="section container" id="video">
-      <js-section-title title="Видео" class="ml-15-m"/>
+    <section v-if="doctor.videos && doctor.videos.length > 0" class="section container-m" id="video">
+      <js-section-title title="Видео" class=""/>
       <js-reviews-slider :reviews="doctor.videos" :is-doctor-review="false"/>
     </section>
     <page-footer/>
