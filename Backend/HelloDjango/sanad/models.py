@@ -144,3 +144,21 @@ class PhotoGallery(models.Model):
     class Meta:
         verbose_name = 'Фото'
         verbose_name_plural = '8. Фото галерея'
+
+
+class InfoPage(models.Model):
+    title = models.CharField('Заголовок', max_length=255)
+    slug = models.SlugField(unique=True)
+    content = RichTextUploadingField('Контент')
+    order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
+    public = models.BooleanField('Опубликовать', default=True)
+    date = models.DateTimeField('Создано', auto_now_add=True)
+    update = models.DateTimeField('Обновлено', auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Информационная страница'
+        verbose_name_plural = '9. Информационные страницы'
+        ordering = ('order', '-date')

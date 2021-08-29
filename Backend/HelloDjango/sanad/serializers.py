@@ -1,6 +1,18 @@
 from rest_framework import serializers
 
-from .models import VideoGallery, PhotoGallery, About, MainInfo, Slider, Advantage, Contacts, Banner
+from .models import VideoGallery, PhotoGallery, About, MainInfo, Slider, Advantage, Contacts, Banner, InfoPage
+
+
+class InfoPageListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InfoPage
+        fields = ('id', 'title', 'slug')
+
+
+class InfoPageDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InfoPage
+        fields = '__all__'
 
 
 class MainInfoSerializer(serializers.ModelSerializer):

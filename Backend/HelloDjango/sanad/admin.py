@@ -1,12 +1,22 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Slider, Advantage, Contacts, PhotoGallery, VideoGallery, About, MainInfo, Banner
+from .models import Slider, Advantage, Contacts, PhotoGallery, VideoGallery, About, MainInfo, Banner, InfoPage
 
 
 admin.site.register(Contacts)
 admin.site.register(About)
 admin.site.register(MainInfo)
+
+
+@admin.register(InfoPage)
+class InfoPageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'order', 'public', 'date', 'update')
+    list_editable = ('order', 'public')
+    search_fields = ('title',)
+    prepopulated_fields = {'slug': ('title',)}
+    save_as = True
+    save_on_top = True
 
 
 @admin.register(Slider)

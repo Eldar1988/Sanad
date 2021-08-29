@@ -2,10 +2,10 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .models import Doctor, Direction, Action, DoctorReviews, Appointment
+from .models import Doctor, Direction, Action, DoctorReviews, Appointment, Price
 from .serializers import DoctorListSerializer, DoctorDetailSerializer, DirectionListSerializer, \
     DirectionDetailSerializer, ActionListSerializer, ActionDetailSerializer, DoctorReviewsListSerializer, \
-    DoctorReviewsSerializer, AppointmentSerializer
+    DoctorReviewsSerializer, AppointmentSerializer, PriceSerializer
 
 from .service import send_tg_message
 
@@ -74,3 +74,9 @@ class ReviewDetailView(APIView):
         review = DoctorReviews.objects.get(id=pk)
         serializer = DoctorReviewsSerializer()
         return Response(serializer.data)
+
+
+class PriceView(generics.ListAPIView):
+    queryset = Price.objects.filter(public=True)
+    serializer_class = PriceSerializer
+

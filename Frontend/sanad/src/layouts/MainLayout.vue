@@ -52,6 +52,11 @@ export default {
   },
   preFetch({store}) {
     return store.dispatch('fetchMainInfo')
+  },
+  watch: {
+    '$route' () {
+      this.left ? this.left = false : null
+    }
   }
 }
 </script>

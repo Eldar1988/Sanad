@@ -114,6 +114,20 @@ const routes = [
       { path: '', component: () => import('pages/About/About') }
     ]
   },
+  {
+    path: '/price',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Price') }
+    ]
+  },
+  {
+    path: '/info-page',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: ':slug', name: 'info-page', component: () => import('pages/InfoPage') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

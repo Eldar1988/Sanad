@@ -2,7 +2,17 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import Healing, Direction, Action, VideoGallery, ImageGallery, Doctor, DoctorReviews, \
-    Certificate, Appointment
+    Certificate, Appointment, Price
+
+
+@admin.register(Price)
+class PriceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'direction', 'price', 'order', 'public', 'date', 'update')
+    list_editable = ('price', 'order', 'public')
+    search_fields = ('title',)
+    list_filter = ('public', 'date', 'update')
+    save_as = True
+    save_on_top = True
 
 
 class HealingInline(admin.TabularInline):

@@ -33,8 +33,8 @@ export default function (/* { ssrContext } */) {
       reviews
     },
     state: {
-      // serverURL: 'http://192.168.0.199:8000'
-      serverURL: 'https://sanad.kz.na4u.ru'
+      serverURL: 'http://192.168.0.199:8000'
+      // serverURL: 'https://sanad.kz.na4u.ru'
     },
     actions: {
       async init({dispatch}) {
@@ -45,6 +45,7 @@ export default function (/* { ssrContext } */) {
         await dispatch('fetchHomeReviews')
         await dispatch('fetchClinicLifePosts')
         await dispatch('loadDoctors')
+        await dispatch('loadInfoPages')
       }
     },
     getters: {

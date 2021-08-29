@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Direction, Healing, Doctor, Action, DoctorReviews, ImageGallery, VideoGallery, \
-    Certificate, Appointment
+    Certificate, Appointment, Price
 
 from blog.serializers import PostListSerializer, MedicalStoriesSerializer
 
@@ -68,6 +68,14 @@ class DirectionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Direction
         fields = ('id', 'title', 'icon', 'slug', 'is_for_kids_direction', 'is_adults_direction')
+
+
+class PriceSerializer(serializers.ModelSerializer):
+    direction = DirectionListSerializer(many=False, read_only=True)
+    
+    class Meta:
+        model = Price
+        exclude = ('date', 'update', 'order')
 
 
 class ForReviewsDoctorSerializer(serializers.ModelSerializer):

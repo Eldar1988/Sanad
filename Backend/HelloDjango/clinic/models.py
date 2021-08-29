@@ -197,3 +197,23 @@ class Appointment(models.Model):
         verbose_name = 'Заявка на прием'
         verbose_name_plural = '5. Заявки на прием'
         ordering = ('-date',)
+
+
+class Price(models.Model):
+    direction = models.ForeignKey(Direction, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Направление',
+                                  related_name='prices')
+    title = models.CharField('Заголовок', max_length=255)
+    text = models.TextField('Описание')
+    price = models.IntegerField('Цена')
+    order = models.PositiveSmallIntegerField('Порядковый номер', null=True, blank=True)
+    public = models.BooleanField('Опубликовать', default=True)
+    date = models.DateTimeField('Создано', auto_now_add=True)
+    update = models.DateTimeField('Обновлено', auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Услуга'
+        verbose_name_plural = '5. Услуги'
+        ordering = ('order', '-date')

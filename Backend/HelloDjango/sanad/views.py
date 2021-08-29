@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
 
-from .models import MainInfo, Slider, Advantage, Contacts, About, VideoGallery, PhotoGallery, Banner
+from .models import MainInfo, Slider, Advantage, Contacts, About, VideoGallery, PhotoGallery, Banner, InfoPage
 from .serializers import MainInfoSerializer, SliderSerializer, ContactsSerializer, \
-    AboutPageSerializer, VideoSanadSerializer, PhotoSanadSerializer, BannerSerializer
+    AboutPageSerializer, VideoSanadSerializer, PhotoSanadSerializer, BannerSerializer, InfoPageListSerializer, \
+    InfoPageDetailSerializer
 
 
 class MainInfoView(APIView):
@@ -30,6 +31,7 @@ class MainInfoView(APIView):
 
 class AboutSanadView(APIView):
     """Информация о клинике"""
+
     def get(self, request):
         info = About.objects.last()
         serializer = AboutPageSerializer(info, many=False)
@@ -51,3 +53,14 @@ class PhotoGalleryView(generics.ListAPIView):
 class BannerListView(generics.ListAPIView):
     queryset = Banner.objects.filter(public=True)
     serializer_class = BannerSerializer
+
+
+class InfoPageListView(generics.ListAPIView):
+    queryset = InfoPage.objects.filter(public=True)
+    serializer_class = InfoPageListSerializer
+
+
+class InfoPageDetailView(generics.RetrieveAPIView):
+    queryset = InfoPage.objects.filter(public=True)
+    serializer_class = InfoPageDetailSerializer
+    lookup_field = 'slug'

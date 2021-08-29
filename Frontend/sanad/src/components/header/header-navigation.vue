@@ -22,6 +22,11 @@
             Акции
           </q-item-section>
         </q-item>
+        <q-item tag="a" class="x-nav-item text-grey-6 q-ml-md q-pr-lg" to="/price" exact-active-class="text-dark" manual-focus title="Прайс-лист цен на услуги">
+          <q-item-section class="text-dark">
+            Прайс
+          </q-item-section>
+        </q-item>
         <q-item class="x-nav-item text-grey-6 q-ml-md q-pr-lg" to="/posts" exact-active-class="text-dark" manual-focus>
           <q-item-section class="text-dark">
             Статьи
