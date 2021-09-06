@@ -33,19 +33,20 @@ export default function (/* { ssrContext } */) {
       reviews
     },
     state: {
-      serverURL: 'http://192.168.0.199:8000'
-      // serverURL: 'https://sanad.kz.na4u.ru'
+      // serverURL: 'http://192.168.0.199:8000'
+      serverURL: 'https://sanad.kz.na4u.ru'
     },
     actions: {
-      async init({dispatch}) {
-        await dispatch('fetchClinicActions')
-        await dispatch('fetchDirections')
-        await dispatch('fetchHomePosts')
-        await dispatch('fetchHomeStories')
-        await dispatch('fetchHomeReviews')
-        await dispatch('fetchClinicLifePosts')
-        await dispatch('loadDoctors')
-        await dispatch('loadInfoPages')
+      init({dispatch}) {
+        dispatch('fetchClinicActions')
+        dispatch('fetchDirections')
+        dispatch('fetchHomePosts')
+        dispatch('fetchHomeStories')
+        dispatch('fetchHomeReviews')
+        dispatch('fetchClinicLifePosts')
+        dispatch('loadDoctors')
+        dispatch('loadInfoPages')
+        dispatch('fetchBanners')
       }
     },
     getters: {

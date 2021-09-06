@@ -5,9 +5,9 @@
       v-for="banner in banners"
       :key="banner.id"
     >
-      <router-link :to="banner.url">
+      <router-link v-if="banner" :to="banner.url">
         <q-img
-          :src="banner.image"
+          :src="getImage(banner)"
           :ratio="1"
           no-default-spinner
           v-once
@@ -41,6 +41,11 @@ export default {
   },
   directives: {
     swiper: directive
+  },
+  methods: {
+    getImage (item) {
+      return item?.image
+    }
   },
   data() {
     return {

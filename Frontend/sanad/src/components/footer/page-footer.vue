@@ -98,9 +98,6 @@ export default {
     clinicLifePosts() {
       return this.$store.getters.getClinicLifeActions
     }
-  },
-  created() {
-    this.$store.dispatch('fetchBanners')
   }
 }
 </script>

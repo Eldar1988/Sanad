@@ -72,7 +72,7 @@ class DirectionListSerializer(serializers.ModelSerializer):
 
 class PriceSerializer(serializers.ModelSerializer):
     direction = DirectionListSerializer(many=False, read_only=True)
-    
+
     class Meta:
         model = Price
         exclude = ('date', 'update', 'order')
