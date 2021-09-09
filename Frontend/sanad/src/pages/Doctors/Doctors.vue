@@ -28,6 +28,37 @@ export default {
       })
       return doctors
     }
+  },
+  meta() {
+    return {
+      title: "Специалисты | Клиника SANAD Караганда",
+      meta: {
+        description: {
+          name: "description",
+          content: "Специалисты клиники. Клинико-диагностический реабилитационный центр Sanad в Караганде",
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: "Специалисты | Клиника SANAD Караганда",
+        },
+        ogUrl: {
+          property: "og:url",
+          content: "https://sanadmed.kz",
+        },
+        ogDescription: {
+          property: "og:description",
+          content: "Специалисты клиники. Клинико-диагностический реабилитационный центр Sanad в Караганде",
+        },
+        ogImage: {
+          property: "og:image",
+          content: "https://res.cloudinary.com/space-developers/image/upload/v1630987428/cvetogis/logo/logo_e3tgqj.png"
+        }
+      }
+    }
   }
 }
 </script>

@@ -128,6 +128,20 @@ const routes = [
       { path: ':slug', name: 'info-page', component: () => import('pages/InfoPage') }
     ]
   },
+  {
+    path: '/thanks',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Thanks') }
+    ]
+  },
+  {
+    path: '/phone',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Phone') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

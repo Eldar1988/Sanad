@@ -22,27 +22,28 @@
         icon="eva-phone-outline"
         class="grey-gradient q-card--bordered ml--1 mb--1"
         no-caps unelevated stretch
+        to="/phone"
       >
-        <q-menu square class="shadow-0" content-class="shadow-0">
-        <q-list>
-          <q-item
-            clickable
-            v-for="(phone, index) in phones"
-            :key="index"
-            class="q-px-xl"
-          >
-            <q-btn
-              class="full-width no-wrap q-card--bordered mt--1 phone-call-button"
-              type="a" stretch
-              :label="phone"
-              flat no-wrap
-              color="dark"
-              :href="`tel:${phone}`"
-              style="padding: 0 6px"
-            />
-          </q-item>
-        </q-list>
-        </q-menu>
+<!--        <q-menu square class="shadow-0" content-class="shadow-0">-->
+<!--        <q-list>-->
+<!--          <q-item-->
+<!--            clickable-->
+<!--            v-for="(phone, index) in phones"-->
+<!--            :key="index"-->
+<!--            class="q-px-xl"-->
+<!--          >-->
+<!--            <q-btn-->
+<!--              class="full-width no-wrap q-card&#45;&#45;bordered mt&#45;&#45;1 phone-call-button"-->
+<!--              type="a" stretch-->
+<!--              :label="phone"-->
+<!--              flat no-wrap-->
+<!--              color="dark"-->
+<!--              :href="`tel:${phone}`"-->
+<!--              style="padding: 0 6px"-->
+<!--            />-->
+<!--          </q-item>-->
+<!--        </q-list>-->
+<!--        </q-menu>-->
       </q-btn>
     </div>
   </div>

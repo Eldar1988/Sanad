@@ -90,6 +90,37 @@ export default {
   },
   preFetch({store, currentRoute}) {
     store.dispatch('loadDirection', currentRoute.params.slug)
+  },
+  meta() {
+    return {
+      title: `${this.direction.title} | Клиника SANAD Караганда`,
+      meta: {
+        description: {
+          name: "description",
+          content: `${this.direction.short_description}`,
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: `${this.direction.title} | Клиника SANAD Караганда`,
+        },
+        ogUrl: {
+          property: "og:url",
+          content: 'https://sanadmed.kz' + this.$route.path,
+        },
+        ogDescription: {
+          property: "og:description",
+          content: `${this.direction.short_description}`,
+        },
+        ogImage: {
+          property: "og:image",
+          content: `${this.direction.icon}`
+        }
+      }
+    }
   }
 }
 </script>

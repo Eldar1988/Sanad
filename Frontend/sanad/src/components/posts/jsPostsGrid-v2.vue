@@ -16,16 +16,30 @@ import JsPostCardV2 from "components/posts/jsPostCard-v2";
 export default {
   name: "jsPostsGrid-v2",
   components: {JsPostCardV2},
+  // section Props
   props: {
     posts: {
       type: Array,
       default: null
     }
+  },
+  computed: {
+    // section Computed
+  },
+  data() {
+    // section Data
+    return {
+      key: value
+    }
+  },
+  created() {
+    // section Created
   }
 }
 </script>
 
 <style lang="sass">
+// section Styles
 .posts-grid-v2
   display: grid
   grid-gap: 30px

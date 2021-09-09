@@ -8,8 +8,8 @@
             <images-slider :slides="images"/>
           </div>
           <div class="col-12 col-sm-6">
-            <js-section-title :title="doctor.name"/>
-            <p class="sub_title q-mt-sm">{{ doctor.specialization }}</p>
+            <h1 class="sub_title">{{ doctor.specialization }}</h1>
+            <js-section-title :title="doctor.name" class="q-mt-sm"/>
             <p class="sub_title q-mt-sm text-bold">Стаж работы: {{ doctor.experience }}</p>
             <p class="q-mt-md">{{ doctor.short_description }}</p>
             <div>
@@ -97,6 +97,37 @@ export default {
   },
   preFetch({store, currentRoute}) {
     return store.dispatch('loadDoctor', currentRoute.params.slug)
+  },
+  meta() {
+    return {
+      title: `${this.doctor.specialization} ${this.doctor.name} | Клиника SANAD Караганда`,
+      meta: {
+        description: {
+          name: "description",
+          content: `Стаж работы: ${this.doctor.experience}. ${this.doctor.short_description}`,
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: `${this.doctor.specialization} ${this.doctor.name} | Клиника SANAD Караганда`,
+        },
+        ogUrl: {
+          property: "og:url",
+          content: 'https://sanadmed.kz' + this.$route.path,
+        },
+        ogDescription: {
+          property: "og:description",
+          content: `Стаж работы: ${this.doctor.experience}. ${this.doctor.short_description}`,
+        },
+        ogImage: {
+          property: "og:image",
+          content: `${this.doctor.photo}`
+        }
+      }
+    }
   }
 }
 </script>

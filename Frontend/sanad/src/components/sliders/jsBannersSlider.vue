@@ -73,8 +73,7 @@ export default {
         }
       }
     }
-  },
-
+  }
 }
 </script>
 

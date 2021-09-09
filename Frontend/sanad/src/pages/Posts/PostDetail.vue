@@ -14,6 +14,7 @@
           </q-img>
         </div>
         <!--        Title & author-->
+<!--        section title & author-->
         <div class="items-center flex">
           <div class="q-pa-lg ">
             <h2 class="page-title">{{ post.title }}</h2>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+// section imports
 import PageHeader from "components/utils/page-header";
 import PageFooter from "components/footer/page-footer";
 import PostPhotoSlider from "components/sliders/post-photo-slider";
@@ -80,6 +82,7 @@ export default {
   name: "PostDetail",
   components: {VideosSlider, PostPhotoSlider, PageFooter, PageHeader},
   computed: {
+    // section Computed
     photoStyle () {
       if (!this.doctor && this.$q.platform.is.desktop) {
         return 'width: 150px; height: 150px'
@@ -98,10 +101,42 @@ export default {
   },
   preFetch({store, currentRoute}) {
     return store.dispatch('loadPost', currentRoute.params.slug)
+  },
+  // section Meta
+  meta() {
+    return {
+      title: `${this.post.title} | Клиника SANAD Караганда`,
+      meta: {
+        description: {
+          name: "description",
+          content: `${this.direction.short_description}`,
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: `${this.direction.title} | Клиника SANAD Караганда`,
+        },
+        ogUrl: {
+          property: "og:url",
+          content: 'https://sanadmed.kz' + this.$route.path,
+        },
+        ogDescription: {
+          property: "og:description",
+          content: `${this.direction.short_description}`,
+        },
+        ogImage: {
+          property: "og:image",
+          content: `${this.post.photo}`
+        }
+      }
+    }
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+// section styles
 </style>

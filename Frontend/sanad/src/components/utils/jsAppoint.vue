@@ -105,12 +105,10 @@ export default {
         doctor: parseInt(this.$route.query.doctorId) || null
       }).then(response => {
         notifier('Спасибо! Ваша заявка принята.', 'positive')
-      }).finally(
-        setTimeout(() => {
-          this.loading = false
-          this.closeDialog()
-        }, 2000)
-      )
+        this.loading = false
+        this.$store.dispatch('changeAppointDialog')
+        this.$router.push('/thanks')
+      })
     }
   }
 }

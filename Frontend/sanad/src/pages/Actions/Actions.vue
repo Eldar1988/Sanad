@@ -28,6 +28,37 @@ export default {
     actions() {
       return this.$store.getters.getClinicActions
     }
+  },
+  meta() {
+    return {
+      title: "Акции | Клиника SANAD Караганда",
+      meta: {
+        description: {
+          name: "description",
+          content: "Акции клиники. Клинико-диагностический реабилитационный центр Sanad в Караганде",
+        },
+        ogType: {
+          property: "og:type",
+          content: "website",
+        },
+        ogTitle: {
+          property: "og:title",
+          content: "Акции | Клиника SANAD Караганда",
+        },
+        ogUrl: {
+          property: "og:url",
+          content: "https://sanadmed.kz",
+        },
+        ogDescription: {
+          property: "og:description",
+          content: "Акции клиники. Клинико-диагностический реабилитационный центр Sanad в Караганде",
+        },
+        ogImage: {
+          property: "og:image",
+          content: "https://res.cloudinary.com/space-developers/image/upload/v1630987428/cvetogis/logo/logo_e3tgqj.png"
+        }
+      }
+    }
   }
 }
 </script>

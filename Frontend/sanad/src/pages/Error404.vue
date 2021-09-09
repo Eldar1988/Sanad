@@ -1,21 +1,21 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <div class="fullscreen bg-white text-center q-pa-md flex flex-center">
     <div>
-      <div style="font-size: 30vh">
+      <div style="font-size: 20vh">
         404
       </div>
 
-      <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+      <div class="text-h6" style="opacity:.4">
+        Извините. Страница не найдена.<br>
+        Но на нашем сайте есть много другой полезной информации.
       </div>
 
       <q-btn
         class="q-mt-xl"
-        color="white"
-        text-color="blue"
-        unelevated
+        color="dark"
+        unelevated stretch outline
         to="/"
-        label="Go Home"
+        label="На главную"
         no-caps
       />
     </div>
