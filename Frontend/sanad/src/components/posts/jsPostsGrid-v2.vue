@@ -22,18 +22,6 @@ export default {
       type: Array,
       default: null
     }
-  },
-  computed: {
-    // section Computed
-  },
-  data() {
-    // section Data
-    return {
-      key: value
-    }
-  },
-  created() {
-    // section Created
   }
 }
 </script>
