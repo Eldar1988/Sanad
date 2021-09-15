@@ -1,6 +1,7 @@
 <template>
 <div>
   <q-page style="min-height: 90vh">
+    <script type="text/javascript" v-html="tag"></script>
     <q-card class="flex flex-center column shadow-0" style="min-height: 80vh">
       <h1 class="text-h6 text-uppercase text-bold">
         Спасибо за вашу заявку!
@@ -30,7 +31,8 @@ export default {
   components: {PageFooter},
   data() {
     return {
-      dialog: true
+      dialog: true,
+      tag: "gtag('event', 'conversion', {'send_to': 'AW-385275721/ZzCuCLzH8fQCEMmu27cB'});"
     }
   },
 }

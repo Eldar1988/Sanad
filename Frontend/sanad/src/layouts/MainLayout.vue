@@ -25,6 +25,7 @@
       </keep-alive>
     </q-page-container>
 
+    <phone-button />
     <js-appoint />
   </q-layout>
 </template>
@@ -34,16 +35,14 @@ import JsHeaderActions from "components/header/header-buttons";
 import JsHeaderNavigation from "components/header/header-navigation";
 import LeftDrawerNavigation from "components/header/left-drawer-navigation";
 import JsAppoint from "components/utils/jsAppoint";
+import PhoneButton from "components/utils/phone-button";
 
 export default {
-  components: {JsAppoint, LeftDrawerNavigation, JsHeaderNavigation, JsHeaderActions},
+  components: {PhoneButton, JsAppoint, LeftDrawerNavigation, JsHeaderNavigation, JsHeaderActions},
   computed: {
     slides() {
       return this.$store.getters.getMainInfo.slides
     }
-  },
-  created() {
-    this.$store.dispatch('init')
   },
   data() {
     return {

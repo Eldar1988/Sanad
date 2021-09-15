@@ -1,20 +1,9 @@
 <template>
   <q-page style="min-height: 90vh">
-    <div class="text-right container-m">
-      <q-btn
-        flat dense
-        label="Закрыть"
-        icon="close"
-        color="grey-8"
-        stretch unelevated outline
-        style="max-width: 120px"
-        class="q-mx-auto q-mt-lg q-px-md"
-        @click="$router.go(-1)"
-      />
-    </div>
-
+    <script type="text/javascript" v-html="tag"></script>
+    <page-header back-route-button title="Вернуться назад" />
     <q-card class="flex container-m flex-center column shadow-0" style="min-height: 60vh">
-      <h1 class="text-h5 text-uppercase text-center">
+      <h1 class="text-h5 text-uppercase text-center q-mt-xl">
         Телефоны<br> горячей линии
       </h1>
 
@@ -39,7 +28,21 @@
         type="a"
         href="https://wa.me/77015425048"
       />
+      <div class="text-center q-pt-lg">
+        <q-btn
+          flat dense
+          label="Закрыть"
+          icon="close"
+          color="grey-8"
+          stretch unelevated outline
+          style="max-width: 120px"
+          class="q-mx-auto q-px-md"
+          @click="$router.go(-1)"
+        />
+      </div>
     </q-card>
+
+
 
     <page-footer />
   </q-page>
@@ -47,14 +50,20 @@
 
 <script>
 import PageFooter from "components/footer/page-footer";
+import PageHeader from "components/utils/page-header";
 export default {
   name: "Phone",
-  components: {PageFooter},
+  components: {PageHeader, PageFooter},
   computed: {
     phones() {
       return this.$store.getters.getMainInfo.contacts.phones.split(',')
     }
-  }
+  },
+  data() {
+    return {
+      tag: "gtag('event', 'conversion', {'send_to': 'AW-385275721/LQxSCJrY8fQCEMmu27cB'});"
+    }
+  },
 }
 </script>
 

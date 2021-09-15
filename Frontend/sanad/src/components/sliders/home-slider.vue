@@ -18,10 +18,10 @@
           class="home-slider-image"
         >
           <div class="slider-text">
-            <h1 class="text-weight-bold text-uppercase letter-1">
+            <div class="text-weight-bold text-uppercase letter-1">
               <span>{{ slide.title }}</span><br>
               <span>{{ slide.title_2 }}</span>
-            </h1>
+            </div>
           </div>
           <template v-slot:loading>
             <q-skeleton class="full-width home-slider-image" square/>
@@ -59,7 +59,7 @@ export default {
   right: 0
   text-align: center
 
-  h1
+  div
     font-size: 33px
     span
       background: #ffffff
@@ -70,7 +70,7 @@ export default {
 
 @media screen and (max-width: 650px)
   .slider-text
-    h1
+    div
       font-size: 20px
       span
         background: #ffffff
