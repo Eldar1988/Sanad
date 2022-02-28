@@ -4,11 +4,16 @@
     <section class="container-m">
       <q-table
         square flat bordered
-        class="my-sticky-header-column-table q-mt-md"
+        class="my-sticky-virtscroll-table q-mt-md"
         :data="price"
         :columns="columns"
+        style="height: 500px"
         row-key="name"
         hide-pagination
+        virtual-scroll
+        :virtual-scroll-sticky-size-start="48"
+        :pagination.sync="pagination"
+        :rows-per-page-options="[0]"
       >
 
         <template v-slot:header="props">
@@ -71,6 +76,9 @@ export default {
   },
   data() {
     return {
+      pagination: {
+        rowsPerPage: 0
+      },
       columns: [
         {
           name: 'name',
@@ -152,4 +160,25 @@ export default {
 
   td:first-child
     z-index: 1
+</style>
+
+<style lang="sass">
+.my-sticky-virtscroll-table
+  /* height or max-height is important */
+  height: 410px
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th /* bg color is important for th; just specify one */
+    background-color: #fff
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  /* this will be the loading indicator */
+  thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+  thead tr:first-child th
+    top: 0
 </style>
